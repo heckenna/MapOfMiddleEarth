@@ -16,9 +16,10 @@ public class Edge {
 		this.end = end;
 		this.start = start;
 		
-		this.distance = calculateDistance();
-		
 		this.terrainDifficulty = terrainDifficulty;
+		
+		this.distance = calculateDistance();
+		this.time = calculateTime();
 	}
 	
 	public void draw(Graphics2D graphics2, int xStretch, int yStretch){
@@ -33,6 +34,13 @@ public class Edge {
 		graphics2.drawString(Integer.toString(this.distance), 
 				(int)((this.start.getX()+this.end.getX()) / 2 * xStretch), 
 				(int)((this.start.getY()+this.end.getY()) / 2 * yStretch));
+		
+		graphics2.setColor(Color.RED);
+		
+		graphics2.drawString(Integer.toString(this.time), 
+				(int)((this.start.getX()+this.end.getX()) / 2 * xStretch), 
+				(int)((this.start.getY()+this.end.getY() + 2) / 2 * yStretch));
+		
 	}
 	
 	public int calculateDistance(){
@@ -41,9 +49,11 @@ public class Edge {
 				Math.pow( (this.start.getY() - this.end.getY()), 2) ) );
 	}
 	
-//	public int calculateTime(){
-//		
-//		return ( this.distance * (SPEED) + this.terrainDifficulty * (SOMETHING) );
-//	}
+	public int calculateTime(){
+		
+		int speed = 5;
+		
+		return ( (this.distance + this.terrainDifficulty) * speed);
+	}
 
 }
