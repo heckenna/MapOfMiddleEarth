@@ -29,6 +29,10 @@ public class Edge {
 				this.start.getY() * yStretch, 
 				this.end.getX() * xStretch, 
 				this.end.getY() * yStretch);
+		
+		graphics2.drawString(Integer.toString(this.distance), 
+				(int)((this.start.getX()+this.end.getX()) / 2 * xStretch), 
+				(int)((this.start.getY()+this.end.getY()) / 2 * yStretch));
 	}
 	
 	public int calculateDistance(){
