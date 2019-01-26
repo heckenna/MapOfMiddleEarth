@@ -6,6 +6,8 @@ public class Edge {
 	private int distance;
 	private int time;
 	
+	private Color color;
+	
 	private int terrainDifficulty;
 	
 	private Node start;
@@ -16,6 +18,8 @@ public class Edge {
 		this.end = end;
 		this.start = start;
 		
+		this.color = Color.BLUE;
+		
 		this.terrainDifficulty = terrainDifficulty;
 		
 		this.distance = calculateDistance();
@@ -24,7 +28,7 @@ public class Edge {
 	
 	public void draw(Graphics2D graphics2, int xStretch, int yStretch){
 		
-		graphics2.setColor(Color.BLUE);
+		graphics2.setColor(this.color);
 		
 		graphics2.drawLine(this.start.getX() * xStretch, 
 				this.start.getY() * yStretch, 
@@ -54,6 +58,26 @@ public class Edge {
 		int speed = 5;
 		
 		return ( (this.distance + this.terrainDifficulty) * speed);
+	}
+	
+	public Node getOtherEnd(Node n){
+		
+		if (n == this.start){
+			
+			return (this.end);
+		}
+		
+		return (this.start);
+	}
+	
+	public void setColor(Color c){
+		
+		this.color = c;
+	}
+	
+	public int getDistance(){
+		
+		return (this.distance);
 	}
 
 }

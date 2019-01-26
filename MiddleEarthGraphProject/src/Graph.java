@@ -1,7 +1,9 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
 import javax.swing.JComponent;
 
@@ -35,6 +37,68 @@ public class Graph extends JComponent{
 		
 		node1.addEdge(newEdge);
 		node2.addEdge(newEdge);
+	}
+	
+	public void findShortestPath(String beginString, String destinationString){
+		
+		Node begin = this.searchNode.get(beginString);
+		Node destination = this.searchNode.get(destinationString);
+		
+		ArrayList<Node> visited = new ArrayList<>();
+		visited.add(begin);
+		
+		PriorityQueue<Node> queue = new PriorityQueue<>();
+		queue.add(begin);
+		
+		Node currentNode = begin;
+		currentNode.setDistanceTraveled(0);
+		currentNode.estimateTotalDistance(destination);
+		currentNode.setVisited(new ArrayList<Node>());
+		
+		while (currentNode != destination){
+			
+			for (Edge e : currentNode.getEdges()){
+				
+				Node neighbor = e.getOtherEnd(currentNode);
+				
+				if (! visited.contains(neighbor)){
+				
+					neighbor.setDistanceTraveled(currentNode.getDistanceTraveled() + e.getDistance());
+					
+					neighbor.estimateTotalDistance(destination);
+					
+					neighbor.setVisited(currentNode.getVisited());
+					
+					queue.add(neighbor);
+					
+					visited.add(neighbor);
+				}
+			}
+			
+			queue.remove(currentNode);
+			
+			currentNode = queue.peek();
+		}
+		
+		System.out.println("Total Distance Traveled:" + currentNode.getDistanceTraveled());
+		
+		Node last = null;
+		
+		for (Node n : currentNode.getVisited()){
+			
+			n.setColor(Color.RED);
+			
+			for (Edge e : n.getEdges()){
+				
+				if (last != null && last.getEdges().contains(e)){
+					
+					e.setColor(Color.RED);
+				}
+			}
+			
+			last = n;
+		}
+		
 	}
 	
 	@Override
