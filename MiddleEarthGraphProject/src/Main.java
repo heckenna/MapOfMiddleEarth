@@ -17,7 +17,7 @@ public class Main {
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		Graph middleEarth = new Graph();
+		Graph middleEarth = new Graph(FRAME_WIDTH, FRAME_HEIGHT);
 		
 		middleEarth.insert("Point A", 75, 82);
 		middleEarth.insert("Point B", 30, 27);
@@ -89,8 +89,9 @@ public class Main {
 		middleEarth.connect("Point J", "Point W", 15);
 		middleEarth.connect("Point H", "Point W", 11);
 		
+		
 		middleEarth.findShortestPath("Point X", "Point A", "distance");
-		middleEarth.findShortestPath("Point X", "Point A", "time");
+//		middleEarth.findShortestPath("Point X", "Point A", "time");
 		
 		frame.add(middleEarth);
 		

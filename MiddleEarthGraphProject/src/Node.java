@@ -9,6 +9,7 @@ public class Node implements Comparable<Node>{
 	private String name;
 	
 	private Color color;
+	private int radius;
 	
 	private ArrayList<Edge> edges;
 	
@@ -25,6 +26,8 @@ public class Node implements Comparable<Node>{
 		this.name = name;
 		
 		this.color = Color.BLACK;
+		
+		this.radius = 5;
 		
 		this.edges = new ArrayList<>();
 		
@@ -45,13 +48,14 @@ public class Node implements Comparable<Node>{
 		return (this.edges);
 	}
 	
-	public void draw(Graphics2D graphics2, int xStretch, int yStretch){
+	public void draw(Graphics2D graphics2, double xStretch, double yStretch){
 		
 		graphics2.setColor(this.color);
 		
-		int radius = 5;
-		
-		graphics2.fillOval(this.x * xStretch - radius, this.y * yStretch - radius, 2*radius, 2*radius);
+		graphics2.fillOval((int)(this.x * xStretch - this.radius), 
+				(int)(this.y * yStretch - this.radius), 
+				2*this.radius, 
+				2*this.radius);
 		
 		graphics2.drawString(this.name, (int)((this.x - 1.0) * xStretch), (int)((this.y - 0.5) * yStretch));
 		
@@ -113,14 +117,6 @@ public class Node implements Comparable<Node>{
 	public ArrayList<Node> getVisited(){
 		
 		return (this.visited);
-	}
-	
-	public void printVisited(){
-		
-		for (Node n : this.visited){
-			
-			System.out.print(n.getName() +" ");
-		}
 	}
 
 	@Override

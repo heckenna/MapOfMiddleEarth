@@ -11,9 +11,29 @@ public class Graph extends JComponent{
 	
 	private HashMap<String, Node> searchNode;
 	
-	public Graph(){
+	private Color color;
+	
+	private boolean gridOn;
+	
+	private double xStretch;
+	private double yStretch;
+	
+	private static int FRAME_HEIGHT;
+	private static int FRAME_WIDTH;
+	
+	public Graph(int FRAME_HEIGHT, int FRAME_WIDTH){
 		
 		this.searchNode = new HashMap<>();
+		
+		this.color = Color.BLACK;
+		
+		this.gridOn = false;
+		
+		this.xStretch = 10;
+		this.yStretch = 10;
+		
+		Graph.FRAME_HEIGHT = FRAME_HEIGHT;
+		Graph.FRAME_WIDTH = FRAME_WIDTH;
 	}
 	
 	public boolean insert(String name, int x, int y){
@@ -28,15 +48,22 @@ public class Graph extends JComponent{
 		return (true);
 	}
 	
-	public void connect(String name1, String name2, int terrainDifficulty){
+	public boolean connect(String name1, String name2, int terrainDifficulty){
 		
 		Node node1 = this.searchNode.get(name1);
 		Node node2 = this.searchNode.get(name2);
+		
+		if (node1 == null || node2 == null){
+			
+			return (false);
+		}
 		
 		Edge newEdge = new Edge(node1, node2, terrainDifficulty);
 		
 		node1.addEdge(newEdge);
 		node2.addEdge(newEdge);
+		
+		return (true);
 	}
 	
 	public void findShortestPath(String beginString, String destinationString, String criteria){
@@ -80,7 +107,7 @@ public class Graph extends JComponent{
 			currentNode = queue.peek();
 		}
 		
-		System.out.println("Total Length Traveled:" + currentNode.getLengthTraveled());
+		System.out.println("Total Length Traveled (Distance or Time):" + currentNode.getLengthTraveled());
 		
 		Node last = null;
 		
@@ -108,28 +135,23 @@ public class Graph extends JComponent{
 		
 		Graphics2D graphics2 = (Graphics2D) graphics;
 		
-		int xStretch = 10;
-		int yStretch = 10;
-		
 		for (Node n : this.searchNode.values()){
 			
-			n.draw(graphics2, xStretch, yStretch);
+			n.draw(graphics2, this.xStretch, this.yStretch);
 		}
 		
-		boolean gridOn = false;
-		
-		if (gridOn){
+		if (this.gridOn){
 			
-			graphics2.setColor(Color.BLACK);
+			graphics2.setColor(this.color);
 		
-			for (int i = 0; i < (int) (1900 / xStretch); i++){
+			for (int i = 0; i < (int) (Graph.FRAME_WIDTH / this.xStretch); i++){
 					
-				graphics2.drawLine(i*xStretch, 0, i*xStretch, 1000);
+				graphics2.drawLine((int)(i * this.xStretch), 0, (int)(i * this.xStretch), 1000);
 			}
 			
-			for (int j = 0; j < (int) (1000 / yStretch); j++){
+			for (int j = 0; j < (int) (Graph.FRAME_HEIGHT / this.yStretch); j++){
 				
-				graphics2.drawLine(0, j*yStretch, 1900, j*yStretch);
+				graphics2.drawLine(0, (int)(j * this.yStretch), 1900, (int)(j * this.yStretch));
 			}
 		}
 	}

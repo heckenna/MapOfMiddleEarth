@@ -13,6 +13,8 @@ public class Edge {
 	private Node start;
 	private Node end;
 	
+	private int speed;
+	
 	public Edge(Node start, Node end, int terrainDifficulty){
 		
 		this.end = end;
@@ -20,28 +22,30 @@ public class Edge {
 		
 		this.color = Color.BLUE;
 		
+		this.speed = 5;
+		
 		this.terrainDifficulty = terrainDifficulty;
 		
 		this.distance = calculateDistance();
 		this.time = calculateTime();
 	}
 	
-	public void draw(Graphics2D graphics2, int xStretch, int yStretch){
+	public void draw(Graphics2D graphics2, double xStretch, double yStretch){
 		
 		graphics2.setColor(this.color);
 		
-		graphics2.drawLine(this.start.getX() * xStretch, 
-				this.start.getY() * yStretch, 
-				this.end.getX() * xStretch, 
-				this.end.getY() * yStretch);
+		graphics2.drawLine((int)(this.start.getX() * xStretch), 
+				(int)(this.start.getY() * yStretch), 
+				(int)(this.end.getX() * xStretch), 
+				(int)(this.end.getY() * yStretch));
 		
-		graphics2.drawString(Integer.toString(this.distance), 
+		graphics2.setColor(Color.BLUE);
+		graphics2.drawString("D: " + Integer.toString(this.distance), 
 				(int)((this.start.getX()+this.end.getX()) / 2 * xStretch), 
 				(int)((this.start.getY()+this.end.getY()) / 2 * yStretch));
 		
 		graphics2.setColor(Color.BLACK);
-		
-		graphics2.drawString(Integer.toString(this.time), 
+		graphics2.drawString("T: " + Integer.toString(this.time), 
 				(int)((this.start.getX()+this.end.getX()) / 2 * xStretch), 
 				(int)((this.start.getY()+this.end.getY() + 2) / 2 * yStretch));
 		
@@ -55,9 +59,7 @@ public class Edge {
 	
 	public int calculateTime(){
 		
-		int speed = 5;
-		
-		return ( (this.distance + this.terrainDifficulty) * speed);
+		return ( (this.distance + this.terrainDifficulty) * this.speed);
 	}
 	
 	public Node getOtherEnd(Node n){
