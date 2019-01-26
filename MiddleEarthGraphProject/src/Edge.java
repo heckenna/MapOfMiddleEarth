@@ -39,7 +39,7 @@ public class Edge {
 				(int)((this.start.getX()+this.end.getX()) / 2 * xStretch), 
 				(int)((this.start.getY()+this.end.getY()) / 2 * yStretch));
 		
-		graphics2.setColor(Color.RED);
+		graphics2.setColor(Color.BLACK);
 		
 		graphics2.drawString(Integer.toString(this.time), 
 				(int)((this.start.getX()+this.end.getX()) / 2 * xStretch), 
@@ -75,9 +75,19 @@ public class Edge {
 		this.color = c;
 	}
 	
-	public int getDistance(){
+	public int getLength(String criteria){
 		
-		return (this.distance);
+		if (criteria.equals("distance")){
+		
+			return (this.distance);
+		}
+		
+		else if (criteria.equals("time")){
+		
+			return (this.time);
+		}
+		
+		return (-1);
 	}
 
 }

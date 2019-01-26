@@ -12,8 +12,8 @@ public class Node implements Comparable<Node>{
 	
 	private ArrayList<Edge> edges;
 	
-	private int distanceTraveled;
-	private int estimatedTotalDistance;
+	private int lengthTraveled;
+	private int estimatedTotalLength;
 	
 	private ArrayList<Node> visited;
 	
@@ -28,8 +28,8 @@ public class Node implements Comparable<Node>{
 		
 		this.edges = new ArrayList<>();
 		
-		this.distanceTraveled = 0;
-		this.estimatedTotalDistance = 0;
+		this.lengthTraveled = 0;
+		this.estimatedTotalLength = 0;
 		
 		this.visited = new ArrayList<>();
 		
@@ -82,20 +82,20 @@ public class Node implements Comparable<Node>{
 		this.color  = c;
 	}
 	
-	public int getDistanceTraveled(){
+	public int getLengthTraveled(){
 		
-		return (this.distanceTraveled);
+		return (this.lengthTraveled);
 	}
 	
-	public void setDistanceTraveled(int distanceTraveled){
+	public void setLengthTraveled(int lengthTraveled){
 		
-		this.distanceTraveled = distanceTraveled;
+		this.lengthTraveled = lengthTraveled;
 	}
 	
-	public void estimateTotalDistance(Node destination){
+	public void estimateTotalLength(Node destination){
 		
-		this.estimatedTotalDistance = (int)( Math.sqrt( Math.pow( (this.x - destination.getX()), 2) + 
-				Math.pow( (this.y - destination.getY()), 2) ) ) + this.distanceTraveled;
+		this.estimatedTotalLength = (int)( Math.sqrt( Math.pow( (this.x - destination.getX()), 2) + 
+				Math.pow( (this.y - destination.getY()), 2) ) ) + this.lengthTraveled;
 	}
 	
 	public void setVisited(ArrayList<Node> a){
@@ -126,7 +126,7 @@ public class Node implements Comparable<Node>{
 	@Override
 	public int compareTo(Node n) {
 		
-		if (this.estimatedTotalDistance <= n.estimatedTotalDistance){
+		if (this.estimatedTotalLength <= n.estimatedTotalLength){
 			
 			return (-1);
 		}

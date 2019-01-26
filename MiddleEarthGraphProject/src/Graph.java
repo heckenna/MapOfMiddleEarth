@@ -39,7 +39,7 @@ public class Graph extends JComponent{
 		node2.addEdge(newEdge);
 	}
 	
-	public void findShortestPath(String beginString, String destinationString){
+	public void findShortestPath(String beginString, String destinationString, String criteria){
 		
 		Node begin = this.searchNode.get(beginString);
 		Node destination = this.searchNode.get(destinationString);
@@ -51,8 +51,8 @@ public class Graph extends JComponent{
 		queue.add(begin);
 		
 		Node currentNode = begin;
-		currentNode.setDistanceTraveled(0);
-		currentNode.estimateTotalDistance(destination);
+		currentNode.setLengthTraveled(0);
+		currentNode.estimateTotalLength(destination);
 		currentNode.setVisited(new ArrayList<Node>());
 		
 		while (currentNode != destination){
@@ -63,9 +63,9 @@ public class Graph extends JComponent{
 				
 				if (! visited.contains(neighbor)){
 				
-					neighbor.setDistanceTraveled(currentNode.getDistanceTraveled() + e.getDistance());
+					neighbor.setLengthTraveled(currentNode.getLengthTraveled() + e.getLength(criteria));
 					
-					neighbor.estimateTotalDistance(destination);
+					neighbor.estimateTotalLength(destination);
 					
 					neighbor.setVisited(currentNode.getVisited());
 					
@@ -80,7 +80,7 @@ public class Graph extends JComponent{
 			currentNode = queue.peek();
 		}
 		
-		System.out.println("Total Distance Traveled:" + currentNode.getDistanceTraveled());
+		System.out.println("Total Length Traveled:" + currentNode.getLengthTraveled());
 		
 		Node last = null;
 		
