@@ -48,20 +48,20 @@ public class Node implements Comparable<Node>{
 		return (this.edges);
 	}
 	
-	public void draw(Graphics2D graphics2, double xStretch, double yStretch){
+	public void draw(Graphics2D graphics2, double xZoom, double yZoom){
 		
 		graphics2.setColor(this.color);
 		
-		graphics2.fillOval((int)(this.x * xStretch - this.radius), 
-				(int)(this.y * yStretch - this.radius), 
+		graphics2.fillOval((int)(this.x * xZoom - this.radius), 
+				(int)(this.y * yZoom - this.radius), 
 				2*this.radius, 
 				2*this.radius);
 		
-		graphics2.drawString(this.name, (int)((this.x - 1.0) * xStretch), (int)((this.y - 0.5) * yStretch));
+		graphics2.drawString(this.name, (int)((this.x - 1.0) * xZoom), (int)((this.y - 0.5) * yZoom));
 		
 		for (Edge e : this.edges){
 			
-			e.draw(graphics2, xStretch, yStretch);
+			e.draw(graphics2, xZoom, yZoom);
 		}
 		
 	}

@@ -15,13 +15,13 @@ public class Graph extends JComponent{
 	
 	private boolean gridOn;
 	
-	private double xStretch;
-	private double yStretch;
+	private double xZoom;
+	private double yZoom;
 	
 	private static int FRAME_HEIGHT;
 	private static int FRAME_WIDTH;
 	
-	public Graph(int FRAME_HEIGHT, int FRAME_WIDTH){
+	public Graph( int FRAME_WIDTH, int FRAME_HEIGHT){
 		
 		this.searchNode = new HashMap<>();
 		
@@ -29,8 +29,8 @@ public class Graph extends JComponent{
 		
 		this.gridOn = false;
 		
-		this.xStretch = 10;
-		this.yStretch = 10;
+		this.xZoom = 10;
+		this.yZoom = 10;
 		
 		Graph.FRAME_HEIGHT = FRAME_HEIGHT;
 		Graph.FRAME_WIDTH = FRAME_WIDTH;
@@ -105,6 +105,11 @@ public class Graph extends JComponent{
 			queue.remove(currentNode);
 			
 			currentNode = queue.peek();
+			
+			if (currentNode == null){
+				
+				return;
+			}
 		}
 		
 		System.out.println("Total Length Traveled (Distance or Time):" + currentNode.getLengthTraveled());
@@ -137,21 +142,21 @@ public class Graph extends JComponent{
 		
 		for (Node n : this.searchNode.values()){
 			
-			n.draw(graphics2, this.xStretch, this.yStretch);
+			n.draw(graphics2, this.xZoom, this.yZoom);
 		}
 		
 		if (this.gridOn){
 			
 			graphics2.setColor(this.color);
 		
-			for (int i = 0; i < (int) (Graph.FRAME_WIDTH / this.xStretch); i++){
+			for (int i = 0; i < (int)(Graph.FRAME_WIDTH / this.xZoom); i++){
 					
-				graphics2.drawLine((int)(i * this.xStretch), 0, (int)(i * this.xStretch), 1000);
+				graphics2.drawLine((int)(i * this.xZoom), 0, (int)(i * this.xZoom), Graph.FRAME_HEIGHT);
 			}
 			
-			for (int j = 0; j < (int) (Graph.FRAME_HEIGHT / this.yStretch); j++){
+			for (int j = 0; j < (int)(Graph.FRAME_HEIGHT / this.yZoom); j++){
 				
-				graphics2.drawLine(0, (int)(j * this.yStretch), 1900, (int)(j * this.yStretch));
+				graphics2.drawLine(0, (int)(j * this.yZoom), Graph.FRAME_WIDTH, (int)(j * this.yZoom));
 			}
 		}
 	}

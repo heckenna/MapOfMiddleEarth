@@ -30,24 +30,24 @@ public class Edge {
 		this.time = calculateTime();
 	}
 	
-	public void draw(Graphics2D graphics2, double xStretch, double yStretch){
+	public void draw(Graphics2D graphics2, double xZoom, double yZoom){
 		
 		graphics2.setColor(this.color);
 		
-		graphics2.drawLine((int)(this.start.getX() * xStretch), 
-				(int)(this.start.getY() * yStretch), 
-				(int)(this.end.getX() * xStretch), 
-				(int)(this.end.getY() * yStretch));
+		graphics2.drawLine((int)(this.start.getX() * xZoom), 
+				(int)(this.start.getY() * yZoom), 
+				(int)(this.end.getX() * xZoom), 
+				(int)(this.end.getY() * yZoom));
 		
 		graphics2.setColor(Color.BLUE);
 		graphics2.drawString("D: " + Integer.toString(this.distance), 
-				(int)((this.start.getX()+this.end.getX()) / 2 * xStretch), 
-				(int)((this.start.getY()+this.end.getY()) / 2 * yStretch));
+				(int)((this.start.getX()+this.end.getX()) / 2 * xZoom), 
+				(int)((this.start.getY()+this.end.getY()) / 2 * yZoom));
 		
 		graphics2.setColor(Color.BLACK);
 		graphics2.drawString("T: " + Integer.toString(this.time), 
-				(int)((this.start.getX()+this.end.getX()) / 2 * xStretch), 
-				(int)((this.start.getY()+this.end.getY() + 2) / 2 * yStretch));
+				(int)((this.start.getX()+this.end.getX()) / 2 * xZoom), 
+				(int)((this.start.getY()+this.end.getY() + 2) / 2 * yZoom));
 		
 	}
 	

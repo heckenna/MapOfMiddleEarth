@@ -1,6 +1,6 @@
 import javax.swing.JFrame;
 
-public class Main {
+public class Main{
 	
 	private static final String TITLE = "MiddleEarth";
 	
@@ -90,7 +90,7 @@ public class Main {
 		middleEarth.connect("Point H", "Point W", 11);
 		
 		
-		middleEarth.findShortestPath("Point X", "Point A", "distance");
+		middleEarth.findShortestPath("Point X", "Point F", "distance");
 //		middleEarth.findShortestPath("Point X", "Point A", "time");
 		
 		frame.add(middleEarth);
