@@ -93,15 +93,18 @@ public class Main{
 		middleEarth.connect("Point J", "Point W", 15);
 		middleEarth.connect("Point H", "Point W", 11);
 		
-		ArrayList<String> places = input.scan();
-		
-		middleEarth.findShortestPath(places.get(0), places.get(1), "distance");
-//		middleEarth.findShortestPath("Point X", "Point F", "distance");
+		middleEarth.findShortestPath("Point X", "Point F", "distance");
 //		middleEarth.findShortestPath("Point X", "Point A", "time");
 		
 		frame.add(middleEarth);
 		
 		frame.setVisible(true);
+		while(true) {
+			ArrayList<String> inputs = input.scan();
+			
+			middleEarth.findShortestPath(inputs.get(0), inputs.get(1), inputs.get(2));
+			frame.repaint();
+		}
 	}
 
 }
