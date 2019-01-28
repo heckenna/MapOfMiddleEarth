@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 
 public class Main{
@@ -18,6 +20,8 @@ public class Main{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Graph middleEarth = new Graph(FRAME_WIDTH, FRAME_HEIGHT);
+		GetUserInput input = new GetUserInput(middleEarth);
+
 		
 		middleEarth.insert("Point A", 75, 82);
 		middleEarth.insert("Point B", 30, 27);
@@ -89,8 +93,10 @@ public class Main{
 		middleEarth.connect("Point J", "Point W", 15);
 		middleEarth.connect("Point H", "Point W", 11);
 		
+		ArrayList<String> places = input.scan();
 		
-		middleEarth.findShortestPath("Point X", "Point F", "distance");
+		middleEarth.findShortestPath(places.get(0), places.get(1), "distance");
+//		middleEarth.findShortestPath("Point X", "Point F", "distance");
 //		middleEarth.findShortestPath("Point X", "Point A", "time");
 		
 		frame.add(middleEarth);

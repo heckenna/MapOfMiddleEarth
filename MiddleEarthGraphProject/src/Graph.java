@@ -133,6 +133,9 @@ public class Graph extends JComponent{
 		
 	}
 	
+	public boolean hasPlace(String place) {
+		return this.searchNode.containsKey(place);
+	}
 	@Override
 	protected void paintComponent(Graphics graphics) {
 		
