@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,16 +21,19 @@ public class GetUserInput extends JComponent{
 		
 		middleEarth = graph; 
 		
+		Dimension preferredSize = new Dimension(300,400);
+		panel.setPreferredSize(preferredSize );
+		
 	}
 
-	public void addButton(){
+	public void addMapNav(){
 		
 		JButton button = new JButton("A");
 		
 		this.panel.add(button, BorderLayout.NORTH);
 	}
 	
-	public void addTextBox() {
+	public void addSearchBars() {
 		JTextField start = new JTextField(20);
 		JTextField end = new JTextField(20);
 
@@ -44,6 +48,7 @@ public class GetUserInput extends JComponent{
 		this.panel.add(end, BorderLayout.EAST);
 		this.panel.add(distance);
 		this.panel.add(time);
+		
 	}
 	
 	public ArrayList<String> scan() {

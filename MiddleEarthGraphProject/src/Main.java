@@ -102,8 +102,9 @@ public class Main{
 		
 		frame.add(middleEarth, BorderLayout.CENTER);
 		frame.add(inputPanel, BorderLayout.EAST);
-		input.addButton();
-		input.addTextBox();
+
+		input.addSearchBars();
+		input.addMapNav();
 		
 		//input.addTextBox();
 		
