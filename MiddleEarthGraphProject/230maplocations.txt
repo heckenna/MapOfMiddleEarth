@@ -68,4 +68,3 @@ trollshaws 860 370
 tolfolas 990 1200
 udun 1290 890
 weather_hills 640 340
-test 0 0
