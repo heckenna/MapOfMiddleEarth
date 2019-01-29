@@ -4,8 +4,12 @@ import java.util.ArrayList;
 
 public class Node implements Comparable<Node>{
 
+	private int xCoor;
+	private int yCoor;
+	
 	private int x;
 	private int y;
+	
 	private String name;
 	
 	private Color color;
@@ -18,10 +22,12 @@ public class Node implements Comparable<Node>{
 	
 	private ArrayList<Node> visited;
 	
-	public Node(int x, int y, String name){
+	public Node(int xCoor, int yCoor, String name){
 		
-		this.x = x;
-		this.y = y;
+		this.xCoor = xCoor;
+		this.yCoor = yCoor;
+		this.x = xCoor;
+		this.y = yCoor;
 		
 		this.name = name;
 		
@@ -64,6 +70,12 @@ public class Node implements Comparable<Node>{
 			e.draw(graphics2, xZoom, yZoom);
 		}
 		
+	}
+	
+	public void updateCoordinate(int x, int y){
+		
+		this.x += x;
+		this.y += y;
 	}
 	
 	public String getName(){

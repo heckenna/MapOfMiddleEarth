@@ -1,12 +1,30 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GetUserInput {
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class GetUserInput extends JComponent{
 
 	private Graph middleEarth;
+	//private JFrame frame;
+	//private JButton button;
+	
 
-	public GetUserInput(Graph graph) {
+	public GetUserInput(Graph graph, JFrame frame) {
+		//JFrame frame = new JFrame();
+		JPanel panel = new JPanel();
 		middleEarth = graph; 
+		JButton button = new JButton("ASDDSF");
+		
+		panel.add(button);
+		frame.add(panel);
+		
+		
+		frame.setVisible(true);
+		
 	}
 
 	public ArrayList<String> scan() {
@@ -43,5 +61,5 @@ public class GetUserInput {
 	}
 	
 	
-
+	
 }

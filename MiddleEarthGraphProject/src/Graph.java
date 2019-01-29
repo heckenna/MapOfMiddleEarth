@@ -134,8 +134,18 @@ public class Graph extends JComponent{
 	}
 	
 	public boolean hasPlace(String place) {
+		
 		return this.searchNode.containsKey(place);
 	}
+	
+	public void moveCenter(int x, int y){
+		
+		for (Node n : this.searchNode.values()){
+			
+			n.updateCoordinate(x, y);
+		}
+	}
+	
 	@Override
 	protected void paintComponent(Graphics graphics) {
 		

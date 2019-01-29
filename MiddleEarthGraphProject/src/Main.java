@@ -20,7 +20,7 @@ public class Main{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Graph middleEarth = new Graph(FRAME_WIDTH, FRAME_HEIGHT);
-		GetUserInput input = new GetUserInput(middleEarth);
+		GetUserInput input = new GetUserInput(middleEarth, frame);
 
 		
 		middleEarth.insert("Point A", 75, 82);
@@ -95,6 +95,9 @@ public class Main{
 		
 		middleEarth.findShortestPath("Point X", "Point F", "distance");
 //		middleEarth.findShortestPath("Point X", "Point A", "time");
+		
+		middleEarth.moveCenter(0, 0);
+		
 		
 		frame.add(middleEarth);
 		
