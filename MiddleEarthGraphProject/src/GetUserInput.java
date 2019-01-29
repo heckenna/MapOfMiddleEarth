@@ -1,32 +1,33 @@
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class GetUserInput extends JComponent{
 
 	private Graph middleEarth;
-	//private JFrame frame;
+	private JFrame frame;
 	//private JButton button;
 	
 
 	public GetUserInput(Graph graph, JFrame frame) {
-		//JFrame frame = new JFrame();
-		JPanel panel = new JPanel();
+		
+		this.frame = frame;
+		
 		middleEarth = graph; 
-		JButton button = new JButton("ASDDSF");
-		
-		panel.add(button);
-		frame.add(panel);
-		
-		
-		frame.setVisible(true);
 		
 	}
 
+	public void addButton(){
+		
+		JButton button = new JButton("A");
+		
+		this.frame.add(button, BorderLayout.EAST);
+	}
+	
 	public ArrayList<String> scan() {
 		ArrayList<String> places = new ArrayList<String>();
 		
