@@ -4,18 +4,19 @@ import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class GetUserInput extends JComponent{
 
 	private Graph middleEarth;
-	private JFrame frame;
+	private JPanel panel;
 	//private JButton button;
 	
 
-	public GetUserInput(Graph graph, JFrame frame) {
+	public GetUserInput(Graph graph, JPanel frame) {
 		
-		this.frame = frame;
+		this.panel = frame;
 		
 		middleEarth = graph; 
 		
@@ -25,7 +26,17 @@ public class GetUserInput extends JComponent{
 		
 		JButton button = new JButton("A");
 		
-		this.frame.add(button, BorderLayout.EAST);
+		this.panel.add(button, BorderLayout.NORTH);
+	}
+	
+	public void addTextBox() {
+		JTextField start = new JTextField(20);
+		JButton enter = new JButton("Enter");
+		enter.addActionListener(new Entered(start, panel));
+		
+		
+		this.panel.add(start, BorderLayout.EAST);
+		this.panel.add(enter);
 	}
 	
 	public ArrayList<String> scan() {

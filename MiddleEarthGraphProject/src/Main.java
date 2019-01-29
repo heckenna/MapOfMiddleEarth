@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Main{
 	
@@ -20,7 +21,8 @@ public class Main{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Graph middleEarth = new Graph(FRAME_WIDTH, FRAME_HEIGHT);
-		GetUserInput input = new GetUserInput(middleEarth, frame);
+		JPanel inputPanel = new JPanel();
+		GetUserInput input = new GetUserInput(middleEarth, inputPanel);
 
 		
 		middleEarth.insert("Point A", 75, 82);
@@ -96,10 +98,14 @@ public class Main{
 		middleEarth.findShortestPath("Point X", "Point F", "distance");
 //		middleEarth.findShortestPath("Point X", "Point A", "time");
 		
-
+		inputPanel.add(input);
+		
 		frame.add(middleEarth, BorderLayout.CENTER);
-		frame.add(input, BorderLayout.EAST);
+		frame.add(inputPanel, BorderLayout.EAST);
 		input.addButton();
+		input.addTextBox();
+		
+		//input.addTextBox();
 		
 		
 		frame.setVisible(true);
