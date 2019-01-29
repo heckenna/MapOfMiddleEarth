@@ -99,7 +99,7 @@ public class Main{
 		//JPanel panel = new JPanel();
 		//panel.add(middleEarth, BorderLayout.CENTER);
 		JPanel panel = new JPanel();
-		
+		//
 		panel.add(input, BorderLayout.EAST);
 		frame.add(panel, BorderLayout.EAST);
 		frame.add(middleEarth, BorderLayout.CENTER);
