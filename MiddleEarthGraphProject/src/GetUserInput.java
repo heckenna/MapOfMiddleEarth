@@ -31,12 +31,19 @@ public class GetUserInput extends JComponent{
 	
 	public void addTextBox() {
 		JTextField start = new JTextField(20);
-		JButton enter = new JButton("Enter");
-		enter.addActionListener(new Entered(start, panel));
+		JTextField end = new JTextField(20);
+
+		JButton distance = new JButton("Find Distance");
+		JButton time = new JButton("Find Shortest Time");
 		
+		distance.addActionListener(new Entered(start, end, "distance", panel, middleEarth));
+		time.addActionListener(new Entered(start, end, "time", panel, middleEarth));
+
 		
 		this.panel.add(start, BorderLayout.EAST);
-		this.panel.add(enter);
+		this.panel.add(end, BorderLayout.EAST);
+		this.panel.add(distance);
+		this.panel.add(time);
 	}
 	
 	public ArrayList<String> scan() {

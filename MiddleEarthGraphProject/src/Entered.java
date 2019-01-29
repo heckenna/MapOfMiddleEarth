@@ -8,15 +8,28 @@ public class Entered implements ActionListener {
 
 	private JPanel panel;
 	private JTextField text;
+	private JTextField start;
+	private JTextField end;
+	private String metric;
+	private Graph graph;
 	
-	public Entered(JTextField text, JPanel panel) {
-		this.text = text;
+	public Entered(JTextField start, JTextField end, String metric, JPanel panel, Graph graph) {
+		this.start = start;
+		this.end = end;
+		this.metric = metric;
 		this.panel = panel;
+		this.graph = graph;
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.print(text.getText());
-
+		String startPt = start.getText();
+		String endPt = end.getText();
+		if(graph.hasPlace(startPt) && graph.hasPlace(endPt)) {
+			graph.findShortestPath(startPt, endPt, metric);
+		} else {
+			System.out.print("Invalid Location\n");
+		}
+		graph.repaint();
 	}
 
 }
