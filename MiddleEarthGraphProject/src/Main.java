@@ -27,6 +27,7 @@ public class Main{
 		loader.loadDomain(middleEarth);
 
 		
+		
 //		middleEarth.insert("Point A", 75, 82);
 //		middleEarth.insert("Point B", 30, 27);
 //		middleEarth.insert("Point C", 69, 49);
