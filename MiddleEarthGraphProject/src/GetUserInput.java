@@ -36,10 +36,10 @@ public class GetUserInput extends JComponent{
 
 		
 		
-		north.addActionListener(new MoverListener(0, 10, middleEarth));
-		south.addActionListener(new MoverListener(0, -10, middleEarth));
-		east.addActionListener(new MoverListener(-10, 0, middleEarth));
-		west.addActionListener(new MoverListener(10, 0, middleEarth));
+		north.addActionListener(new MoverListener(0, 50, middleEarth));
+		south.addActionListener(new MoverListener(0, -50, middleEarth));
+		east.addActionListener(new MoverListener(-50, 0, middleEarth));
+		west.addActionListener(new MoverListener(50, 0, middleEarth));
 		
 		JPanel compass = new JPanel();
 		
