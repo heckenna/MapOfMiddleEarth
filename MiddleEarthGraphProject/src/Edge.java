@@ -8,14 +8,14 @@ public class Edge {
 	
 	private Color color;
 	
-	private int terrainDifficulty;
+	private double terrainDifficulty;
 	
 	private Node start;
 	private Node end;
 	
 	private int speed;
 	
-	public Edge(Node start, Node end, int terrainDifficulty){
+	public Edge(Node start, Node end, double terrainDifficulty){
 		
 		this.end = end;
 		this.start = start;
@@ -47,7 +47,7 @@ public class Edge {
 		graphics2.setColor(Color.BLACK);
 		graphics2.drawString("T: " + Integer.toString(this.time), 
 				(int)((this.start.getX()+this.end.getX()) / 2 * xZoom), 
-				(int)((this.start.getY()+this.end.getY() + 2) / 2 * yZoom));
+				(int)((this.start.getY()+this.end.getY() + 40) / 2 * yZoom));
 		
 	}
 	
@@ -59,7 +59,7 @@ public class Edge {
 	
 	public int calculateTime(){
 		
-		return ( (this.distance + this.terrainDifficulty) * this.speed);
+		return (int)(this.distance / (this.speed * this.terrainDifficulty));
 	}
 	
 	public Node getOtherEnd(Node n){

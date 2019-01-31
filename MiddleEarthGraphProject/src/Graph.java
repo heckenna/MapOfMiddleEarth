@@ -27,10 +27,8 @@ public class Graph extends JComponent{
 		
 		this.color = Color.BLACK;
 		
-		this.gridOn = false;
-		
-		this.xZoom = 10;
-		this.yZoom = 10;
+		this.xZoom = 1;
+		this.yZoom = 0.7;
 		
 		Graph.FRAME_HEIGHT = FRAME_HEIGHT;
 		Graph.FRAME_WIDTH = FRAME_WIDTH;
@@ -48,7 +46,7 @@ public class Graph extends JComponent{
 		return (true);
 	}
 	
-	public boolean connect(String name1, String name2, int terrainDifficulty){
+	public boolean connect(String name1, String name2, double terrainDifficulty){
 		
 		Node node1 = this.searchNode.get(name1);
 		Node node2 = this.searchNode.get(name2);
@@ -156,21 +154,6 @@ public class Graph extends JComponent{
 		for (Node n : this.searchNode.values()){
 			
 			n.draw(graphics2, this.xZoom, this.yZoom);
-		}
-		
-		if (this.gridOn){
-			
-			graphics2.setColor(this.color);
-		
-			for (int i = 0; i < (int)(Graph.FRAME_WIDTH / this.xZoom); i++){
-					
-				graphics2.drawLine((int)(i * this.xZoom), 0, (int)(i * this.xZoom), Graph.FRAME_HEIGHT);
-			}
-			
-			for (int j = 0; j < (int)(Graph.FRAME_HEIGHT / this.yZoom); j++){
-				
-				graphics2.drawLine(0, (int)(j * this.yZoom), Graph.FRAME_WIDTH, (int)(j * this.yZoom));
-			}
 		}
 	}
 

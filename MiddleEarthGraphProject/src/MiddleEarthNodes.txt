@@ -10,7 +10,7 @@ crossing_of_poros 1230 1150
 dor-en-ernil 1010 1110
 dol_amroth 950 1090
 dol_gurldur 1110 590
-east_blight 1230 500
+east_bight 1230 500
 edhellond 930 1050
 edoras 930 890
 emyn_muil 1140 810
@@ -19,12 +19,12 @@ erech 930 950
 eregion 890 510
 eryn_vorn 410 650
 esgaroth 1260 280
-ethir_anduin 1160
+ethir_anduin 1070 1160 
 ettenmoors 860 250
 falls_of_rauros 1130 870
 fangorn 930 710
 field_of_celebrant 1040 670
-ford_of_isen 790 800
+fords_of_isen 790 800
 forlond 150 410
 fornost 590 300
 gap_of_rohan 890 810
@@ -45,7 +45,7 @@ lond_daer 550 780
 lorien 980 600
 lossarnach 1180 1030
 midgewater 650 380
-mithlong 340 370
+mithlond 340 370
 minas_tirith 1220 990
 minas_morgul 1260 990
 morannon 1280 870
@@ -56,11 +56,11 @@ mountains_of_angmar 860 140
 mountains_of_murkwood 1210 330
 nemuial 490 300
 old_ford 1050 360
-pelarger 1170 1120
+pelargir 1170 1120
 pinnath_gelin 750 1030
 rivendell 920 380
 sarn_ford 580 480
-sea_of_rhun 1630
+sea_of_rhun 1630 560
 sea_of_nurnen 1550 1120
 tharbad 690 570
 the_wold 1050 740

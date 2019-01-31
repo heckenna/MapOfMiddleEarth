@@ -63,7 +63,7 @@ public class Node implements Comparable<Node>{
 				2*this.radius, 
 				2*this.radius);
 		
-		graphics2.drawString(this.name, (int)((this.x - 1.0) * xZoom), (int)((this.y - 0.5) * yZoom));
+		graphics2.drawString(this.name, (int)((this.x - 10) * xZoom), (int)((this.y - 8) * yZoom));
 		
 		for (Edge e : this.edges){
 			
