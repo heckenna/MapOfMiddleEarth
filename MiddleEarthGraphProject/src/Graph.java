@@ -46,6 +46,15 @@ public class Graph extends JComponent{
 		return (true);
 	}
 	
+	
+	public ArrayList<String> getNameArray() {
+		ArrayList<String> g = new ArrayList<String>();
+		for(Node n : this.searchNode.values()) {
+			g.add(n.getName());
+		}
+		return g;
+	}
+	
 	public boolean connect(String name1, String name2, double terrainDifficulty){
 		
 		Node node1 = this.searchNode.get(name1);

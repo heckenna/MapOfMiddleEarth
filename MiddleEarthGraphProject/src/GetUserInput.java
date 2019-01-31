@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -55,9 +56,16 @@ public class GetUserInput extends JComponent{
 		
 	}
 	
+	
+	
+	
 	public void addSearchBars() {
-		JTextField start = new JTextField(20);
+		//JTextField start = new JTextField(20);
+		String[] h = new String[] {"andrast", "hobbiton" , "rivendell"};
+		
 		JTextField end = new JTextField(20);
+		JComboBox<String> start = new JComboBox<String>(h);
+			
 
 		JButton distance = new JButton("Find Distance");
 		JButton time = new JButton("Find Shortest Time");
@@ -74,6 +82,10 @@ public class GetUserInput extends JComponent{
 	}
 	
 	public ArrayList<String> scan() {
+		//System.out.println("scanning");
+		
+		
+		
 		ArrayList<String> places = new ArrayList<String>();
 		
 		Scanner in = new Scanner(System.in);
