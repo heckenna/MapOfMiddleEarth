@@ -33,13 +33,18 @@ public class GetUserInput extends JComponent{
 		JButton south = new JButton("South");
 		JButton east = new JButton("East");
 		JButton west = new JButton("West");
-
+		
+		JButton zoomIn = new JButton("Zoom In");
+		JButton zoomOut = new JButton("Zoom Out");
 		
 		
 		north.addActionListener(new MoverListener(0, 50, middleEarth));
 		south.addActionListener(new MoverListener(0, -50, middleEarth));
 		east.addActionListener(new MoverListener(-50, 0, middleEarth));
 		west.addActionListener(new MoverListener(50, 0, middleEarth));
+		
+		zoomIn.addActionListener(new ZoomListener(0.1, middleEarth));
+		zoomOut.addActionListener(new ZoomListener(-0.1, middleEarth));
 		
 		JPanel compass = new JPanel();
 		
@@ -48,10 +53,18 @@ public class GetUserInput extends JComponent{
 		compass.add(east, BorderLayout.EAST);
 		compass.add(south, BorderLayout.SOUTH);
 		
+		JPanel zooms = new JPanel();
+		
+		zooms.add(zoomIn);
+		zooms.add(zoomOut);
+		
 		Dimension size = new Dimension(137,200);
 		compass.setPreferredSize(size);
+		//size.setSize(50, 100);
+		//zooms.setSize(size);
 		
-		this.panel.add(compass, BorderLayout.SOUTH);
+		this.panel.add(compass, BorderLayout.CENTER);
+		this.panel.add(zooms, BorderLayout.SOUTH);
 
 		
 	}
@@ -61,10 +74,12 @@ public class GetUserInput extends JComponent{
 	
 	public void addSearchBars() {
 		//JTextField start = new JTextField(20);
-		String[] h = new String[] {"andrast", "hobbiton" , "rivendell"};
-		
+		//String[] h = new String[] {"andrast", "hobbiton" , "rivendell"};
+	    String[] h = this.middleEarth.getNameArray();
+		//Object[] u = y.toArray();
 		JTextField end = new JTextField(20);
-		JComboBox<String> start = new JComboBox<String>(h);
+		JComboBox start = new JComboBox(h);
+		
 			
 
 		JButton distance = new JButton("Find Distance");
