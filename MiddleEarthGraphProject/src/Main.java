@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 
 public class Main{
 	
+	
 	private static final String TITLE = "MiddleEarth";
 	
 	private static final int FRAME_WIDTH = 1900;
