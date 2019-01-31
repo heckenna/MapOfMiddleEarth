@@ -67,6 +67,7 @@ public class GetUserInput extends JComponent{
 		//Object[] u = y.toArray();
 		JTextField end = new JTextField(20);
 		JComboBox start = new JComboBox(h);
+		
 			
 
 		JButton distance = new JButton("Find Distance");
