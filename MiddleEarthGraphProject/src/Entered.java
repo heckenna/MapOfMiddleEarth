@@ -8,18 +8,18 @@ public class Entered implements ActionListener {
 
 	private JTextField text;
 	//private JTextField start;
-	private JComboBox start;
-	private JTextField end;
+	private JComboBox<String> start;
+	private JComboBox<String> end;
 	private String metric;
 	private Graph graph;
 	
-	public Entered(JTextField start, JTextField end, String metric, Graph graph) {
-		//this.start = start;
-		this.end = end;
-		this.metric = metric;
-		this.graph = graph;
-	}
-	public Entered(JComboBox start, JTextField end, String metric, Graph graph) {
+//	public Entered(JTextField start, JTextField end, String metric, Graph graph) {
+//		//this.start = start;
+//		this.end = end;
+//		this.metric = metric;
+//		this.graph = graph;
+//	}
+	public Entered(JComboBox<String> start, JComboBox<String> end, String metric, Graph graph) {
 		this.start = start;
 		this.end = end;
 		this.metric = metric;
@@ -31,7 +31,7 @@ public class Entered implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		//String startPt = start.getText();
 		String startPt = (String) start.getSelectedItem();
-		String endPt = end.getText();
+		String endPt = (String) end.getSelectedItem();
 		if(graph.hasPlace(startPt) && graph.hasPlace(endPt)) {
 			graph.findShortestPath(startPt, endPt, metric);
 		} else {

@@ -75,8 +75,8 @@ public class GetUserInput extends JComponent{
 		//String[] h = new String[] {"andrast", "hobbiton" , "rivendell"};
 	    String[] h = this.middleEarth.getNameArray();
 		//Object[] u = y.toArray();
-		JTextField end = new JTextField(20);
-		JComboBox start = new JComboBox(h);
+		JComboBox<String> end = new JComboBox<>(h);
+		JComboBox<String> start = new JComboBox<>(h);
 		
 			
 
