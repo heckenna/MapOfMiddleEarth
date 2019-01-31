@@ -26,6 +26,7 @@ public class Main{
 		DomainLoader loader = new DomainLoader();
 		loader.loadDomain(middleEarth);
 		
+		
 		JPanel inputPanel = new JPanel();
 		GetUserInput input = new GetUserInput(middleEarth, inputPanel);
 		
