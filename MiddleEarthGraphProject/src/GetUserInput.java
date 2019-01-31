@@ -61,7 +61,7 @@ public class GetUserInput extends JComponent{
 		//size.setSize(50, 100);
 		//zooms.setSize(size);
 		
-		this.panel.add(compass, BorderLayout.CENTER);
+		this.panel.add(compass, BorderLayout.WEST);
 		this.panel.add(zooms, BorderLayout.SOUTH);
 
 		
@@ -71,15 +71,10 @@ public class GetUserInput extends JComponent{
 	
 	
 	public void addSearchBars() {
-		//JTextField start = new JTextField(20);
-		//String[] h = new String[] {"andrast", "hobbiton" , "rivendell"};
 	    String[] h = this.middleEarth.getNameArray();
-		//Object[] u = y.toArray();
 		JComboBox<String> end = new JComboBox<>(h);
 		JComboBox<String> start = new JComboBox<>(h);
 		
-			
-
 		JButton distance = new JButton("Find Distance");
 		JButton time = new JButton("Find Shortest Time");
 		
@@ -87,10 +82,10 @@ public class GetUserInput extends JComponent{
 		time.addActionListener(new Entered(start, end, "time", middleEarth));
 
 		
-		this.panel.add(start, BorderLayout.EAST);
-		this.panel.add(end, BorderLayout.EAST);
-		this.panel.add(distance);
-		this.panel.add(time);
+		this.panel.add(start, BorderLayout.NORTH);
+		this.panel.add(end, BorderLayout.NORTH);
+		this.panel.add(distance, BorderLayout.SOUTH);
+		this.panel.add(time, BorderLayout.SOUTH);
 		
 	}
 	
