@@ -5,9 +5,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class GetUserInput extends JComponent{
+	
 
 	private Graph middleEarth;
 	private JPanel panel;
