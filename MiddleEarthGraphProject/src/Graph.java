@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -57,6 +58,7 @@ public class Graph extends JComponent{
 			h[k] = n.getName();
 			k+=1;		
 		}
+			Arrays.sort(h);
 		return h;
 	}
 	
