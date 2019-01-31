@@ -144,6 +144,12 @@ public class Graph extends JComponent{
 		}
 	}
 	
+	public void zoom(double amount){
+		
+		this.xZoom += amount;
+		this.yZoom += amount;
+	}
+	
 	@Override
 	protected void paintComponent(Graphics graphics) {
 		
