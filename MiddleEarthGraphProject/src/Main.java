@@ -22,6 +22,10 @@ public class Main{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		Graph middleEarth = new Graph(FRAME_WIDTH, FRAME_HEIGHT);
+		
+		DomainLoader loader = new DomainLoader();
+		loader.loadDomain(middleEarth);
+		
 		JPanel inputPanel = new JPanel();
 		GetUserInput input = new GetUserInput(middleEarth, inputPanel);
 		
