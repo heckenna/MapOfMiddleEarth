@@ -1,31 +1,76 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class GetUserInput extends JComponent{
 
 	private Graph middleEarth;
-	private JFrame frame;
+	private JPanel panel;
 	//private JButton button;
 	
 
-	public GetUserInput(Graph graph, JFrame frame) {
+	public GetUserInput(Graph graph, JPanel frame) {
 		
-		this.frame = frame;
+		this.panel = frame;
 		
 		middleEarth = graph; 
 		
+		Dimension preferredSize = new Dimension(300,400);
+		panel.setPreferredSize(preferredSize );
+		
 	}
 
-	public void addButton(){
+	public void addMapNav(){
 		
-		JButton button = new JButton("A");
+		JButton north = new JButton("North");
+		JButton south = new JButton("South");
+		JButton east = new JButton("East");
+		JButton west = new JButton("West");
+
 		
-		this.frame.add(button, BorderLayout.EAST);
+		
+		north.addActionListener(new MoverListener(0, 10, middleEarth));
+		south.addActionListener(new MoverListener(0, -10, middleEarth));
+		east.addActionListener(new MoverListener(-10, 0, middleEarth));
+		west.addActionListener(new MoverListener(10, 0, middleEarth));
+		
+		JPanel compass = new JPanel();
+		
+		compass.add(north, BorderLayout.NORTH);
+		compass.add(west, BorderLayout.WEST);
+		compass.add(east, BorderLayout.EAST);
+		compass.add(south, BorderLayout.SOUTH);
+		
+		Dimension size = new Dimension(137,200);
+		compass.setPreferredSize(size);
+		
+		this.panel.add(compass, BorderLayout.SOUTH);
+
+		
+	}
+	
+	public void addSearchBars() {
+		JTextField start = new JTextField(20);
+		JTextField end = new JTextField(20);
+
+		JButton distance = new JButton("Find Distance");
+		JButton time = new JButton("Find Shortest Time");
+		
+		distance.addActionListener(new Entered(start, end, "distance", middleEarth));
+		time.addActionListener(new Entered(start, end, "time", middleEarth));
+
+		
+		this.panel.add(start, BorderLayout.EAST);
+		this.panel.add(end, BorderLayout.EAST);
+		this.panel.add(distance);
+		this.panel.add(time);
+		
 	}
 	
 	public ArrayList<String> scan() {
