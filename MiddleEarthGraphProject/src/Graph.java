@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -47,12 +48,16 @@ public class Graph extends JComponent{
 	}
 	
 	
-	public ArrayList<String> getNameArray() {
+	public String[] getNameArray() {
+		int k = 0;
 		ArrayList<String> g = new ArrayList<String>();
+		String[] h = new String[this.searchNode.size()];
 		for(Node n : this.searchNode.values()) {
 			g.add(n.getName());
+			h[k] = n.getName();
+			k+=1;		
 		}
-		return g;
+		return h;
 	}
 	
 	public boolean connect(String name1, String name2, double terrainDifficulty){

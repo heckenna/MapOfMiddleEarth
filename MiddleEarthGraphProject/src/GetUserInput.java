@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -61,10 +62,11 @@ public class GetUserInput extends JComponent{
 	
 	public void addSearchBars() {
 		//JTextField start = new JTextField(20);
-		String[] h = new String[] {"andrast", "hobbiton" , "rivendell"};
-		
+		//String[] h = new String[] {"andrast", "hobbiton" , "rivendell"};
+	    String[] h = this.middleEarth.getNameArray();
+		//Object[] u = y.toArray();
 		JTextField end = new JTextField(20);
-		JComboBox<String> start = new JComboBox<String>(h);
+		JComboBox start = new JComboBox(h);
 			
 
 		JButton distance = new JButton("Find Distance");
