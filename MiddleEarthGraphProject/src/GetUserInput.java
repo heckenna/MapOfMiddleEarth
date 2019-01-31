@@ -28,9 +28,31 @@ public class GetUserInput extends JComponent{
 
 	public void addMapNav(){
 		
-		JButton button = new JButton("A");
+		JButton north = new JButton("North");
+		JButton south = new JButton("South");
+		JButton east = new JButton("East");
+		JButton west = new JButton("West");
+
 		
-		this.panel.add(button, BorderLayout.NORTH);
+		
+		north.addActionListener(new MoverListener(0, 10, middleEarth));
+		south.addActionListener(new MoverListener(0, -10, middleEarth));
+		east.addActionListener(new MoverListener(-10, 0, middleEarth));
+		west.addActionListener(new MoverListener(10, 0, middleEarth));
+		
+		JPanel compass = new JPanel();
+		
+		compass.add(north, BorderLayout.NORTH);
+		compass.add(west, BorderLayout.WEST);
+		compass.add(east, BorderLayout.EAST);
+		compass.add(south, BorderLayout.SOUTH);
+		
+		Dimension size = new Dimension(137,200);
+		compass.setPreferredSize(size);
+		
+		this.panel.add(compass, BorderLayout.SOUTH);
+
+		
 	}
 	
 	public void addSearchBars() {
@@ -40,8 +62,8 @@ public class GetUserInput extends JComponent{
 		JButton distance = new JButton("Find Distance");
 		JButton time = new JButton("Find Shortest Time");
 		
-		distance.addActionListener(new Entered(start, end, "distance", panel, middleEarth));
-		time.addActionListener(new Entered(start, end, "time", panel, middleEarth));
+		distance.addActionListener(new Entered(start, end, "distance", middleEarth));
+		time.addActionListener(new Entered(start, end, "time", middleEarth));
 
 		
 		this.panel.add(start, BorderLayout.EAST);

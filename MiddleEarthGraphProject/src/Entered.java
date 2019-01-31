@@ -1,23 +1,20 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Entered implements ActionListener {
 
-	private JPanel panel;
 	private JTextField text;
 	private JTextField start;
 	private JTextField end;
 	private String metric;
 	private Graph graph;
 	
-	public Entered(JTextField start, JTextField end, String metric, JPanel panel, Graph graph) {
+	public Entered(JTextField start, JTextField end, String metric, Graph graph) {
 		this.start = start;
 		this.end = end;
 		this.metric = metric;
-		this.panel = panel;
 		this.graph = graph;
 	}
 	@Override
