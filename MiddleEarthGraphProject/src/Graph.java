@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -21,6 +23,8 @@ public class Graph extends JComponent{
 	private static int FRAME_HEIGHT;
 	private static int FRAME_WIDTH;
 	
+	private ArrayList<Node> lastPath;
+	
 	public Graph( int FRAME_WIDTH, int FRAME_HEIGHT){
 		
 		this.searchNode = new HashMap<>();
@@ -32,6 +36,8 @@ public class Graph extends JComponent{
 		
 		Graph.FRAME_HEIGHT = FRAME_HEIGHT;
 		Graph.FRAME_WIDTH = FRAME_WIDTH;
+		
+		this.lastPath = new ArrayList<>();
 	}
 	
 	public boolean insert(String name, int x, int y){
@@ -47,12 +53,17 @@ public class Graph extends JComponent{
 	}
 	
 	
-	public ArrayList<String> getNameArray() {
+	public String[] getNameArray() {
+		int k = 0;
 		ArrayList<String> g = new ArrayList<String>();
+		String[] h = new String[this.searchNode.size()];
 		for(Node n : this.searchNode.values()) {
 			g.add(n.getName());
+			h[k] = n.getName();
+			k+=1;		
 		}
-		return g;
+			Arrays.sort(h);
+		return h;
 	}
 	
 	public boolean connect(String name1, String name2, double terrainDifficulty){
@@ -74,6 +85,8 @@ public class Graph extends JComponent{
 	}
 	
 	public void findShortestPath(String beginString, String destinationString, String criteria){
+		
+		setPathColor(Color.BLACK, Color.BLUE);
 		
 		Node begin = this.searchNode.get(beginString);
 		Node destination = this.searchNode.get(destinationString);
@@ -119,25 +132,32 @@ public class Graph extends JComponent{
 			}
 		}
 		
+		this.lastPath = currentNode.getVisited();
+		
+		setPathColor(Color.RED, Color.RED);
+		
 		System.out.println("Total Length Traveled (Distance or Time):" + currentNode.getLengthTraveled());
+		
+	}
+	
+	public void setPathColor(Color nodeColor, Color edgeColor){
 		
 		Node last = null;
 		
-		for (Node n : currentNode.getVisited()){
+		for (Node n : this.lastPath){
 			
-			n.setColor(Color.RED);
+			n.setColor(nodeColor);
 			
 			for (Edge e : n.getEdges()){
 				
 				if (last != null && last.getEdges().contains(e)){
 					
-					e.setColor(Color.RED);
+					e.setColor(edgeColor);
 				}
 			}
 			
 			last = n;
 		}
-		
 	}
 	
 	public boolean hasPlace(String place) {
