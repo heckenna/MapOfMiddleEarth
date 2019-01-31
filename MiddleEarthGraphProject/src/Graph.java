@@ -55,10 +55,8 @@ public class Graph extends JComponent{
 	
 	public String[] getNameArray() {
 		int k = 0;
-		ArrayList<String> g = new ArrayList<String>();
 		String[] h = new String[this.searchNode.size()];
 		for(Node n : this.searchNode.values()) {
-			g.add(n.getName());
 			h[k] = n.getName();
 			k+=1;		
 		}
