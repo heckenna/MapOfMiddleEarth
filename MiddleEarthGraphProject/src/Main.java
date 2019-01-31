@@ -28,8 +28,7 @@ public class Main{
 
 		JPanel inputPanel = new JPanel();
 		GetUserInput input = new GetUserInput(middleEarth, inputPanel);
-
-//		middleEarth.findShortestPath("hinling", "andrast", "distance");
+		
 
 		inputPanel.add(input);
 		frame.add(middleEarth, BorderLayout.CENTER);
