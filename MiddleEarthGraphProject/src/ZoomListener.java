@@ -3,17 +3,19 @@ import java.awt.event.ActionListener;
 
 public class ZoomListener implements ActionListener {
 	
-	private Graph middleEarth;
-	private float zoom;
+	private Graph graph;
+	private double zoom;
 
-	public ZoomListener(float zoom, Graph graph) {
-		this.zoom = zoom;
-		this.middleEarth = graph;
+	public ZoomListener(double d, Graph graph) {
+		this.zoom = d;
+		this.graph = graph;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		this.middleEarth.zoom(this.zoom);
+		this.graph.zoom(this.zoom);
+		
+		graph.repaint();
 		
 	}
 
