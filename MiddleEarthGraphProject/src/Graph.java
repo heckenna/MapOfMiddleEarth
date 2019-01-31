@@ -3,7 +3,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -24,10 +23,13 @@ public class Graph extends JComponent{
 	private static int FRAME_WIDTH;
 	
 	private ArrayList<Node> lastPath;
+
+	private ArrayList<String> twoCities;
 	
 	public Graph( int FRAME_WIDTH, int FRAME_HEIGHT){
 		
 		this.searchNode = new HashMap<>();
+		this.twoCities = new ArrayList<String>();
 		
 		this.color = Color.BLACK;
 		
@@ -188,6 +190,16 @@ public class Graph extends JComponent{
 			
 			n.draw(graphics2, this.xZoom, this.yZoom);
 		}
+	}
+
+	public void findBetween(Node city) {
+		if(this.twoCities.isEmpty()) {
+			this.twoCities.add(city.getName());
+		} else {
+			this.findShortestPath(twoCities.get(0), city.getName(), "distance");
+			this.twoCities = new ArrayList<String>();
+		}
+		
 	}
 
 }
