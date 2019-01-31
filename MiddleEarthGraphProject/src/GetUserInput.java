@@ -93,4 +93,5 @@ public class GetUserInput extends JComponent{
 		this.panel.add(time);
 		
 	}
+	
 }
