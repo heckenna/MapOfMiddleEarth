@@ -2,38 +2,44 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 
 public class Entered implements ActionListener {
 
-	private JTextField text;
-	//private JTextField start;
+	private JLabel text;
 	private JComboBox<String> start;
 	private JComboBox<String> end;
-	private String metric;
 	private Graph graph;
+	private JRadioButton distance;
+	private JRadioButton time;
 	
-//	public Entered(JTextField start, JTextField end, String metric, Graph graph) {
-//		//this.start = start;
-//		this.end = end;
-//		this.metric = metric;
-//		this.graph = graph;
-//	}
-	public Entered(JComboBox<String> start, JComboBox<String> end, String metric, Graph graph) {
+	public Entered(JComboBox<String> start, JComboBox<String> end, JRadioButton dist, JRadioButton time,
+			Graph graph, JLabel outputText) {
 		this.start = start;
 		this.end = end;
-		this.metric = metric;
+		this.distance = dist;
+		this.time = time;
 		this.graph = graph;
+		this.text = outputText;
 	}
-	
-	
+
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		//String startPt = start.getText();
 		String startPt = (String) start.getSelectedItem();
 		String endPt = (String) end.getSelectedItem();
 		if(graph.hasPlace(startPt) && graph.hasPlace(endPt)) {
-			graph.findShortestPath(startPt, endPt, metric);
+			if(this.distance.isSelected()) {
+				graph.findShortestPath(startPt, endPt, "distance");
+				this.text.setText("Total Length Traveled:" + this.graph.getLastLength());
+			}
+			else {
+				graph.findShortestPath(startPt, endPt, "time");
+				this.text.setText("Total Length Traveled:" + this.graph.getLastLength());
+
+			}
 		} else {
 			System.out.print("Invalid Location\n");
 		}

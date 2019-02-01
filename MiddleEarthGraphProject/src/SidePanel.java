@@ -4,17 +4,20 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
-public class GetUserInput extends JComponent{
+public class SidePanel extends JComponent{
 	
 
 	private Graph middleEarth;
 	private JPanel panel;
+	private JLabel outputText;
 	//private JButton button;
 	
 
-	public GetUserInput(Graph graph, JPanel frame) {
+	public SidePanel(Graph graph, JPanel frame) {
 		
 		this.panel = frame;
 		
@@ -23,6 +26,7 @@ public class GetUserInput extends JComponent{
 		Dimension preferredSize = new Dimension(300,400);
 		panel.setPreferredSize(preferredSize );
 		
+		this.outputText = new JLabel("Total Length Traveled:" + middleEarth.getLastLength());
 	}
 
 	public void addMapNav(){
@@ -56,12 +60,12 @@ public class GetUserInput extends JComponent{
 		zooms.add(zoomIn);
 		zooms.add(zoomOut);
 		
-		Dimension size = new Dimension(137,200);
+		Dimension size = new Dimension(137,100);
 		compass.setPreferredSize(size);
 		//size.setSize(50, 100);
 		//zooms.setSize(size);
 		
-		this.panel.add(compass, BorderLayout.CENTER);
+		this.panel.add(compass, BorderLayout.WEST);
 		this.panel.add(zooms, BorderLayout.SOUTH);
 
 		
@@ -71,26 +75,45 @@ public class GetUserInput extends JComponent{
 	
 	
 	public void addSearchBars() {
-		//JTextField start = new JTextField(20);
-		//String[] h = new String[] {"andrast", "hobbiton" , "rivendell"};
+		Dimension searchSize = new Dimension(250,30);
+		
 	    String[] h = this.middleEarth.getNameArray();
-		//Object[] u = y.toArray();
 		JComboBox<String> end = new JComboBox<>(h);
 		JComboBox<String> start = new JComboBox<>(h);
 		
-			
-
-		JButton distance = new JButton("Find Distance");
-		JButton time = new JButton("Find Shortest Time");
-		
-		distance.addActionListener(new Entered(start, end, "distance", middleEarth));
-		time.addActionListener(new Entered(start, end, "time", middleEarth));
+		end.setPreferredSize(searchSize);
+		start.setPreferredSize(searchSize);
 
 		
-		this.panel.add(start, BorderLayout.EAST);
-		this.panel.add(end, BorderLayout.EAST);
-		this.panel.add(distance);
+		JRadioButton dist = new JRadioButton("Distance");
+		JRadioButton time = new JRadioButton("Time");
+		JButton clear = new JButton("Clear");
+		JButton enter = new JButton("Enter");
+		//dist is selected by default
+		dist.setSelected(true);
+		
+		clear.addActionListener(new ClearListener(middleEarth));
+		enter.addActionListener(new Entered(start, end, dist, time, middleEarth, outputText));
+		dist.addActionListener(new ToggleListener(time));
+		time.addActionListener(new ToggleListener(dist));
+		
+		
+		this.panel.add(start);
+		this.panel.add(end);
+		this.panel.add(dist);
 		this.panel.add(time);
+		this.panel.add(enter);
+		this.panel.add(clear, BorderLayout.CENTER);
+		
+	}
+
+	public void addPanelOutput() {
+		JPanel display = new JPanel();
+		
+		display.setPreferredSize(new Dimension(200,300));
+		
+		display.add(outputText);
+		this.panel.add(display);
 		
 	}
 	

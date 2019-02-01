@@ -28,7 +28,7 @@ public class Main{
 		
 		
 		JPanel inputPanel = new JPanel();
-		GetUserInput input = new GetUserInput(middleEarth, inputPanel);
+		SidePanel input = new SidePanel(middleEarth, inputPanel);
 		
 
 		inputPanel.add(input);
@@ -38,6 +38,7 @@ public class Main{
 
 		input.addSearchBars();
 		input.addMapNav();
+		input.addPanelOutput();
 		
 		//input.addTextBox();
 		

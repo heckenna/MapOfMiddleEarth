@@ -19,6 +19,8 @@ public class Graph extends JComponent{
 
 	private ArrayList<String> twoCities;
 	
+	private int lastLength;
+	
 	public Graph(){
 		
 		this.searchNode = new HashMap<>();
@@ -28,6 +30,8 @@ public class Graph extends JComponent{
 		this.yZoom = 0.7;
 		
 		this.lastPath = new ArrayList<>();
+		
+		this.lastLength = 0;
 	}
 	
 	public boolean insert(String name, int x, int y){
@@ -114,6 +118,8 @@ public class Graph extends JComponent{
 		
 		this.lastPath = currentPath.getVisited();
 		
+		this.lastLength = currentPath.getLengthTraveled();
+		
 		setPathColor(Color.RED, Color.RED);
 		
 	}
@@ -168,6 +174,11 @@ public class Graph extends JComponent{
 			
 			n.draw(graphics2, this.xZoom, this.yZoom);
 		}
+	}
+	
+	public int getLastLength(){
+		
+		return (this.lastLength);
 	}
 
 	public void findBetween(Node city) {
