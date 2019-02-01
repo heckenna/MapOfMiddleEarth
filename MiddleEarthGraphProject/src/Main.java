@@ -38,7 +38,7 @@ public class Main{
 
 		input.addSearchBars();
 		input.addMapNav();
-		input.addOutput();
+		input.addPanelOutput();
 		
 		//input.addTextBox();
 		

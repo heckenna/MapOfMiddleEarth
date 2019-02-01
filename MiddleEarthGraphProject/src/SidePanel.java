@@ -104,7 +104,7 @@ public class SidePanel extends JComponent{
 		
 	}
 
-	public void addOutput() {
+	public void addPanelOutput() {
 		JPanel outputPanel = new JPanel();
 		outputPanel.setPreferredSize(new Dimension(200,300));
 		outputPanel.add(new JButton("Hello"));
