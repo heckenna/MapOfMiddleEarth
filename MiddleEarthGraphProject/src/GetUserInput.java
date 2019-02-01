@@ -77,15 +77,17 @@ public class GetUserInput extends JComponent{
 		
 		JButton distance = new JButton("Find Distance");
 		JButton time = new JButton("Find Shortest Time");
+		JButton clear = new JButton("Clear Path");
 		
 		distance.addActionListener(new Entered(start, end, "distance", middleEarth));
 		time.addActionListener(new Entered(start, end, "time", middleEarth));
-
+		clear.addActionListener(new ClearListener(middleEarth));
 		
 		this.panel.add(start, BorderLayout.NORTH);
 		this.panel.add(end, BorderLayout.NORTH);
-		this.panel.add(distance, BorderLayout.SOUTH);
-		this.panel.add(time, BorderLayout.SOUTH);
+		this.panel.add(distance, BorderLayout.CENTER);
+		this.panel.add(time, BorderLayout.CENTER);
+		this.panel.add(clear, BorderLayout.CENTER);
 		
 	}
 	
