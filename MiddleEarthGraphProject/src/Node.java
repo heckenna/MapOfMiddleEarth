@@ -88,9 +88,16 @@ public class Node {
 		this.color  = c;
 	}
 	
-	public int estimateLength(Node destination){
+	public int estimateLength(Node destination, String criteria){
 		
-		return (int)( Math.sqrt( Math.pow( (this.x - destination.getX()), 2) + 
+		int distance = (int)( Math.sqrt( Math.pow( (this.x - destination.getX()), 2) + 
 				Math.pow( (this.y - destination.getY()), 2) ) );
+		
+		if (criteria.equals("distance")){
+			
+			return (distance);
+		}
+		
+		return (int)(distance / 5);
 	}
 }

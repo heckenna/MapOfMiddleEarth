@@ -106,7 +106,7 @@ public class Graph extends JComponent{
 					
 					queue.add(new Path(currentPath.getVisited(), 
 							currentPath.getLengthTraveled() + e.getLength(criteria), 
-							neighbor.estimateLength(destination), 
+							neighbor.estimateLength(destination, criteria), 
 							neighbor));
 				}
 			}
