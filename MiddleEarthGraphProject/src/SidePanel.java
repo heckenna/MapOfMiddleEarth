@@ -5,8 +5,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
-public class GetUserInput extends JComponent{
+public class SidePanel extends JComponent{
 	
 
 	private Graph middleEarth;
@@ -14,7 +15,7 @@ public class GetUserInput extends JComponent{
 	//private JButton button;
 	
 
-	public GetUserInput(Graph graph, JPanel frame) {
+	public SidePanel(Graph graph, JPanel frame) {
 		
 		this.panel = frame;
 		
@@ -56,7 +57,7 @@ public class GetUserInput extends JComponent{
 		zooms.add(zoomIn);
 		zooms.add(zoomOut);
 		
-		Dimension size = new Dimension(137,200);
+		Dimension size = new Dimension(137,100);
 		compass.setPreferredSize(size);
 		//size.setSize(50, 100);
 		//zooms.setSize(size);
@@ -71,23 +72,40 @@ public class GetUserInput extends JComponent{
 	
 	
 	public void addSearchBars() {
+		Dimension searchSize = new Dimension(250,30);
+		
 	    String[] h = this.middleEarth.getNameArray();
 		JComboBox<String> end = new JComboBox<>(h);
 		JComboBox<String> start = new JComboBox<>(h);
 		
-		JButton distance = new JButton("Find Distance");
-		JButton time = new JButton("Find Shortest Time");
-		JButton clear = new JButton("Clear Path");
+		end.setPreferredSize(searchSize);
+		start.setPreferredSize(searchSize);
+
 		
-		distance.addActionListener(new Entered(start, end, "distance", middleEarth));
-		time.addActionListener(new Entered(start, end, "time", middleEarth));
+		JRadioButton dist = new JRadioButton("Distance");
+		JRadioButton time = new JRadioButton("Time");
+		JButton clear = new JButton("Clear");
+		JButton enter = new JButton("Enter");
+		//dist is selected by default
+		dist.setSelected(true);
+		
 		clear.addActionListener(new ClearListener(middleEarth));
+		enter.addActionListener(new Entered(start, end, dist, time, middleEarth));
+		dist.addActionListener(new ToggleListener(time));
+		time.addActionListener(new ToggleListener(dist));
 		
-		this.panel.add(start, BorderLayout.NORTH);
-		this.panel.add(end, BorderLayout.NORTH);
-		this.panel.add(distance, BorderLayout.CENTER);
-		this.panel.add(time, BorderLayout.CENTER);
+		
+		this.panel.add(start);
+		this.panel.add(end);
+		this.panel.add(dist);
+		this.panel.add(time);
+		this.panel.add(enter);
 		this.panel.add(clear, BorderLayout.CENTER);
+		
+	}
+
+	public void addOutput() {
+		// TODO Auto-generated method stub.
 		
 	}
 	
