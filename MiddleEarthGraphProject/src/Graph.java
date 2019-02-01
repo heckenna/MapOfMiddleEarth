@@ -25,6 +25,8 @@ public class Graph extends JComponent{
 	private ArrayList<Node> lastPath;
 
 	private ArrayList<String> twoCities;
+
+	int lastLength;
 	
 	public Graph( int FRAME_WIDTH, int FRAME_HEIGHT){
 		
@@ -40,6 +42,7 @@ public class Graph extends JComponent{
 		Graph.FRAME_WIDTH = FRAME_WIDTH;
 		
 		this.lastPath = new ArrayList<>();
+		this.lastLength = 0;
 	}
 	
 	public boolean insert(String name, int x, int y){
@@ -133,10 +136,11 @@ public class Graph extends JComponent{
 		}
 		
 		this.lastPath = currentNode.getVisited();
+		this.lastLength = currentNode.getLengthTraveled();
 		
 		setPathColor(Color.RED, Color.RED);
 		
-		System.out.println("Total Length Traveled (Distance or Time):" + currentNode.getLengthTraveled());
+		System.out.println("Total Length Traveled (Distance or Time):" + this.lastLength);
 		
 	}
 	

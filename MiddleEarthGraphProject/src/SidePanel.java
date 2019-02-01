@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -12,6 +13,7 @@ public class SidePanel extends JComponent{
 
 	private Graph middleEarth;
 	private JPanel panel;
+	private JLabel outputText;
 	//private JButton button;
 	
 
@@ -24,6 +26,7 @@ public class SidePanel extends JComponent{
 		Dimension preferredSize = new Dimension(300,400);
 		panel.setPreferredSize(preferredSize );
 		
+		this.outputText = new JLabel("Total Length Traveled:" + middleEarth.lastLength);
 	}
 
 	public void addMapNav(){
@@ -90,7 +93,7 @@ public class SidePanel extends JComponent{
 		dist.setSelected(true);
 		
 		clear.addActionListener(new ClearListener(middleEarth));
-		enter.addActionListener(new Entered(start, end, dist, time, middleEarth));
+		enter.addActionListener(new Entered(start, end, dist, time, middleEarth, outputText));
 		dist.addActionListener(new ToggleListener(time));
 		time.addActionListener(new ToggleListener(dist));
 		
@@ -105,11 +108,12 @@ public class SidePanel extends JComponent{
 	}
 
 	public void addPanelOutput() {
-		JPanel outputPanel = new JPanel();
-		outputPanel.setPreferredSize(new Dimension(200,300));
-		outputPanel.add(new JButton("Hello"));
+		JPanel display = new JPanel();
 		
-		this.panel.add(outputPanel);
+		display.setPreferredSize(new Dimension(200,300));
+		
+		display.add(outputText);
+		this.panel.add(display);
 		
 	}
 	
