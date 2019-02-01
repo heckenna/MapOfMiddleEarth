@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-public class Node implements Comparable<Node>{
+public class Node {
 
 	private int xCoor;
 	private int yCoor;
@@ -16,11 +16,6 @@ public class Node implements Comparable<Node>{
 	private int radius;
 	
 	private ArrayList<Edge> edges;
-	
-	private int lengthTraveled;
-	private int estimatedTotalLength;
-	
-	private ArrayList<Node> visited;
 	
 	public Node(int xCoor, int yCoor, String name){
 		
@@ -36,11 +31,6 @@ public class Node implements Comparable<Node>{
 		this.radius = 5;
 		
 		this.edges = new ArrayList<>();
-		
-		this.lengthTraveled = 0;
-		this.estimatedTotalLength = 0;
-		
-		this.visited = new ArrayList<>();
 		
 	}
 	
@@ -98,47 +88,9 @@ public class Node implements Comparable<Node>{
 		this.color  = c;
 	}
 	
-	public int getLengthTraveled(){
+	public int estimateLength(Node destination){
 		
-		return (this.lengthTraveled);
-	}
-	
-	public void setLengthTraveled(int lengthTraveled){
-		
-		this.lengthTraveled = lengthTraveled;
-	}
-	
-	public void estimateTotalLength(Node destination){
-		
-		this.estimatedTotalLength = (int)( Math.sqrt( Math.pow( (this.x - destination.getX()), 2) + 
-				Math.pow( (this.y - destination.getY()), 2) ) ) + this.lengthTraveled;
-	}
-	
-	public void setVisited(ArrayList<Node> a){
-		
-		this.visited.clear();
-		
-		for (Node n : a){
-			
-			this.visited.add(n);
-		}
-		
-		this.visited.add(this);
-	}
-	
-	public ArrayList<Node> getVisited(){
-		
-		return (this.visited);
-	}
-
-	@Override
-	public int compareTo(Node n) {
-		
-		if (this.estimatedTotalLength <= n.estimatedTotalLength){
-			
-			return (-1);
-		}
-		
-		return (1);
+		return (int)( Math.sqrt( Math.pow( (this.x - destination.getX()), 2) + 
+				Math.pow( (this.y - destination.getY()), 2) ) );
 	}
 }

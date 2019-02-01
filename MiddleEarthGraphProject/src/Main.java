@@ -21,7 +21,7 @@ public class Main{
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		Graph middleEarth = new Graph(FRAME_WIDTH, FRAME_HEIGHT);
+		Graph middleEarth = new Graph();
 		
 		DomainLoader loader = new DomainLoader();
 		loader.loadDomain(middleEarth);

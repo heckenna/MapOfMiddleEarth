@@ -3,7 +3,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -13,29 +12,20 @@ public class Graph extends JComponent{
 	
 	private HashMap<String, Node> searchNode;
 	
-	private Color color;
-	
-	private boolean gridOn;
-	
 	private double xZoom;
 	private double yZoom;
 	
-	private static int FRAME_HEIGHT;
-	private static int FRAME_WIDTH;
-	
 	private ArrayList<Node> lastPath;
+
+	private ArrayList<String> twoCities;
 	
-	public Graph( int FRAME_WIDTH, int FRAME_HEIGHT){
+	public Graph(){
 		
 		this.searchNode = new HashMap<>();
-		
-		this.color = Color.BLACK;
+		this.twoCities = new ArrayList<String>();
 		
 		this.xZoom = 1;
 		this.yZoom = 0.7;
-		
-		Graph.FRAME_HEIGHT = FRAME_HEIGHT;
-		Graph.FRAME_WIDTH = FRAME_WIDTH;
 		
 		this.lastPath = new ArrayList<>();
 	}
@@ -54,14 +44,21 @@ public class Graph extends JComponent{
 	
 	
 	public String[] getNameArray() {
+		
 		int k = 0;
+		
 		String[] h = new String[this.searchNode.size()];
+		
 		for(Node n : this.searchNode.values()) {
+			
 			h[k] = n.getName();
+			
 			k+=1;		
 		}
-			Arrays.sort(h);
-		return h;
+		
+		Arrays.sort(h);
+		
+		return (h);
 	}
 	
 	public boolean connect(String name1, String name2, double terrainDifficulty){
@@ -89,16 +86,11 @@ public class Graph extends JComponent{
 		Node begin = this.searchNode.get(beginString);
 		Node destination = this.searchNode.get(destinationString);
 		
-		ArrayList<Node> visited = new ArrayList<>();
-		visited.add(begin);
+		PriorityQueue<Path> queue = new PriorityQueue<>();
 		
-		PriorityQueue<Node> queue = new PriorityQueue<>();
-		queue.add(begin);
+		Path currentPath = new Path(new ArrayList<Node>(), 0, 0, begin);
 		
 		Node currentNode = begin;
-		currentNode.setLengthTraveled(0);
-		currentNode.estimateTotalLength(destination);
-		currentNode.setVisited(new ArrayList<Node>());
 		
 		while (currentNode != destination){
 			
@@ -106,35 +98,23 @@ public class Graph extends JComponent{
 				
 				Node neighbor = e.getOtherEnd(currentNode);
 				
-				if (! visited.contains(neighbor)){
-				
-					neighbor.setLengthTraveled(currentNode.getLengthTraveled() + e.getLength(criteria));
+				if (! currentPath.getVisited().contains(neighbor)){
 					
-					neighbor.estimateTotalLength(destination);
-					
-					neighbor.setVisited(currentNode.getVisited());
-					
-					queue.add(neighbor);
-					
-					visited.add(neighbor);
+					queue.add(new Path(currentPath.getVisited(), 
+							currentPath.getLengthTraveled() + e.getLength(criteria), 
+							neighbor.estimateLength(destination), 
+							neighbor));
 				}
 			}
+
+			currentPath = queue.poll();
 			
-			queue.remove(currentNode);
-			
-			currentNode = queue.peek();
-			
-			if (currentNode == null){
-				
-				return;
-			}
+			currentNode = currentPath.getLastNode();
 		}
 		
-		this.lastPath = currentNode.getVisited();
+		this.lastPath = currentPath.getVisited();
 		
 		setPathColor(Color.RED, Color.RED);
-		
-		System.out.println("Total Length Traveled (Distance or Time):" + currentNode.getLengthTraveled());
 		
 	}
 	
@@ -187,6 +167,22 @@ public class Graph extends JComponent{
 		for (Node n : this.searchNode.values()){
 			
 			n.draw(graphics2, this.xZoom, this.yZoom);
+		}
+	}
+
+	public void findBetween(Node city) {
+		
+		if (this.twoCities.isEmpty()) {
+			
+			this.twoCities.add(city.getName());
+			
+		} 
+		
+		else {
+			
+			this.findShortestPath(twoCities.get(0), city.getName(), "distance");
+			
+			this.twoCities = new ArrayList<String>();
 		}
 	}
 
