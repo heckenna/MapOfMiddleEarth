@@ -25,6 +25,7 @@ public class Graph extends JComponent{
 	private SidePanel sidePanel;
 
 	private JFrame frame;
+	private boolean toggleDistance;
 	
 	public Graph(JFrame frame){
 		
@@ -182,7 +183,7 @@ public class Graph extends JComponent{
 		
 		for (Node n : this.searchNode.values()){
 			
-			n.draw(graphics2, this.xZoom, this.yZoom, this.frame);
+			n.draw(graphics2, this.xZoom, this.yZoom, this.frame, toggleDistance);
 		}
 	}
 	
@@ -192,12 +193,21 @@ public class Graph extends JComponent{
 	}
 
 	public void findBetween(Node city) {
+		/* Trying to get deselection of city to work nicer. It is a bit wonky.
+		if(!city.button.isSelected()) {
+			if(city.getName().equals(this.twoCities.get(0).getName())) this.twoCities.remove(0);
+			else this.twoCities.remove(1);
+			return;
+		} */
+		
 		
 		if(this.twoCities.size()==2) {
 			twoCities.get(0).button.setSelected(false);
 			twoCities.get(1).button.setSelected(false);
 			this.twoCities = new ArrayList<Node>();
 		}
+		
+		city.button.setSelected(true);
 		
 		if (this.twoCities.isEmpty()) {
 			this.setPathColor(Color.BLACK, Color.BLUE);
@@ -247,5 +257,9 @@ public class Graph extends JComponent{
 			this.twoCities.get(0).button.setSelected(false);
 			this.twoCities.remove(twoCities.get(0));
 		}
+	}
+	
+	public void toggleDisplay() {
+		this.toggleDistance = !this.toggleDistance;
 	}
 }

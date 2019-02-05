@@ -30,7 +30,7 @@ public class Edge {
 		this.time = calculateTime();
 	}
 	
-	public void draw(Graphics2D graphics2, double xZoom, double yZoom){
+	public void draw(Graphics2D graphics2, double xZoom, double yZoom, boolean drawDistances){
 		
 		graphics2.setColor(this.color);
 		
@@ -38,17 +38,17 @@ public class Edge {
 				(int)(this.start.getY() * yZoom), 
 				(int)(this.end.getX() * xZoom), 
 				(int)(this.end.getY() * yZoom));
-		
-		graphics2.setColor(Color.BLUE);
-		graphics2.drawString("D: " + Integer.toString(this.distance), 
+		if(drawDistances) {
+			graphics2.setColor(Color.BLUE);
+			graphics2.drawString("D: " + Integer.toString(this.distance), 
 				(int)((this.start.getX()+this.end.getX()) / 2 * xZoom), 
 				(int)((this.start.getY()+this.end.getY()) / 2 * yZoom));
 		
-		graphics2.setColor(Color.BLACK);
-		graphics2.drawString("T: " + Integer.toString(this.time), 
+			graphics2.setColor(Color.BLACK);
+			graphics2.drawString("T: " + Integer.toString(this.time), 
 				(int)((this.start.getX()+this.end.getX()) / 2 * xZoom), 
 				(int)((this.start.getY()+this.end.getY() + 40) / 2 * yZoom));
-		
+		}
 	}
 	
 	public int calculateDistance(){

@@ -32,6 +32,19 @@ public class SidePanel extends JComponent{
 		panel.setPreferredSize(preferredSize );
 		
 		this.outputText = new JLabel("Total Distance Traveled:" + middleEarth.getLastLength());
+		
+		this.addSearchBars();
+		this.addMapNav();
+		this.addTogglers();
+		this.addPanelOutput();
+	}
+
+	private void addTogglers() {
+		JRadioButton toggleDistance = new JRadioButton("Display Distance and Time");
+		
+		toggleDistance.addActionListener(new DistanceToggler(middleEarth));
+		
+		panel.add(toggleDistance);
 	}
 
 	public void addMapNav(){

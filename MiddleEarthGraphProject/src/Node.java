@@ -49,7 +49,7 @@ public class Node {
 		return (this.edges);
 	}
 	
-	public void draw(Graphics2D graphics2, double xZoom, double yZoom, JFrame frame){
+	public void draw(Graphics2D graphics2, double xZoom, double yZoom, JFrame frame, boolean toggle){
 		
 		graphics2.setColor(this.color);
 		
@@ -68,7 +68,7 @@ public class Node {
 		
 		for (Edge e : this.edges){
 			
-			e.draw(graphics2, xZoom, yZoom);
+			e.draw(graphics2, xZoom, yZoom, toggle);
 		}
 		
 	}
