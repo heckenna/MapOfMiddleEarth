@@ -14,7 +14,9 @@ public class CityListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub.
+		System.out.println("Print");
 		graph.findBetween(city);
+		graph.repaint();
 		
 	}
 

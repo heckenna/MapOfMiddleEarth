@@ -92,6 +92,9 @@ public class SidePanel extends JComponent{
 		//dist is selected by default
 		dist.setSelected(true);
 		
+		
+		
+		
 		clear.addActionListener(new ClearListener(middleEarth));
 		enter.addActionListener(new Entered(start, end, dist, time, middleEarth, outputText));
 		dist.addActionListener(new ToggleListener(time));
@@ -103,8 +106,7 @@ public class SidePanel extends JComponent{
 		this.panel.add(dist);
 		this.panel.add(time);
 		this.panel.add(enter);
-		this.panel.add(clear, BorderLayout.CENTER);
-		
+		this.panel.add(clear, BorderLayout.CENTER);		
 	}
 
 	public void addPanelOutput() {

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 
 public class Graph extends JComponent{
 	
@@ -17,14 +18,14 @@ public class Graph extends JComponent{
 	
 	private ArrayList<Node> lastPath;
 
-	private ArrayList<String> twoCities;
+	private ArrayList<Node> twoCities;
 	
 	private int lastLength;
 	
 	public Graph(){
 		
 		this.searchNode = new HashMap<>();
-		this.twoCities = new ArrayList<String>();
+		this.twoCities = new ArrayList<Node>();
 		
 		this.xZoom = 1;
 		this.yZoom = 0.7;
@@ -40,7 +41,7 @@ public class Graph extends JComponent{
 			
 			return (false);
 		}
-		
+		Node newNode = new Node(x, y, name);		
 		this.searchNode.put(name, new Node(x, y, name));
 		
 		return (true);
@@ -185,16 +186,31 @@ public class Graph extends JComponent{
 		
 		if (this.twoCities.isEmpty()) {
 			
-			this.twoCities.add(city.getName());
+			this.twoCities.add(city);
 			
 		} 
 		
 		else {
 			
-			this.findShortestPath(twoCities.get(0), city.getName(), "distance");
-			
-			this.twoCities = new ArrayList<String>();
+			this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
+			twoCities.get(0).button.setSelected(false);
+			city.button.setSelected(false);
+			this.twoCities = new ArrayList<Node>();
 		}
+	}
+
+	public void addButtons(JFrame frame) {
+		
+		int k = 0;
+				
+		for(Node n : this.searchNode.values()) {
+			
+			n.button.addActionListener(new CityListener(n, this));
+			frame.add(n.button);
+			
+			k+=1;		
+		}
+		
 	}
 
 }

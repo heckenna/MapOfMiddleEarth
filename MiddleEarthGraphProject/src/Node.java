@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import javax.swing.JRadioButton;
+
 public class Node {
 
 	private int xCoor;
@@ -16,6 +18,7 @@ public class Node {
 	private int radius;
 	
 	private ArrayList<Edge> edges;
+	protected JRadioButton button;
 	
 	public Node(int xCoor, int yCoor, String name){
 		
@@ -26,6 +29,7 @@ public class Node {
 		
 		this.name = name;
 		
+		this.button = new JRadioButton(name);
 		this.color = Color.BLACK;
 		
 		this.radius = 5;
@@ -48,10 +52,14 @@ public class Node {
 		
 		graphics2.setColor(this.color);
 		
-		graphics2.fillOval((int)(this.x * xZoom - this.radius), 
+		
+	    this.button.setBounds((int) (this.x*xZoom - this.radius*1.2), (int) (this.y * yZoom - this.radius), 15, 12);
+	    
+		
+		/*graphics2.fillOval((int)(this.x * xZoom - this.radius), 
 				(int)(this.y * yZoom - this.radius), 
 				2*this.radius, 
-				2*this.radius);
+				2*this.radius);*/
 		
 		graphics2.drawString(this.name, (int)((this.x - 10) * xZoom), (int)((this.y - 8) * yZoom));
 		

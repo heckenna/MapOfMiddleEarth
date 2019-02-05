@@ -21,6 +21,8 @@ public class Main{
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		
+		
 		Graph middleEarth = new Graph();
 		
 		DomainLoader loader = new DomainLoader();
@@ -32,6 +34,7 @@ public class Main{
 		
 
 		inputPanel.add(input);
+		middleEarth.addButtons(frame);
 
 		frame.add(middleEarth, BorderLayout.CENTER);
 		frame.add(inputPanel, BorderLayout.EAST);
@@ -41,7 +44,6 @@ public class Main{
 		input.addPanelOutput();
 		
 		//input.addTextBox();
-		
 		
 		frame.setVisible(true);
 	}
