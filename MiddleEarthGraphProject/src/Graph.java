@@ -23,8 +23,10 @@ public class Graph extends JComponent{
 	private int lastLength;
 
 	private SidePanel sidePanel;
+
+	private JFrame frame;
 	
-	public Graph(){
+	public Graph(JFrame frame){
 		
 		this.searchNode = new HashMap<>();
 		this.twoCities = new ArrayList<Node>();
@@ -35,6 +37,7 @@ public class Graph extends JComponent{
 		this.lastPath = new ArrayList<>();
 		
 		this.lastLength = 0;
+		this.frame = frame;
 	}
 	
 	public void addSidePanel(SidePanel panel) {
@@ -179,7 +182,7 @@ public class Graph extends JComponent{
 		
 		for (Node n : this.searchNode.values()){
 			
-			n.draw(graphics2, this.xZoom, this.yZoom);
+			n.draw(graphics2, this.xZoom, this.yZoom, this.frame);
 		}
 	}
 	
@@ -214,14 +217,14 @@ public class Graph extends JComponent{
 		}
 	}
 
-	public void addButtons(JFrame frame) {
+	public void addButtons() {
 		
 		int k = 0;
 				
 		for(Node n : this.searchNode.values()) {
 			
 			n.button.addActionListener(new CityListener(n, this));
-			frame.add(n.button);
+			this.frame.add(n.button);
 			
 			k+=1;		
 		}

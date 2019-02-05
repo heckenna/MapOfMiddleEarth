@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 
 public class Node {
@@ -48,13 +49,15 @@ public class Node {
 		return (this.edges);
 	}
 	
-	public void draw(Graphics2D graphics2, double xZoom, double yZoom){
+	public void draw(Graphics2D graphics2, double xZoom, double yZoom, JFrame frame){
 		
 		graphics2.setColor(this.color);
 		
-		
+		if(!this.button.isVisible()) this.button.setVisible(true);
 	    this.button.setBounds((int) (this.x*xZoom - this.radius*1.2), (int) (this.y * yZoom - this.radius), 15, 12);
-	    
+	    if((this.x*xZoom - this.radius*1.2) > frame.getWidth()-340) {
+	    	this.button.setVisible(false);
+	    }
 		
 		/*graphics2.fillOval((int)(this.x * xZoom - this.radius), 
 				(int)(this.y * yZoom - this.radius), 
