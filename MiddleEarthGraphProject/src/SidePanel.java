@@ -14,6 +14,8 @@ public class SidePanel extends JComponent{
 	private Graph middleEarth;
 	private JPanel panel;
 	private JLabel outputText;
+	protected JRadioButton dist;
+	protected JButton enter;
 	//private JButton button;
 	
 
@@ -91,8 +93,8 @@ public class SidePanel extends JComponent{
 		JButton enter = new JButton("Enter");
 		//dist is selected by default
 		dist.setSelected(true);
-		
-		
+		this.dist = dist;
+		this.enter = enter;
 		
 		
 		clear.addActionListener(new ClearListener(middleEarth));

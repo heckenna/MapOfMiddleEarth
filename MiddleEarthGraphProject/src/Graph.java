@@ -204,8 +204,8 @@ public class Graph extends JComponent{
 		
 		else {
 			twoCities.add(city);
-			this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
-			
+			//this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
+			this.sidePanel.enter.doClick();
 			
 		}
 	}
