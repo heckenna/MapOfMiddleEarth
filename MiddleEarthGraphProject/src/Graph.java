@@ -241,4 +241,11 @@ public class Graph extends JComponent{
 			if(n.getName() == city) n.button.setSelected(false);
 		}
 	}
+
+	public void clearButtons() {
+		while(!this.twoCities.isEmpty()) {
+			this.twoCities.get(0).button.setSelected(false);
+			this.twoCities.remove(twoCities.get(0));
+		}
+	}
 }
