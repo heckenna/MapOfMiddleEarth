@@ -21,6 +21,8 @@ public class Graph extends JComponent{
 	private ArrayList<Node> twoCities;
 	
 	private int lastLength;
+
+	private SidePanel sidePanel;
 	
 	public Graph(){
 		
@@ -33,6 +35,10 @@ public class Graph extends JComponent{
 		this.lastPath = new ArrayList<>();
 		
 		this.lastLength = 0;
+	}
+	
+	public void addSidePanel(SidePanel panel) {
+		this.sidePanel = panel;
 	}
 	
 	public boolean insert(String name, int x, int y){

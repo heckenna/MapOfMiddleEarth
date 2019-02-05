@@ -31,7 +31,7 @@ public class Main{
 		
 		JPanel inputPanel = new JPanel();
 		SidePanel input = new SidePanel(middleEarth, inputPanel);
-		
+		middleEarth.addSidePanel(input);
 
 		
 		middleEarth.addButtons(frame);

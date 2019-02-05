@@ -26,7 +26,7 @@ public class SidePanel extends JComponent{
 		Dimension preferredSize = new Dimension(300,400);
 		panel.setPreferredSize(preferredSize );
 		
-		this.outputText = new JLabel("Total Length Traveled:" + middleEarth.getLastLength());
+		this.outputText = new JLabel("Total Distance Traveled:" + middleEarth.getLastLength());
 	}
 
 	public void addMapNav(){

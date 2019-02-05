@@ -33,11 +33,11 @@ public class Entered implements ActionListener {
 		if(graph.hasPlace(startPt) && graph.hasPlace(endPt)) {
 			if(this.distance.isSelected()) {
 				graph.findShortestPath(startPt, endPt, "distance");
-				this.text.setText("Total Length Traveled:" + this.graph.getLastLength());
+				this.text.setText("Total Distance Traveled:" + this.graph.getLastLength());
 			}
 			else {
 				graph.findShortestPath(startPt, endPt, "time");
-				this.text.setText("Total Length Traveled:" + this.graph.getLastLength());
+				this.text.setText("Total Time Traveled:" + this.graph.getLastLength());
 
 			}
 		} else {
