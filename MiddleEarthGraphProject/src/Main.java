@@ -23,7 +23,7 @@ public class Main{
 		
 		
 		
-		Graph middleEarth = new Graph();
+		Graph middleEarth = new Graph(frame);
 		
 		DomainLoader loader = new DomainLoader();
 		loader.loadDomain(middleEarth);
@@ -34,7 +34,7 @@ public class Main{
 		middleEarth.addSidePanel(input);
 
 		
-		middleEarth.addButtons(frame);
+		middleEarth.addButtons();
 		inputPanel.add(input);
 		
 		frame.add(middleEarth, BorderLayout.CENTER);
