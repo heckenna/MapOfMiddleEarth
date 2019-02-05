@@ -199,13 +199,14 @@ public class Graph extends JComponent{
 		if (this.twoCities.isEmpty()) {
 			this.setPathColor(Color.BLACK, Color.BLUE);
 			this.twoCities.add(city);
+			this.sidePanel.populateStart(city.getName());
 			
 		} 
 		
 		else {
 			twoCities.add(city);
 			this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
-			
+			this.sidePanel.populateEnd(city.getName());
 			
 		}
 	}

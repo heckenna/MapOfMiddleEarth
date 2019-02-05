@@ -14,11 +14,14 @@ public class SidePanel extends JComponent{
 	private Graph middleEarth;
 	private JPanel panel;
 	private JLabel outputText;
+	private JComboBox<String> s;
+	private JComboBox<String> e;
 	//private JButton button;
 	
 
 	public SidePanel(Graph graph, JPanel frame) {
-		
+		this.s = new JComboBox<>();
+		this.e = new JComboBox<>();
 		this.panel = frame;
 		
 		middleEarth = graph; 
@@ -80,6 +83,9 @@ public class SidePanel extends JComponent{
 	    String[] h = this.middleEarth.getNameArray();
 		JComboBox<String> end = new JComboBox<>(h);
 		JComboBox<String> start = new JComboBox<>(h);
+		this.s = start;
+		this.e = end;
+		
 		
 		end.setPreferredSize(searchSize);
 		start.setPreferredSize(searchSize);
@@ -117,6 +123,13 @@ public class SidePanel extends JComponent{
 		display.add(outputText);
 		this.panel.add(display);
 		
+	}
+	
+	public void populateStart(String city) {
+		s.setSelectedItem(city);
+	}
+	public void populateEnd(String city) {
+		e.setSelectedItem(city);
 	}
 	
 }
