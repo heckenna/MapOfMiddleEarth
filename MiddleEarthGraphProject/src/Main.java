@@ -33,9 +33,10 @@ public class Main{
 		SidePanel input = new SidePanel(middleEarth, inputPanel);
 		
 
-		inputPanel.add(input);
+		
 		middleEarth.addButtons(frame);
-
+		inputPanel.add(input);
+		
 		frame.add(middleEarth, BorderLayout.CENTER);
 		frame.add(inputPanel, BorderLayout.EAST);
 

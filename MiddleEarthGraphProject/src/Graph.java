@@ -184,18 +184,23 @@ public class Graph extends JComponent{
 
 	public void findBetween(Node city) {
 		
+		if(this.twoCities.size()==2) {
+			twoCities.get(0).button.setSelected(false);
+			twoCities.get(1).button.setSelected(false);
+			this.twoCities = new ArrayList<Node>();
+		}
+		
 		if (this.twoCities.isEmpty()) {
-			
+			this.setPathColor(Color.BLACK, Color.BLUE);
 			this.twoCities.add(city);
 			
 		} 
 		
 		else {
-			
+			twoCities.add(city);
 			this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
-			twoCities.get(0).button.setSelected(false);
-			city.button.setSelected(false);
-			this.twoCities = new ArrayList<Node>();
+			
+			
 		}
 	}
 
