@@ -23,6 +23,7 @@ public class DropDownListener implements ActionListener{
 			//want to keep as only last city maybe?
 			middleEarth.deactivateButton(u);
 		}
+		n.clear();
 		n.add((String) t.getSelectedItem());
 		middleEarth.activateButton((String) t.getSelectedItem());
 		
