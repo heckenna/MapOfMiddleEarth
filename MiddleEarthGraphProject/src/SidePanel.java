@@ -81,13 +81,15 @@ public class SidePanel extends JComponent{
 	
 	public void addSearchBars() {
 		Dimension searchSize = new Dimension(250,30);
+		JPanel startPanel = new JPanel();
+		JPanel endPanel = new JPanel();
+		
+		JLabel startLabel = new JLabel("Start");
+		JLabel endLabel = new JLabel("End");
 		
 	    String[] h = this.middleEarth.getNameArray();
 		JComboBox<String> end = new JComboBox<>(h);
 		JComboBox<String> start = new JComboBox<>(h);
-		start.addActionListener(new DropDownListener(this.middleEarth, start));
-		end.addActionListener(new DropDownListener(this.middleEarth, end));
-		
 		this.s = start;
 		this.e = end;
 		
@@ -111,9 +113,13 @@ public class SidePanel extends JComponent{
 		dist.addActionListener(new ToggleListener(time));
 		time.addActionListener(new ToggleListener(dist));
 		
+		startPanel.add(startLabel);
+		startPanel.add(start);
+		endPanel.add(endLabel);
+		endPanel.add(end);
 		
-		this.panel.add(start);
-		this.panel.add(end);
+		this.panel.add(startPanel);
+		this.panel.add(endPanel);
 		this.panel.add(dist);
 		this.panel.add(time);
 		this.panel.add(enter);
