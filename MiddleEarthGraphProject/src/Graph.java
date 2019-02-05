@@ -207,6 +207,9 @@ public class Graph extends JComponent{
 			twoCities.add(city);
 			this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
 			this.sidePanel.populateEnd(city.getName());
+
+			//this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
+			this.sidePanel.enter.doClick();
 			
 		}
 	}
