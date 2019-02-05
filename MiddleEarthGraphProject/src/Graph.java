@@ -227,5 +227,15 @@ public class Graph extends JComponent{
 		}
 		
 	}
-
+	
+	public void activateButton(String city) {
+		for(Node n : this.searchNode.values()) {
+			if(n.getName()==city) n.button.setSelected(true);
+		}
+	}
+	public void deactivateButton(String city) {
+		for(Node n : this.searchNode.values()) {
+			if(n.getName() == city) n.button.setSelected(false);
+		}
+	}
 }
