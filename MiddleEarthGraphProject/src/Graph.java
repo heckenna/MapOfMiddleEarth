@@ -21,6 +21,7 @@ public class Graph extends JComponent{
 	private ArrayList<Node> twoCities;
 	
 	private int lastLength;
+	private int lastOppositeLength;
 
 	private SidePanel sidePanel;
 
@@ -38,6 +39,8 @@ public class Graph extends JComponent{
 		this.lastPath = new ArrayList<>();
 		
 		this.lastLength = 0;
+		this.lastOppositeLength = 0;
+		
 		this.frame = frame;
 	}
 	
@@ -96,6 +99,18 @@ public class Graph extends JComponent{
 	
 	public void findShortestPath(String beginString, String destinationString, String criteria){
 		
+		String oppositeCriteria = "";
+		
+		if (criteria.equals("distance")){
+			
+			oppositeCriteria = "time";
+		}
+		
+		else {
+			
+			oppositeCriteria = "distance";
+		}
+		
 		setPathColor(Color.BLACK, Color.BLUE);
 		
 		Node begin = this.searchNode.get(beginString);
@@ -103,7 +118,7 @@ public class Graph extends JComponent{
 		
 		PriorityQueue<Path> queue = new PriorityQueue<>();
 		
-		Path currentPath = new Path(new ArrayList<Node>(), 0, 0, begin);
+		Path currentPath = new Path(new ArrayList<Node>(), 0, 0, 0, begin);
 		
 		Node currentNode = begin;
 		
@@ -117,6 +132,7 @@ public class Graph extends JComponent{
 					
 					queue.add(new Path(currentPath.getVisited(), 
 							currentPath.getLengthTraveled() + e.getLength(criteria), 
+							currentPath.getOppositeLengthTraveled() + e.getLength(oppositeCriteria),
 							neighbor.estimateLength(destination, criteria), 
 							neighbor));
 				}
@@ -130,6 +146,8 @@ public class Graph extends JComponent{
 		this.lastPath = currentPath.getVisited();
 		
 		this.lastLength = currentPath.getLengthTraveled();
+		
+		this.lastOppositeLength = currentPath.getOppositeLengthTraveled();
 		
 		setPathColor(Color.RED, Color.RED);
 		
@@ -190,6 +208,11 @@ public class Graph extends JComponent{
 	public int getLastLength(){
 		
 		return (this.lastLength);
+	}
+	
+	public int getLastOppositeLength(){
+		
+		return (this.lastOppositeLength);
 	}
 
 	public void findBetween(Node city) {

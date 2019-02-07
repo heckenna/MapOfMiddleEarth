@@ -7,7 +7,8 @@ import javax.swing.JRadioButton;
 
 public class Entered implements ActionListener {
 
-	private JLabel text;
+	private JLabel outputLength;
+	private JLabel outputOppositeLength;
 	private JComboBox<String> start;
 	private JComboBox<String> end;
 	private Graph graph;
@@ -15,13 +16,14 @@ public class Entered implements ActionListener {
 	private JRadioButton time;
 	
 	public Entered(JComboBox<String> start, JComboBox<String> end, JRadioButton dist, JRadioButton time,
-			Graph graph, JLabel outputText) {
+			Graph graph, JLabel outputLength, JLabel outputOppositeLength) {
 		this.start = start;
 		this.end = end;
 		this.distance = dist;
 		this.time = time;
 		this.graph = graph;
-		this.text = outputText;
+		this.outputLength = outputLength;
+		this.outputOppositeLength = outputOppositeLength;
 	}
 
 
@@ -33,11 +35,13 @@ public class Entered implements ActionListener {
 		if(graph.hasPlace(startPt) && graph.hasPlace(endPt)) {
 			if(this.distance.isSelected()) {
 				graph.findShortestPath(startPt, endPt, "distance");
-				this.text.setText("Total Distance Traveled:" + this.graph.getLastLength());
+				this.outputLength.setText("Total Distance Traveled:" + this.graph.getLastLength());
+				this.outputOppositeLength.setText("Total Time Traveled:" + this.graph.getLastOppositeLength());
 			}
 			else {
 				graph.findShortestPath(startPt, endPt, "time");
-				this.text.setText("Total Time Traveled:" + this.graph.getLastLength());
+				this.outputLength.setText("Total Time Traveled:" + this.graph.getLastLength());
+				this.outputOppositeLength.setText("Total Distance Traveled:" + this.graph.getLastOppositeLength());
 
 			}
 		} else {
