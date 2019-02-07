@@ -45,11 +45,14 @@ public class SidePanel extends JComponent{
 		JRadioButton toggleDistance = new JRadioButton("Display Distance and Time");
 		
 		toggleDistance.addActionListener(new DistanceToggler(this.middleEarth));
+		toggleDistance.setFocusable(false);
+
 		
 		this.panel.add(toggleDistance);
 	}
 
 	public void addMapNav(){
+		
 		
 		JButton north = new JButton("North");
 		JButton south = new JButton("South");
@@ -59,14 +62,31 @@ public class SidePanel extends JComponent{
 		JButton zoomIn = new JButton("Zoom In");
 		JButton zoomOut = new JButton("Zoom Out");
 		
+		north.setFocusable(false);
+		south.setFocusable(false);
+		east.setFocusable(false);
+		west.setFocusable(false);
+		zoomIn.setFocusable(false);
+		zoomOut.setFocusable(false);
+
 		
-		north.addActionListener(new MoverListener(0, 50, this.middleEarth));
+		MoverListener moveNorth = new MoverListener(0, 50, this.middleEarth);
+		
+		north.addActionListener(moveNorth);
 		south.addActionListener(new MoverListener(0, -50, this.middleEarth));
 		east.addActionListener(new MoverListener(-50, 0, this.middleEarth));
 		west.addActionListener(new MoverListener(50, 0, this.middleEarth));
 		
 		zoomIn.addActionListener(new ZoomListener(0.1, this.middleEarth));
 		zoomOut.addActionListener(new ZoomListener(-0.1, this.middleEarth));
+		
+		panel.setFocusable(true);
+		
+		panel.addKeyListener(new KeysToClick(north, south, east, west, enter, zoomIn, zoomOut));
+		/*north.getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW).
+			put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_UP,0), "Up_pressed");
+        north.getActionMap().put("Up_pressed", new ActionClick(moveNorth));*/
+
 		
 		JPanel compass = new JPanel();
 		
@@ -102,6 +122,10 @@ public class SidePanel extends JComponent{
 		JLabel startLabel = new JLabel("Start: ");
 		JLabel endLabel = new JLabel("End: ");
 		
+		startLabel.setFocusable(false);
+		endLabel.setFocusable(false);
+
+		
 	    String[] h = this.middleEarth.getNameArray();
 		JComboBox<String> end = new JComboBox<>(h);
 		end.addActionListener(new DropDownListener(middleEarth, end));
@@ -109,6 +133,10 @@ public class SidePanel extends JComponent{
 		start.addActionListener(new DropDownListener(middleEarth, start));
 		this.s = start;
 		this.e = end;
+		
+		start.setFocusable(false);
+		end.setFocusable(false);
+
 		
 		
 		end.setPreferredSize(searchSize);
@@ -123,6 +151,12 @@ public class SidePanel extends JComponent{
 		dist.setSelected(true);
 		this.dist = dist;
 		this.enter = enter;
+		
+		dist.setFocusable(false);
+		time.setFocusable(false);
+		clear.setFocusable(false);
+		enter.setFocusable(false);
+
 		
 		
 		clear.addActionListener(new ClearListener(this.middleEarth));

@@ -31,6 +31,9 @@ public class Node {
 		this.name = name;
 		
 		this.button = new JRadioButton(name);
+		button.setFocusable(false);
+		
+
 		
 		this.button.setOpaque(false);
 		
