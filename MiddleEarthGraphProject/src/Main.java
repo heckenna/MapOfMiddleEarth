@@ -40,7 +40,7 @@ public class Main{
 		frame.add(middleEarth, BorderLayout.CENTER);
 		frame.add(inputPanel, BorderLayout.EAST);
 
-		input.addSearchBars();
+		//input.addSearchBars();
 		//input.addMapNav();
 		//input.addPanelOutput();
 		
