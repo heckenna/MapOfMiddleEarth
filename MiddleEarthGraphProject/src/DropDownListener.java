@@ -23,7 +23,6 @@ public class DropDownListener implements ActionListener{
 		n.clear();
 		n.add((String) t.getSelectedItem());
 		middleEarth.activateButton((String) t.getSelectedItem());
-		//System.out.println("jfkdsjkflds");
 		
 	}
 
