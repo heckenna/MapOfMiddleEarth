@@ -137,6 +137,10 @@ public class Graph extends JComponent{
 		Node begin = this.searchNode.get(beginString);
 		Node destination = this.searchNode.get(destinationString);
 		
+		begin.button.setSelected(true);
+		destination.button.setSelected(true);
+		
+		
 		PriorityQueue<Path> queue = new PriorityQueue<>();
 		
 		Path currentPath = new Path(new ArrayList<Node>(), 0, 0, 0, begin);
