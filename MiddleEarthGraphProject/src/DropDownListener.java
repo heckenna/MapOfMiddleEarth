@@ -15,13 +15,9 @@ public class DropDownListener implements ActionListener{
 		this.t= t;
 	}
 	
-	
-	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		//System.out.println(t.getSelectedItem());
 		for(String u : n) {
-			//want to keep as only last city maybe?
 			middleEarth.deactivateButton(u);
 		}
 		n.clear();

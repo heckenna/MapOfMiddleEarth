@@ -31,6 +31,9 @@ public class Node {
 		this.name = name;
 		
 		this.button = new JRadioButton(name);
+		
+		this.button.setOpaque(false);
+		
 		this.color = Color.BLACK;
 		
 		this.radius = 5;

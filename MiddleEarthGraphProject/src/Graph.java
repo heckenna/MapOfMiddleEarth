@@ -1,11 +1,14 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
@@ -28,6 +31,11 @@ public class Graph extends JComponent{
 	private JFrame frame;
 	private boolean toggleDistance;
 	
+	private BufferedImage background;
+	
+	private int backgroundX;
+	private int backgroundY;
+	
 	public Graph(JFrame frame){
 		
 		this.searchNode = new HashMap<>();
@@ -42,6 +50,19 @@ public class Graph extends JComponent{
 		this.lastOppositeLength = 0;
 		
 		this.frame = frame;
+		
+		this.backgroundX = 0;
+		this.backgroundY = 0;
+		
+		try {
+			
+			this.background = ImageIO.read(new File("src/Middle Earth Map.jpg"));
+		}
+		
+		catch (Exception e){
+			
+			System.out.println("ERROR: Could Not Find Background Image");
+		}
 	}
 	
 	public void addSidePanel(SidePanel panel) {
@@ -184,10 +205,13 @@ public class Graph extends JComponent{
 			
 			n.updateCoordinate(x, y);
 		}
+		
+		this.backgroundX += x;
+		this.backgroundY += y;
 	}
 	
 	public void zoom(double amount){
-		
+		 
 		this.xZoom += amount;
 		this.yZoom += amount;
 	}
@@ -198,6 +222,13 @@ public class Graph extends JComponent{
 		super.paintComponent(graphics);
 		
 		Graphics2D graphics2 = (Graphics2D) graphics;
+		
+		graphics2.drawImage(this.background, 
+				(int)(this.backgroundX * this.xZoom), 
+				(int)(this.backgroundY * this.yZoom), 
+				(int)((this.backgroundX + 1900) * this.xZoom), 
+				(int)((this.backgroundY + 1429) * this.yZoom), 
+				0, 0, 3200, 2400, null);
 		
 		for (Node n : this.searchNode.values()){
 			

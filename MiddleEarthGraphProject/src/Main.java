@@ -46,7 +46,17 @@ public class Main{
 		
 		//input.addTextBox();
 		
+		
+		//
+		//Audio Works, just put URL in the SRC folder, only put filename in play function
+		//
+		
+		//AudioPlayer u = new AudioPlayer();
+		//u.play("test2.wav");
+		
 		frame.setVisible(true);
+		
+		
 	}
 
 }
