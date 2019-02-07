@@ -13,7 +13,8 @@ public class SidePanel extends JComponent{
 
 	private Graph middleEarth;
 	private JPanel panel;
-	private JLabel outputText;
+	private JLabel outputLength;
+	private JLabel outputOppositeLength;
 	private JComboBox<String> s;
 	private JComboBox<String> e;
 	protected JRadioButton dist;
@@ -26,12 +27,13 @@ public class SidePanel extends JComponent{
 		this.e = new JComboBox<>();
 		this.panel = frame;
 		
-		middleEarth = graph; 
+		this.middleEarth = graph; 
 		
 		Dimension preferredSize = new Dimension(300,400);
-		panel.setPreferredSize(preferredSize );
+		this.panel.setPreferredSize(preferredSize );
 		
-		this.outputText = new JLabel("Total Distance Traveled:" + middleEarth.getLastLength());
+		this.outputLength = new JLabel("Total Distance Traveled:" + this.middleEarth.getLastLength());
+		this.outputOppositeLength = new JLabel("Total Time Traveled:" + this.middleEarth.getLastOppositeLength());
 		
 		this.addSearchBars();
 		this.addMapNav();
@@ -42,9 +44,9 @@ public class SidePanel extends JComponent{
 	private void addTogglers() {
 		JRadioButton toggleDistance = new JRadioButton("Display Distance and Time");
 		
-		toggleDistance.addActionListener(new DistanceToggler(middleEarth));
+		toggleDistance.addActionListener(new DistanceToggler(this.middleEarth));
 		
-		panel.add(toggleDistance);
+		this.panel.add(toggleDistance);
 	}
 
 	public void addMapNav(){
@@ -58,13 +60,13 @@ public class SidePanel extends JComponent{
 		JButton zoomOut = new JButton("Zoom Out");
 		
 		
-		north.addActionListener(new MoverListener(0, 50, middleEarth));
-		south.addActionListener(new MoverListener(0, -50, middleEarth));
-		east.addActionListener(new MoverListener(-50, 0, middleEarth));
-		west.addActionListener(new MoverListener(50, 0, middleEarth));
+		north.addActionListener(new MoverListener(0, 50, this.middleEarth));
+		south.addActionListener(new MoverListener(0, -50, this.middleEarth));
+		east.addActionListener(new MoverListener(-50, 0, this.middleEarth));
+		west.addActionListener(new MoverListener(50, 0, this.middleEarth));
 		
-		zoomIn.addActionListener(new ZoomListener(0.1, middleEarth));
-		zoomOut.addActionListener(new ZoomListener(-0.1, middleEarth));
+		zoomIn.addActionListener(new ZoomListener(0.1, this.middleEarth));
+		zoomOut.addActionListener(new ZoomListener(-0.1, this.middleEarth));
 		
 		JPanel compass = new JPanel();
 		
@@ -97,8 +99,8 @@ public class SidePanel extends JComponent{
 		JPanel startPanel = new JPanel();
 		JPanel endPanel = new JPanel();
 		
-		JLabel startLabel = new JLabel("Start");
-		JLabel endLabel = new JLabel("End");
+		JLabel startLabel = new JLabel("Start: ");
+		JLabel endLabel = new JLabel("End: ");
 		
 	    String[] h = this.middleEarth.getNameArray();
 		JComboBox<String> end = new JComboBox<>(h);
@@ -123,8 +125,8 @@ public class SidePanel extends JComponent{
 		this.enter = enter;
 		
 		
-		clear.addActionListener(new ClearListener(middleEarth));
-		enter.addActionListener(new Entered(start, end, dist, time, middleEarth, outputText));
+		clear.addActionListener(new ClearListener(this.middleEarth));
+		enter.addActionListener(new Entered(start, end, dist, time, this.middleEarth, this.outputLength, this.outputOppositeLength));
 		dist.addActionListener(new ToggleListener(time));
 		time.addActionListener(new ToggleListener(dist));
 		
@@ -146,16 +148,17 @@ public class SidePanel extends JComponent{
 		
 		display.setPreferredSize(new Dimension(200,300));
 		
-		display.add(outputText);
+		display.add(this.outputLength);
+		display.add(this.outputOppositeLength);
 		this.panel.add(display);
 		
 	}
 	
 	public void populateStart(String city) {
-		s.setSelectedItem(city);
+		this.s.setSelectedItem(city);
 	}
 	public void populateEnd(String city) {
-		e.setSelectedItem(city);
+		this.e.setSelectedItem(city);
 	}
 	
 }

@@ -3,13 +3,14 @@ import java.util.ArrayList;
 public class Path implements Comparable<Path>{
 	
 	private int lengthTraveled;
+	private int oppositeLengthTraveled;
 	private int estimatedTotalLength;
 	
 	private ArrayList<Node> visited;
 	
 	private Node lastNode;
 	
-	public Path(ArrayList<Node> haveVisited, int lengthTraveled, int estimate, Node lastNode){
+	public Path(ArrayList<Node> haveVisited, int lengthTraveled, int oppositeLengthTraveled, int estimate, Node lastNode){
 		
 		this.visited = new ArrayList<>();
 		
@@ -22,6 +23,8 @@ public class Path implements Comparable<Path>{
 		
 		
 		this.lengthTraveled = lengthTraveled;
+		
+		this.oppositeLengthTraveled = oppositeLengthTraveled;
 		
 		this.estimatedTotalLength = estimate + lengthTraveled;
 		
@@ -37,6 +40,11 @@ public class Path implements Comparable<Path>{
 	public int getLengthTraveled(){
 		
 		return (this.lengthTraveled);
+	}
+	
+	public int getOppositeLengthTraveled(){
+		
+		return (this.oppositeLengthTraveled);
 	}
 	
 	public ArrayList<Node> getVisited(){
