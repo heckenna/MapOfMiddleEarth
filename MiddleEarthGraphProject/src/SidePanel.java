@@ -104,7 +104,9 @@ public class SidePanel extends JComponent{
 		
 	    String[] h = this.middleEarth.getNameArray();
 		JComboBox<String> end = new JComboBox<>(h);
+		end.addActionListener(new DropDownListener(middleEarth, end));
 		JComboBox<String> start = new JComboBox<>(h);
+		start.addActionListener(new DropDownListener(middleEarth, start));
 		this.s = start;
 		this.e = end;
 		
