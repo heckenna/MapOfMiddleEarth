@@ -19,7 +19,6 @@ public class SidePanel extends JComponent{
 	private JComboBox<String> e;
 	protected JRadioButton dist;
 	protected JButton enter;
-	//private JButton button;
 	
 
 	public SidePanel(Graph graph, JPanel frame) {
@@ -81,6 +80,7 @@ public class SidePanel extends JComponent{
 		new SetStyle(zoomIn, 10);
 		new SetStyle(zoomOut, 10);
 
+		
 		
 		MoverListener moveNorth = new MoverListener(0, 50, this.middleEarth);
 		
@@ -145,6 +145,9 @@ public class SidePanel extends JComponent{
 		start.addActionListener(new DropDownListener(middleEarth, start));
 		this.s = start;
 		this.e = end;
+		start.setToolTipText("Select a location to begin your journey at.");
+		end.setToolTipText("Select a location to end your journey at.");
+		
 		
 		new SetStyle(start, 9);
 		new SetStyle(end, 9);

@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,7 +19,7 @@ public class Main{
 		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		
 		//Why wont this font get set?
-		//frame.setFont(new Font("Aniron", Font.PLAIN, 12));
+		frame.setFont(new Font("Aniron", Font.PLAIN, 12));
 		frame.setTitle(TITLE);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,6 +42,7 @@ public class Main{
 		
 		frame.add(middleEarth, BorderLayout.CENTER);
 		frame.add(inputPanel, BorderLayout.EAST);
+		
 
 		//input.addSearchBars();
 		//input.addMapNav();

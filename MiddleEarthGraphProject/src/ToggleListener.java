@@ -15,7 +15,6 @@ public class ToggleListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		otherButton.setSelected(!otherButton.isSelected());		
-		//System.out.println("fdafds");
 	}
 
 }
