@@ -1,17 +1,17 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DistanceToggler implements ActionListener {
+public class NameToggler implements ActionListener {
 
 	Graph middleEarth;
 	
-	public DistanceToggler(Graph graph) {
+	public NameToggler(Graph graph) {
 		this.middleEarth = graph;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		this.middleEarth.toggleDistance();
+		this.middleEarth.toggleNames();
  		this.middleEarth.repaint();
 	}
 

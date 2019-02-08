@@ -30,6 +30,8 @@ public class Graph extends JComponent{
 
 	private JFrame frame;
 	private boolean toggleDistance;
+	private boolean toggleEdges;
+	private boolean toggleNames;
 	
 	private BufferedImage background;
 	
@@ -50,6 +52,10 @@ public class Graph extends JComponent{
 		this.lastOppositeLength = 0;
 		
 		this.frame = frame;
+		
+		this.toggleDistance = false;
+		this.toggleEdges = false;
+		this.toggleNames = false;
 		
 		this.backgroundX = 0;
 		this.backgroundY = 0;
@@ -132,7 +138,7 @@ public class Graph extends JComponent{
 			oppositeCriteria = "distance";
 		}
 		
-		setPathColor(Color.BLACK, Color.BLUE);
+		setPathColor(Color.BLACK, Color.BLUE, false);
 		
 		Node begin = this.searchNode.get(beginString);
 		Node destination = this.searchNode.get(destinationString);
@@ -174,11 +180,11 @@ public class Graph extends JComponent{
 		
 		this.lastOppositeLength = currentPath.getOppositeLengthTraveled();
 		
-		setPathColor(Color.RED, Color.RED);
+		setPathColor(Color.RED, Color.RED, true);
 		
 	}
 	
-	public void setPathColor(Color nodeColor, Color edgeColor){
+	public void setPathColor(Color nodeColor, Color edgeColor, boolean toggleEdge){
 		
 		Node last = null;
 		
@@ -191,6 +197,7 @@ public class Graph extends JComponent{
 				if (last != null && last.getEdges().contains(e)){
 					
 					e.setColor(edgeColor);
+					e.setToggleDraw(toggleEdge);
 				}
 			}
 			
@@ -236,7 +243,7 @@ public class Graph extends JComponent{
 		
 		for (Node n : this.searchNode.values()){
 			
-			n.draw(graphics2, this.xZoom, this.yZoom, this.frame, toggleDistance);
+			n.draw(graphics2, this.xZoom, this.yZoom, this.frame, this.toggleDistance, this.toggleEdges, this.toggleNames);
 		}
 	}
 	
@@ -260,23 +267,23 @@ public class Graph extends JComponent{
 		
 		
 		if(this.twoCities.size()==2) {
-			twoCities.get(0).button.setSelected(false);
-			twoCities.get(1).button.setSelected(false);
+			this.twoCities.get(0).button.setSelected(false);
+			this.twoCities.get(1).button.setSelected(false);
 			this.twoCities = new ArrayList<Node>();
-		}
+		} 
 		
 		city.button.setSelected(true);
 		
 		if (this.twoCities.isEmpty()) {
-			this.setPathColor(Color.BLACK, Color.BLUE);
+			this.setPathColor(Color.BLACK, Color.BLUE, false);
 			this.twoCities.add(city);
 			this.sidePanel.populateStart(city.getName());
 			
 		} 
 		
 		else {
-			twoCities.add(city);
-			this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
+			this.twoCities.add(city);
+			this.findShortestPath(this.twoCities.get(0).getName(), city.getName(), "distance");
 			this.sidePanel.populateEnd(city.getName());
 
 			//this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
@@ -313,11 +320,22 @@ public class Graph extends JComponent{
 	public void clearButtons() {
 		while(!this.twoCities.isEmpty()) {
 			this.twoCities.get(0).button.setSelected(false);
-			this.twoCities.remove(twoCities.get(0));
+			this.twoCities.remove(this.twoCities.get(0));
 		}
 	}
 	
-	public void toggleDisplay() {
-		this.toggleDistance = !this.toggleDistance;
+	public void toggleDistance() {
+		
+		this.toggleDistance = ! this.toggleDistance;
+	}
+	
+	public void toggleEdges(){
+		
+		this.toggleEdges = ! this.toggleEdges;
+	}
+	
+	public void toggleNames(){
+		
+		this.toggleNames = ! this.toggleNames;
 	}
 }

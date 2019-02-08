@@ -15,6 +15,8 @@ public class Edge {
 	
 	private int speed;
 	
+	private boolean toggleDraw;
+	
 	public Edge(Node start, Node end, double terrainDifficulty){
 		
 		this.end = end;
@@ -28,16 +30,22 @@ public class Edge {
 		
 		this.distance = calculateDistance();
 		this.time = calculateTime();
+		
+		this.toggleDraw = false;
 	}
 	
-	public void draw(Graphics2D graphics2, double xZoom, double yZoom, boolean drawDistances){
+	public void draw(Graphics2D graphics2, double xZoom, double yZoom, boolean drawDistances, boolean drawEdges){
 		
-		graphics2.setColor(this.color);
-		
-		graphics2.drawLine((int)(this.start.getX() * xZoom), 
-				(int)(this.start.getY() * yZoom), 
-				(int)(this.end.getX() * xZoom), 
-				(int)(this.end.getY() * yZoom));
+		if (this.toggleDraw || drawEdges){
+			
+			graphics2.setColor(this.color);
+			
+			graphics2.drawLine((int)(this.start.getX() * xZoom), 
+					(int)(this.start.getY() * yZoom), 
+					(int)(this.end.getX() * xZoom), 
+					(int)(this.end.getY() * yZoom));
+		}
+			
 		if(drawDistances) {
 			graphics2.setColor(Color.BLUE);
 			graphics2.drawString("D: " + Integer.toString(this.distance), 
@@ -75,6 +83,11 @@ public class Edge {
 	public void setColor(Color c){
 		
 		this.color = c;
+	}
+	
+	public void setToggleDraw(boolean toggle){
+		
+		this.toggleDraw = toggle;
 	}
 	
 	public int getLength(String criteria){

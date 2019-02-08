@@ -19,7 +19,6 @@ public class SidePanel extends JComponent{
 	private JComboBox<String> e;
 	protected JRadioButton dist;
 	protected JButton enter;
-	//private JButton button;
 	
 
 	public SidePanel(Graph graph, JPanel frame) {
@@ -51,8 +50,21 @@ public class SidePanel extends JComponent{
 		toggleDistance.addActionListener(new DistanceToggler(this.middleEarth));
 		new SetStyle(toggleDistance, 10);
 
-		
 		this.panel.add(toggleDistance);
+		
+		JRadioButton toggleEdges = new JRadioButton("Display Edges");
+		
+		toggleEdges.addActionListener(new EdgeToggler(this.middleEarth));
+		new SetStyle(toggleEdges, 10);
+		
+		this.panel.add(toggleEdges);
+		
+		JRadioButton toggleNames = new JRadioButton("Display Names");
+		
+		toggleNames.addActionListener(new NameToggler(this.middleEarth));
+		new SetStyle(toggleNames, 10);
+		
+		this.panel.add(toggleNames);
 	}
 
 	public void addMapNav(){
@@ -75,6 +87,7 @@ public class SidePanel extends JComponent{
 		new SetStyle(zoomIn, 10);
 		new SetStyle(zoomOut, 10);
 
+		
 		
 		MoverListener moveNorth = new MoverListener(0, 50, this.middleEarth);
 		
@@ -139,6 +152,9 @@ public class SidePanel extends JComponent{
 		start.addActionListener(new DropDownListener(middleEarth, start));
 		this.s = start;
 		this.e = end;
+		start.setToolTipText("Select a location to begin your journey at.");
+		end.setToolTipText("Select a location to end your journey at.");
+		
 		
 		new SetStyle(start, 9);
 		new SetStyle(end, 9);

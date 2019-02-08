@@ -56,7 +56,7 @@ public class Node {
 		return (this.edges);
 	}
 	
-	public void draw(Graphics2D graphics2, double xZoom, double yZoom, JFrame frame, boolean toggle){
+	public void draw(Graphics2D graphics2, double xZoom, double yZoom, JFrame frame, boolean drawDistances, boolean drawEdges, boolean drawNames){
 		graphics2.setFont(new Font("Aniron", Font.PLAIN, 12));
 		graphics2.setColor(this.color);
 		
@@ -70,12 +70,15 @@ public class Node {
 				(int)(this.y * yZoom - this.radius), 
 				2*this.radius, 
 				2*this.radius);*/
-		
-		graphics2.drawString(this.name, (int)((this.x - 10) * xZoom), (int)((this.y - 8) * yZoom));
-		
+	    	
+	    if (drawNames){
+	    	
+	    	graphics2.drawString(this.name, (int)((this.x - 10) * xZoom), (int)((this.y - 8) * yZoom));
+	    }
+	    	
 		for (Edge e : this.edges){
 			
-			e.draw(graphics2, xZoom, yZoom, toggle);
+			e.draw(graphics2, xZoom, yZoom, drawDistances, drawEdges);
 		}
 		
 	}
