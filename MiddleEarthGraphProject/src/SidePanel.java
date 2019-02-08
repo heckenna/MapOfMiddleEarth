@@ -139,6 +139,8 @@ public class SidePanel extends JComponent{
 		start.addActionListener(new DropDownListener(middleEarth, start));
 		this.s = start;
 		this.e = end;
+		start.setToolTipText("Select a location to begin your journey at.");
+		end.setToolTipText("Select a location to end your journey at.");
 		
 		new SetStyle(start, 9);
 		new SetStyle(end, 9);

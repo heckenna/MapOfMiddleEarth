@@ -9,7 +9,7 @@ public class SetStyle {
 
 	public SetStyle(JComboBox<String> thing, int fontSize) {
 		thing.setFocusable(false);
-		thing.setFont(new Font("Aniron", Font.PLAIN,  fontSize));
+		thing.setFont(new Font("src/ANIEB_.TTF", Font.PLAIN,  fontSize));
 	}
 
 	public SetStyle(JLabel thing, int fontSize) {
