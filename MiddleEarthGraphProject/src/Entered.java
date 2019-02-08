@@ -29,7 +29,6 @@ public class Entered implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		//String startPt = start.getText();
 		String startPt = (String) start.getSelectedItem();
 		String endPt = (String) end.getSelectedItem();
 		if(graph.hasPlace(startPt) && graph.hasPlace(endPt)) {
