@@ -32,8 +32,12 @@ public class SidePanel extends JComponent{
 		Dimension preferredSize = new Dimension(300,400);
 		this.panel.setPreferredSize(preferredSize );
 		
-		this.outputLength = new JLabel("Total Distance Traveled:" + this.middleEarth.getLastLength());
-		this.outputOppositeLength = new JLabel("Total Time Traveled:" + this.middleEarth.getLastOppositeLength());
+		this.outputLength = new JLabel("Distance Traveled: " + this.middleEarth.getLastLength());
+		this.outputOppositeLength = new JLabel("Time Traveled: " + this.middleEarth.getLastOppositeLength());
+		new SetStyle(outputLength, 10);
+		new SetStyle(outputOppositeLength, 10);
+
+
 		
 		this.addSearchBars();
 		this.addMapNav();
@@ -45,7 +49,7 @@ public class SidePanel extends JComponent{
 		JRadioButton toggleDistance = new JRadioButton("Display Distance and Time");
 		
 		toggleDistance.addActionListener(new DistanceToggler(this.middleEarth));
-		toggleDistance.setFocusable(false);
+		new SetStyle(toggleDistance, 10);
 
 		
 		this.panel.add(toggleDistance);
@@ -62,12 +66,14 @@ public class SidePanel extends JComponent{
 		JButton zoomIn = new JButton("Zoom In");
 		JButton zoomOut = new JButton("Zoom Out");
 		
-		north.setFocusable(false);
-		south.setFocusable(false);
-		east.setFocusable(false);
-		west.setFocusable(false);
-		zoomIn.setFocusable(false);
-		zoomOut.setFocusable(false);
+		
+		new SetStyle(north, 10);
+		new SetStyle(south, 10);
+		new SetStyle(east, 10);
+		new SetStyle(west, 10);
+
+		new SetStyle(zoomIn, 10);
+		new SetStyle(zoomOut, 10);
 
 		
 		MoverListener moveNorth = new MoverListener(0, 50, this.middleEarth);
@@ -100,7 +106,7 @@ public class SidePanel extends JComponent{
 		zooms.add(zoomIn);
 		zooms.add(zoomOut);
 		
-		Dimension size = new Dimension(137,100);
+		Dimension size = new Dimension(160,120);
 		compass.setPreferredSize(size);
 		//size.setSize(50, 100);
 		//zooms.setSize(size);
@@ -122,8 +128,8 @@ public class SidePanel extends JComponent{
 		JLabel startLabel = new JLabel("Start: ");
 		JLabel endLabel = new JLabel("End: ");
 		
-		startLabel.setFocusable(false);
-		endLabel.setFocusable(false);
+		new SetStyle(startLabel, 9);
+		new SetStyle(endLabel, 9);
 
 		
 	    String[] h = this.middleEarth.getNameArray();
@@ -134,10 +140,9 @@ public class SidePanel extends JComponent{
 		this.s = start;
 		this.e = end;
 		
-		start.setFocusable(false);
-		end.setFocusable(false);
-
-		
+		new SetStyle(start, 9);
+		new SetStyle(end, 9);
+				
 		
 		end.setPreferredSize(searchSize);
 		start.setPreferredSize(searchSize);
@@ -152,10 +157,10 @@ public class SidePanel extends JComponent{
 		this.dist = dist;
 		this.enter = enter;
 		
-		dist.setFocusable(false);
-		time.setFocusable(false);
-		clear.setFocusable(false);
-		enter.setFocusable(false);
+		new SetStyle(dist, 9);
+		new SetStyle(time, 9);
+		new SetStyle(clear, 9);
+		new SetStyle(enter, 9);
 
 		
 		

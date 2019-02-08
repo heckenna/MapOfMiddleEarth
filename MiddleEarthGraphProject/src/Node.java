@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
@@ -56,7 +57,7 @@ public class Node {
 	}
 	
 	public void draw(Graphics2D graphics2, double xZoom, double yZoom, JFrame frame, boolean toggle){
-		
+		graphics2.setFont(new Font("Aniron", Font.PLAIN, 12));
 		graphics2.setColor(this.color);
 		
 		if(!this.button.isVisible()) this.button.setVisible(true);
