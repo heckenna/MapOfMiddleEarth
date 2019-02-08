@@ -30,14 +30,18 @@ public class Edge {
 		this.time = calculateTime();
 	}
 	
-	public void draw(Graphics2D graphics2, double xZoom, double yZoom, boolean drawDistances){
+	public void draw(Graphics2D graphics2, double xZoom, double yZoom, boolean drawDistances, boolean drawEdges){
 		
-		graphics2.setColor(this.color);
+		if (drawEdges){
+			
+			graphics2.setColor(this.color);
+			
+			graphics2.drawLine((int)(this.start.getX() * xZoom), 
+					(int)(this.start.getY() * yZoom), 
+					(int)(this.end.getX() * xZoom), 
+					(int)(this.end.getY() * yZoom));
+		}
 		
-		graphics2.drawLine((int)(this.start.getX() * xZoom), 
-				(int)(this.start.getY() * yZoom), 
-				(int)(this.end.getX() * xZoom), 
-				(int)(this.end.getY() * yZoom));
 		if(drawDistances) {
 			graphics2.setColor(Color.BLUE);
 			graphics2.drawString("D: " + Integer.toString(this.distance), 

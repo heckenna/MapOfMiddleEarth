@@ -30,6 +30,7 @@ public class Graph extends JComponent{
 
 	private JFrame frame;
 	private boolean toggleDistance;
+	private boolean toggleEdges;
 	
 	private BufferedImage background;
 	
@@ -50,6 +51,9 @@ public class Graph extends JComponent{
 		this.lastOppositeLength = 0;
 		
 		this.frame = frame;
+		
+		this.toggleDistance = false;
+		this.toggleEdges = false;
 		
 		this.backgroundX = 0;
 		this.backgroundY = 0;
@@ -236,7 +240,7 @@ public class Graph extends JComponent{
 		
 		for (Node n : this.searchNode.values()){
 			
-			n.draw(graphics2, this.xZoom, this.yZoom, this.frame, toggleDistance);
+			n.draw(graphics2, this.xZoom, this.yZoom, this.frame, this.toggleDistance, this.toggleEdges);
 		}
 	}
 	
@@ -260,8 +264,8 @@ public class Graph extends JComponent{
 		
 		
 		if(this.twoCities.size()==2) {
-			twoCities.get(0).button.setSelected(false);
-			twoCities.get(1).button.setSelected(false);
+			this.twoCities.get(0).button.setSelected(false);
+			this.twoCities.get(1).button.setSelected(false);
 			this.twoCities = new ArrayList<Node>();
 		}
 		
@@ -275,8 +279,8 @@ public class Graph extends JComponent{
 		} 
 		
 		else {
-			twoCities.add(city);
-			this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
+			this.twoCities.add(city);
+			this.findShortestPath(this.twoCities.get(0).getName(), city.getName(), "distance");
 			this.sidePanel.populateEnd(city.getName());
 
 			//this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
@@ -313,11 +317,17 @@ public class Graph extends JComponent{
 	public void clearButtons() {
 		while(!this.twoCities.isEmpty()) {
 			this.twoCities.get(0).button.setSelected(false);
-			this.twoCities.remove(twoCities.get(0));
+			this.twoCities.remove(this.twoCities.get(0));
 		}
 	}
 	
-	public void toggleDisplay() {
-		this.toggleDistance = !this.toggleDistance;
+	public void toggleDistance() {
+		
+		this.toggleDistance = ! this.toggleDistance;
+	}
+	
+	public void toggleEdges(){
+		
+		this.toggleEdges = ! this.toggleEdges;
 	}
 }
