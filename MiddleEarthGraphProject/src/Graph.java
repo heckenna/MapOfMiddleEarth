@@ -136,7 +136,7 @@ public class Graph extends JComponent{
 			oppositeCriteria = "distance";
 		}
 		
-		setPathColor(Color.BLACK, Color.BLUE);
+		setPathColor(Color.BLACK, Color.BLUE, false);
 		
 		Node begin = this.searchNode.get(beginString);
 		Node destination = this.searchNode.get(destinationString);
@@ -178,11 +178,11 @@ public class Graph extends JComponent{
 		
 		this.lastOppositeLength = currentPath.getOppositeLengthTraveled();
 		
-		setPathColor(Color.RED, Color.RED);
+		setPathColor(Color.RED, Color.RED, true);
 		
 	}
 	
-	public void setPathColor(Color nodeColor, Color edgeColor){
+	public void setPathColor(Color nodeColor, Color edgeColor, boolean toggleEdge){
 		
 		Node last = null;
 		
@@ -195,6 +195,7 @@ public class Graph extends JComponent{
 				if (last != null && last.getEdges().contains(e)){
 					
 					e.setColor(edgeColor);
+					e.setToggleDraw(toggleEdge);
 				}
 			}
 			
@@ -272,7 +273,7 @@ public class Graph extends JComponent{
 		city.button.setSelected(true);
 		
 		if (this.twoCities.isEmpty()) {
-			this.setPathColor(Color.BLACK, Color.BLUE);
+			this.setPathColor(Color.BLACK, Color.BLUE, false);
 			this.twoCities.add(city);
 			this.sidePanel.populateStart(city.getName());
 			

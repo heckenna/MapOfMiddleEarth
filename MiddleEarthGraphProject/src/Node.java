@@ -70,9 +70,9 @@ public class Node {
 				(int)(this.y * yZoom - this.radius), 
 				2*this.radius, 
 				2*this.radius);*/
-		
-		graphics2.drawString(this.name, (int)((this.x - 10) * xZoom), (int)((this.y - 8) * yZoom));
-		
+	    	
+	    graphics2.drawString(this.name, (int)((this.x - 10) * xZoom), (int)((this.y - 8) * yZoom));
+	    	
 		for (Edge e : this.edges){
 			
 			e.draw(graphics2, xZoom, yZoom, drawDistances, drawEdges);
