@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
@@ -57,7 +56,15 @@ public class Node {
 	}
 	
 	public void draw(Graphics2D graphics2, double xZoom, double yZoom, JFrame frame, boolean drawDistances, boolean drawEdges, boolean drawNames){
-		graphics2.setFont(new Font("Aniron", Font.PLAIN, 12));
+		/* This code works if run,  b but it is SUPER laggy. Looking at 
+		Font newR = new Font("Times New Roman", 12, 12);
+		try {
+			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
+			Font font = aniron.deriveFont((float)12);
+			graphics2.setFont(font);
+		} catch (FontFormatException | IOException exception) {
+			exception.printStackTrace();
+		}*/
 		graphics2.setColor(this.color);
 		
 		if(!this.button.isVisible()) this.button.setVisible(true);
