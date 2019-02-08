@@ -51,8 +51,14 @@ public class SidePanel extends JComponent{
 		toggleDistance.addActionListener(new DistanceToggler(this.middleEarth));
 		new SetStyle(toggleDistance, 10);
 
-		
 		this.panel.add(toggleDistance);
+		
+		JRadioButton toggleEdges = new JRadioButton("Display Edges");
+		
+		toggleEdges.addActionListener(new EdgeToggler(this.middleEarth));
+		new SetStyle(toggleEdges, 10);
+		
+		this.panel.add(toggleEdges);
 	}
 
 	public void addMapNav(){
