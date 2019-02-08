@@ -58,6 +58,13 @@ public class SidePanel extends JComponent{
 		new SetStyle(toggleEdges, 10);
 		
 		this.panel.add(toggleEdges);
+		
+		JRadioButton toggleNames = new JRadioButton("Display Names");
+		
+		toggleNames.addActionListener(new NameToggler(this.middleEarth));
+		new SetStyle(toggleNames, 10);
+		
+		this.panel.add(toggleNames);
 	}
 
 	public void addMapNav(){

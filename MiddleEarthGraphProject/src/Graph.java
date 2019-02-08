@@ -31,6 +31,7 @@ public class Graph extends JComponent{
 	private JFrame frame;
 	private boolean toggleDistance;
 	private boolean toggleEdges;
+	private boolean toggleNames;
 	
 	private BufferedImage background;
 	
@@ -54,6 +55,7 @@ public class Graph extends JComponent{
 		
 		this.toggleDistance = false;
 		this.toggleEdges = false;
+		this.toggleNames = false;
 		
 		this.backgroundX = 0;
 		this.backgroundY = 0;
@@ -241,7 +243,7 @@ public class Graph extends JComponent{
 		
 		for (Node n : this.searchNode.values()){
 			
-			n.draw(graphics2, this.xZoom, this.yZoom, this.frame, this.toggleDistance, this.toggleEdges);
+			n.draw(graphics2, this.xZoom, this.yZoom, this.frame, this.toggleDistance, this.toggleEdges, this.toggleNames);
 		}
 	}
 	
@@ -330,5 +332,10 @@ public class Graph extends JComponent{
 	public void toggleEdges(){
 		
 		this.toggleEdges = ! this.toggleEdges;
+	}
+	
+	public void toggleNames(){
+		
+		this.toggleNames = ! this.toggleNames;
 	}
 }
