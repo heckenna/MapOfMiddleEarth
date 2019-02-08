@@ -268,7 +268,7 @@ public class Graph extends JComponent{
 			this.twoCities.get(0).button.setSelected(false);
 			this.twoCities.get(1).button.setSelected(false);
 			this.twoCities = new ArrayList<Node>();
-		}
+		} 
 		
 		city.button.setSelected(true);
 		
