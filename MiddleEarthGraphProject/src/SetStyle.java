@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
@@ -20,6 +21,9 @@ public class SetStyle {
 			exception.printStackTrace();
 		}
 		thing.setFocusable(false);
+		thing.setBackground(Color.BLACK);
+		thing.setForeground(Color.RED);
+		thing.setAutoscrolls(true);
 	}
 
 	public SetStyle(JLabel thing, float fontSize) {
@@ -32,6 +36,8 @@ public class SetStyle {
 		} catch (FontFormatException | IOException exception) {
 			exception.printStackTrace();
 		}
+		thing.setOpaque(false);
+		thing.setForeground(Color.RED);
 	}
 
 	public SetStyle(JButton thing, float fontSize) {
@@ -44,6 +50,9 @@ public class SetStyle {
 		} catch (FontFormatException | IOException exception) {
 			exception.printStackTrace();
 		}
+		thing.setBackground(Color.BLACK);
+		thing.setForeground(Color.RED);
+		thing.setBorderPainted(false);
 	}
 
 	public SetStyle(JRadioButton thing, float fontSize) {
@@ -55,7 +64,9 @@ public class SetStyle {
 			thing.setFont(font);
 		} catch (FontFormatException | IOException exception) {
 			exception.printStackTrace();
-		}	
+		}
+		thing.setOpaque(false);
+		thing.setForeground(Color.RED);
 	}
 
 	
