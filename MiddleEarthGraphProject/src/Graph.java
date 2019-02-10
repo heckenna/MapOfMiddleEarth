@@ -1,8 +1,11 @@
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -278,7 +281,18 @@ public class Graph extends JComponent{
 		
 		super.paintComponent(graphics);
 		
+		
 		Graphics2D graphics2 = (Graphics2D) graphics;
+		
+		//Give Nodes and Edges the desired wicked cool font.
+		Font newR = new Font("Times New Roman", 12, 12);
+		try {
+			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
+			Font font = aniron.deriveFont((float)12);
+			graphics2.setFont(font);
+		} catch (FontFormatException | IOException exception) {
+			exception.printStackTrace();
+		}
 		
 		graphics2.drawImage(this.background, 
 				(int)(this.backgroundX * this.xZoom), 
