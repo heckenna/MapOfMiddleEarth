@@ -37,7 +37,7 @@ public class Node {
 		
 		this.button.setOpaque(false);
 		
-		this.color = Color.BLACK;
+		this.color = Color.WHITE;
 		
 		this.radius = 5;
 		
@@ -65,7 +65,7 @@ public class Node {
 		} catch (FontFormatException | IOException exception) {
 			exception.printStackTrace();
 		}*/
-		graphics2.setColor(this.color);
+//		graphics2.setColor(this.color);
 		
 		if(!this.button.isVisible()) this.button.setVisible(true);
 	    this.button.setBounds((int) (this.x*xZoom - this.radius*1.2), (int) (this.y * yZoom - this.radius), 15, 12);
@@ -80,6 +80,7 @@ public class Node {
 	    	
 	    if (drawNames){
 	    	
+	    	graphics2.setColor(this.color);
 	    	graphics2.drawString(this.name, (int)((this.x - 10) * xZoom), (int)((this.y - 8) * yZoom));
 	    }
 	    	
