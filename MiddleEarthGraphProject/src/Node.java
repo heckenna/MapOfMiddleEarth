@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
@@ -38,7 +37,7 @@ public class Node {
 		
 		this.button.setOpaque(false);
 		
-		this.color = Color.BLACK;
+		this.color = Color.WHITE;
 		
 		this.radius = 5;
 		
@@ -56,9 +55,17 @@ public class Node {
 		return (this.edges);
 	}
 	
-	public void draw(Graphics2D graphics2, double xZoom, double yZoom, JFrame frame, boolean drawDistances, boolean drawEdges){
-		graphics2.setFont(new Font("Aniron", Font.PLAIN, 12));
-		graphics2.setColor(this.color);
+	public void draw(Graphics2D graphics2, double xZoom, double yZoom, JFrame frame, boolean drawDistances, boolean drawEdges, boolean drawNames){
+		/* This code works if run,  b but it is SUPER laggy. Looking at 
+		Font newR = new Font("Times New Roman", 12, 12);
+		try {
+			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
+			Font font = aniron.deriveFont((float)12);
+			graphics2.setFont(font);
+		} catch (FontFormatException | IOException exception) {
+			exception.printStackTrace();
+		}*/
+//		graphics2.setColor(this.color);
 		
 		if(!this.button.isVisible()) this.button.setVisible(true);
 	    this.button.setBounds((int) (this.x*xZoom - this.radius*1.2), (int) (this.y * yZoom - this.radius), 15, 12);
@@ -71,7 +78,11 @@ public class Node {
 				2*this.radius, 
 				2*this.radius);*/
 	    	
-	    graphics2.drawString(this.name, (int)((this.x - 10) * xZoom), (int)((this.y - 8) * yZoom));
+	    if (drawNames){
+	    	
+	    	graphics2.setColor(this.color);
+	    	graphics2.drawString(this.name, (int)((this.x - 10) * xZoom), (int)((this.y - 8) * yZoom));
+	    }
 	    	
 		for (Edge e : this.edges){
 			

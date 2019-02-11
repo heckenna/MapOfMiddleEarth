@@ -1,3 +1,4 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -17,6 +18,8 @@ public class Edge {
 	
 	private boolean toggleDraw;
 	
+	private static final BasicStroke STROKE = new BasicStroke(2);
+	
 	public Edge(Node start, Node end, double terrainDifficulty){
 		
 		this.end = end;
@@ -31,7 +34,7 @@ public class Edge {
 		this.distance = calculateDistance();
 		this.time = calculateTime();
 		
-		this.toggleDraw = false;
+		this.toggleDraw = false; 
 	}
 	
 	public void draw(Graphics2D graphics2, double xZoom, double yZoom, boolean drawDistances, boolean drawEdges){
@@ -39,6 +42,8 @@ public class Edge {
 		if (this.toggleDraw || drawEdges){
 			
 			graphics2.setColor(this.color);
+			
+			graphics2.setStroke(Edge.STROKE);
 			
 			graphics2.drawLine((int)(this.start.getX() * xZoom), 
 					(int)(this.start.getY() * yZoom), 

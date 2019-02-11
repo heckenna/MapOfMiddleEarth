@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
@@ -25,6 +26,7 @@ public class SidePanel extends JComponent{
 		this.s = new JComboBox<>();
 		this.e = new JComboBox<>();
 		this.panel = frame;
+		panel.setBackground(Color.BLACK);
 		
 		this.middleEarth = graph; 
 		
@@ -58,6 +60,13 @@ public class SidePanel extends JComponent{
 		new SetStyle(toggleEdges, 10);
 		
 		this.panel.add(toggleEdges);
+		
+		JRadioButton toggleNames = new JRadioButton("Display Names");
+		
+		toggleNames.addActionListener(new NameToggler(this.middleEarth));
+		new SetStyle(toggleNames, 10);
+		
+		this.panel.add(toggleNames);
 	}
 
 	public void addMapNav(){
@@ -101,6 +110,7 @@ public class SidePanel extends JComponent{
 
 		
 		JPanel compass = new JPanel();
+		compass.setOpaque(false);
 		
 		compass.add(north, BorderLayout.NORTH);
 		compass.add(west, BorderLayout.WEST);
@@ -108,6 +118,8 @@ public class SidePanel extends JComponent{
 		compass.add(south, BorderLayout.SOUTH);
 		
 		JPanel zooms = new JPanel();
+		zooms.setOpaque(false);
+
 		
 		zooms.add(zoomIn);
 		zooms.add(zoomOut);
@@ -130,6 +142,9 @@ public class SidePanel extends JComponent{
 		Dimension searchSize = new Dimension(250,30);
 		JPanel startPanel = new JPanel();
 		JPanel endPanel = new JPanel();
+		startPanel.setOpaque(false);
+		endPanel.setOpaque(false);
+
 		
 		JLabel startLabel = new JLabel("Start: ");
 		JLabel endLabel = new JLabel("End: ");
@@ -170,8 +185,6 @@ public class SidePanel extends JComponent{
 		new SetStyle(time, 9);
 		new SetStyle(clear, 9);
 		new SetStyle(enter, 9);
-
-		
 		
 		clear.addActionListener(new ClearListener(this.middleEarth));
 		enter.addActionListener(new Entered(start, end, dist, time, this.middleEarth, this.outputLength, this.outputOppositeLength));
@@ -193,6 +206,7 @@ public class SidePanel extends JComponent{
 
 	public void addPanelOutput() {
 		JPanel display = new JPanel();
+		display.setOpaque(false);
 		
 		display.setPreferredSize(new Dimension(200,300));
 		

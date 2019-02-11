@@ -1,8 +1,11 @@
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,8 +19,13 @@ public class Graph extends JComponent{
 	
 	private HashMap<String, Node> searchNode;
 	
+	private static int FRAME_WIDTH;
+	private static int FRAME_HEIGHT;
+	
 	private double xZoom;
 	private double yZoom;
+	private static final double X_ZOOM_MAX = 0.9;
+	private static final double Y_ZOOM_MAX = 0.7;
 	
 	private ArrayList<Node> lastPath;
 
@@ -31,19 +39,28 @@ public class Graph extends JComponent{
 	private JFrame frame;
 	private boolean toggleDistance;
 	private boolean toggleEdges;
+	private boolean toggleNames;
 	
 	private BufferedImage background;
-	
 	private int backgroundX;
 	private int backgroundY;
+	private static final int ORIGINAL_WIDTH = 3200;
+	private static final int ORIGINAL_HEIGHT = 2400;
+	private static final int SCREEN_WIDTH = 1900;
+	private static final int SCREEN_HEIGHT = 1429;
+	private static final int RIGHT_PADDING = 300;
+	
 	
 	public Graph(JFrame frame){
 		
 		this.searchNode = new HashMap<>();
 		this.twoCities = new ArrayList<Node>();
 		
-		this.xZoom = 1;
-		this.yZoom = 0.7;
+		Graph.FRAME_HEIGHT = frame.getHeight();
+		Graph.FRAME_WIDTH = frame.getWidth();
+		
+		this.xZoom = Graph.X_ZOOM_MAX;
+		this.yZoom = Graph.Y_ZOOM_MAX;
 		
 		this.lastPath = new ArrayList<>();
 		
@@ -54,6 +71,7 @@ public class Graph extends JComponent{
 		
 		this.toggleDistance = false;
 		this.toggleEdges = false;
+		this.toggleNames = false;
 		
 		this.backgroundX = 0;
 		this.backgroundY = 0;
@@ -210,6 +228,26 @@ public class Graph extends JComponent{
 	
 	public void moveCenter(int x, int y){
 		
+		if (this.backgroundX + x > 0){
+			
+			x = 0;
+		}
+		
+		else if ((this.backgroundX + Graph.SCREEN_WIDTH + x) * this.xZoom < (Graph.FRAME_WIDTH - Graph.RIGHT_PADDING)){
+			
+			x = (int)(((Graph.FRAME_WIDTH - Graph.RIGHT_PADDING) / this.xZoom) - Graph.SCREEN_WIDTH - this.backgroundX);
+		}
+		
+		if (this.backgroundY + y > 0){
+			
+			y = 0;
+		}
+		
+		else if ((this.backgroundY + Graph.SCREEN_HEIGHT + y) * this.yZoom < Graph.FRAME_HEIGHT){
+			
+			y = (int)((Graph.FRAME_HEIGHT / this.yZoom) - Graph.SCREEN_HEIGHT - this.backgroundY);
+		}
+		
 		for (Node n : this.searchNode.values()){
 			
 			n.updateCoordinate(x, y);
@@ -220,9 +258,22 @@ public class Graph extends JComponent{
 	}
 	
 	public void zoom(double amount){
-		 
+		
 		this.xZoom += amount;
 		this.yZoom += amount;
+		
+		if (this.xZoom < Graph.X_ZOOM_MAX){
+			
+			this.xZoom = Graph.X_ZOOM_MAX;
+		}
+		
+		if (this.yZoom < Graph.Y_ZOOM_MAX){
+			
+			this.yZoom = Graph.Y_ZOOM_MAX;
+		}
+		
+		moveCenter(0,0);
+
 	}
 	
 	@Override
@@ -230,18 +281,29 @@ public class Graph extends JComponent{
 		
 		super.paintComponent(graphics);
 		
+		
 		Graphics2D graphics2 = (Graphics2D) graphics;
+		
+		//Give Nodes and Edges the desired wicked cool font.
+		Font newR = new Font("Times New Roman", 12, 12);
+		try {
+			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
+			Font font = aniron.deriveFont((float)12);
+			graphics2.setFont(font);
+		} catch (FontFormatException | IOException exception) {
+			exception.printStackTrace();
+		}
 		
 		graphics2.drawImage(this.background, 
 				(int)(this.backgroundX * this.xZoom), 
 				(int)(this.backgroundY * this.yZoom), 
-				(int)((this.backgroundX + 1900) * this.xZoom), 
-				(int)((this.backgroundY + 1429) * this.yZoom), 
-				0, 0, 3200, 2400, null);
+				(int)((this.backgroundX + Graph.SCREEN_WIDTH) * this.xZoom), 
+				(int)((this.backgroundY + Graph.SCREEN_HEIGHT) * this.yZoom), 
+				0, 0, Graph.ORIGINAL_WIDTH, Graph.ORIGINAL_HEIGHT, null);
 		
 		for (Node n : this.searchNode.values()){
 			
-			n.draw(graphics2, this.xZoom, this.yZoom, this.frame, this.toggleDistance, this.toggleEdges);
+			n.draw(graphics2, this.xZoom, this.yZoom, this.frame, this.toggleDistance, this.toggleEdges, this.toggleNames);
 		}
 	}
 	
@@ -330,5 +392,10 @@ public class Graph extends JComponent{
 	public void toggleEdges(){
 		
 		this.toggleEdges = ! this.toggleEdges;
+	}
+	
+	public void toggleNames(){
+		
+		this.toggleNames = ! this.toggleNames;
 	}
 }
