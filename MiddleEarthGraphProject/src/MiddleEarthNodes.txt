@@ -1,5 +1,5 @@
 Andrast 510 1120
-Belfalas 930 1150
+Belfalas 920 1170
 Blue_Mountains 310 430
 Brandywine_Bridge 530 390
 Bree 620 400
@@ -7,10 +7,10 @@ Cair_Andros 1210 950
 Carrock 1040 330
 Carn_Dum 710 120
 Crossing_of_Poros 1230 1150
-Dor-En-Ernil 1010 1110
-Dol_Amroth 950 1090
+Dor-En-Ernil 990 1110
+Dol_Amroth 950 1100
 Dol_Gurldur 1140 590
-East_Bight 1230 500
+East_Bight 1220 510
 Edhellond 930 1050
 Edoras 930 890
 Emyn_Muil 1140 810
@@ -19,11 +19,11 @@ Erech 930 950
 Eregion 890 510
 Eryn_Vorn 410 650
 Esgaroth 1260 280
-Ethir_Anduin 1070 1160 
-Ettenmoors 860 250
+Ethir_Anduin 1070 1190 
+Ettenmoors 860 240
 Falls_of_Rauros 1130 870
 Fangorn 930 710
-Field_of_Celebrant 1040 670
+Field_of_Celebrant 1030 680
 Fords_of_Isen 790 800
 Forlond 150 380
 Fornost 590 300
@@ -40,7 +40,7 @@ Icebay_of_Forochel 440 80
 Iron_Hills 1440 270
 Isengard 830 750
 Lamedon 1020 990
-Last_Bridge 810 380
+Last_Bridge 810 370
 Lond_Daer 550 720 
 Lorien 980 600
 Lossarnach 1180 1030
@@ -52,8 +52,8 @@ Morannon 1280 870
 Moria_Gate 870 560
 Mount_Doom 1340 960
 Mount_Gundabad 940 180
-Mountains_of_Angmar 860 140
-Mountains_of_Murkwood 1210 330
+Mountains_of_Angmar 830 130
+Mountains_of_Murkwood 1220 330
 Nemuial 490 300
 Old_Ford 1050 360
 Pelargir 1170 1120
@@ -63,7 +63,7 @@ Sarn_Ford 580 480
 Sea_of_Rhun 1690 600
 Sea_of_Nurnen 1550 1120
 Tharbad 690 570
-The_Wold 1050 740
+The_Wold 1050 760
 Trollshaws 860 370
 Tolfolas 990 1200
 Udun 1290 890
