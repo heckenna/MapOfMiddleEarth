@@ -34,7 +34,7 @@ public class Edge {
 		this.distance = calculateDistance();
 		this.time = calculateTime();
 		
-		this.toggleDraw = false;
+		this.toggleDraw = false; 
 	}
 	
 	public void draw(Graphics2D graphics2, double xZoom, double yZoom, boolean drawDistances, boolean drawEdges){
