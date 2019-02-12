@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -21,8 +22,7 @@ public class SetStyle {
 			exception.printStackTrace();
 		}
 		thing.setFocusable(false);
-		thing.setBackground(Color.BLACK);
-		thing.setForeground(Color.RED);
+		thing.setBackground(Color.WHITE);
 		thing.setAutoscrolls(true);
 	}
 
@@ -32,16 +32,17 @@ public class SetStyle {
 		try {
 			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
 			Font font = aniron.deriveFont(fontSize);
+			GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
 			thing.setFont(font);
 		} catch (FontFormatException | IOException exception) {
 			exception.printStackTrace();
 		}
 		thing.setOpaque(false);
-		thing.setForeground(Color.RED);
 	}
 
 	public SetStyle(JButton thing, float fontSize) {
 		thing.setFocusable(false);
+		
 		Font newR = new Font("Times New Roman", 12, 12);
 		try {
 			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
@@ -50,8 +51,7 @@ public class SetStyle {
 		} catch (FontFormatException | IOException exception) {
 			exception.printStackTrace();
 		}
-		thing.setBackground(Color.BLACK);
-		thing.setForeground(Color.RED);
+		thing.setBackground(Color.WHITE);
 		thing.setBorderPainted(false);
 	}
 
@@ -66,7 +66,6 @@ public class SetStyle {
 			exception.printStackTrace();
 		}
 		thing.setOpaque(false);
-		thing.setForeground(Color.RED);
 	}
 
 	

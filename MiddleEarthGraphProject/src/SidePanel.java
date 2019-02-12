@@ -1,7 +1,9 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.HashMap;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -14,6 +16,10 @@ public class SidePanel extends JComponent{
 
 	private Graph middleEarth;
 	private JPanel panel;
+	private JPanel descriptionPanel;
+	private JPanel audioPanel;
+	private JButton pausePlay;
+	private JLabel descriptionLabel;
 	private JLabel outputLength;
 	private JLabel outputOppositeLength;
 	private JComboBox<String> s;
@@ -26,24 +32,52 @@ public class SidePanel extends JComponent{
 		this.s = new JComboBox<>();
 		this.e = new JComboBox<>();
 		this.panel = frame;
-		panel.setBackground(Color.BLACK);
+		panel.setBackground(new Color(222,184,135));
 		
 		this.middleEarth = graph; 
 		
-		Dimension preferredSize = new Dimension(300,400);
+		Dimension preferredSize = new Dimension(310,400);
 		this.panel.setPreferredSize(preferredSize );
 		
-		this.outputLength = new JLabel("Distance Traveled: " + this.middleEarth.getLastLength());
-		this.outputOppositeLength = new JLabel("Time Traveled: " + this.middleEarth.getLastOppositeLength());
-		new SetStyle(outputLength, 10);
-		new SetStyle(outputOppositeLength, 10);
-
-
+		this.panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		this.outputLength = new JLabel("Distance: " + this.middleEarth.getLastLength() + " Miles");
+		this.outputOppositeLength = new JLabel("Time: " + this.middleEarth.getLastOppositeLength() + " Days");
+		new SetStyle(outputLength, 13);
+		new SetStyle(outputOppositeLength, 13);
 		
 		this.addSearchBars();
 		this.addMapNav();
 		this.addTogglers();
 		this.addPanelOutput();
+		this.addDescriptionPanel();
+		this.addAudioPanel();
+		
+	}
+
+	private void addAudioPanel() {
+		this.pausePlay = new JButton();
+		this.audioPanel = new JPanel();
+		this.audioPanel.setPreferredSize(new Dimension(300,100));
+		this.panel.add(this.audioPanel);
+		new SetStyle(this.pausePlay, 10);
+		this.audioPanel.add(this.pausePlay);
+		this.pausePlay.setText("Pause Music");
+		this.pausePlay.setBackground(Color.WHITE);
+		this.audioPanel.setOpaque(false);
+		this.pausePlay.addActionListener(new AudioListener(this.pausePlay,this.middleEarth.getAudioPlayer()));
+		
+	}
+
+	private void addDescriptionPanel() {
+		this.descriptionLabel = new JLabel();
+		this.descriptionPanel = new JPanel();
+		this.descriptionPanel.setPreferredSize(new Dimension(300, 525));
+		this.descriptionPanel.setOpaque(false);
+		new SetStyle(this.descriptionLabel, 10);
+		this.panel.add(this.descriptionPanel);
+		this.descriptionPanel.add(this.descriptionLabel);
+		
 	}
 
 	private void addTogglers() {
@@ -135,9 +169,6 @@ public class SidePanel extends JComponent{
 		
 	}
 	
-	
-	
-	
 	public void addSearchBars() {
 		Dimension searchSize = new Dimension(250,30);
 		JPanel startPanel = new JPanel();
@@ -146,8 +177,8 @@ public class SidePanel extends JComponent{
 		endPanel.setOpaque(false);
 
 		
-		JLabel startLabel = new JLabel("Start: ");
-		JLabel endLabel = new JLabel("End: ");
+		JLabel startLabel = new JLabel("Start:");
+		JLabel endLabel = new JLabel("End:");
 		
 		new SetStyle(startLabel, 9);
 		new SetStyle(endLabel, 9);
@@ -163,15 +194,12 @@ public class SidePanel extends JComponent{
 		start.setToolTipText("Select a location to begin your journey at.");
 		end.setToolTipText("Select a location to end your journey at.");
 		
-		
 		new SetStyle(start, 9);
 		new SetStyle(end, 9);
-				
 		
 		end.setPreferredSize(searchSize);
 		start.setPreferredSize(searchSize);
 
-		
 		JRadioButton dist = new JRadioButton("Distance");
 		JRadioButton time = new JRadioButton("Time");
 		JButton clear = new JButton("Clear");
@@ -208,7 +236,7 @@ public class SidePanel extends JComponent{
 		JPanel display = new JPanel();
 		display.setOpaque(false);
 		
-		display.setPreferredSize(new Dimension(200,300));
+		display.setPreferredSize(new Dimension(200,60));
 		
 		display.add(this.outputLength);
 		display.add(this.outputOppositeLength);
@@ -221,6 +249,16 @@ public class SidePanel extends JComponent{
 	}
 	public void populateEnd(String city) {
 		this.e.setSelectedItem(city);
+	}
+
+	public void addDescription(HashMap<String, String> descriptions, String city) {
+		if(city == "clear"){
+			this.descriptionLabel.setText("");
+		}
+		else{
+			this.descriptionLabel.setText("<html><div style=text-align:center>"+"____________________________________<br>"+descriptions.get(city)+"<br>___________________________________"+"</html>");
+		}
+		this.descriptionPanel.add(this.descriptionLabel);
 	}
 	
 }

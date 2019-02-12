@@ -34,13 +34,13 @@ public class Entered implements ActionListener {
 		if(graph.hasPlace(startPt) && graph.hasPlace(endPt)) {
 			if(this.distance.isSelected()) {
 				graph.findShortestPath(startPt, endPt, "distance");
-				this.outputLength.setText("Total Distance Traveled:" + this.graph.getLastLength());
-				this.outputOppositeLength.setText("Total Time Traveled:" + this.graph.getLastOppositeLength());
+				this.outputLength.setText("Distance: " + this.graph.getLastLength() + " Miles");
+				this.outputOppositeLength.setText("Time: " + this.graph.getLastOppositeLength() + " Days");
 			}
 			else {
 				graph.findShortestPath(startPt, endPt, "time");
-				this.outputLength.setText("Total Time Traveled:" + this.graph.getLastLength());
-				this.outputOppositeLength.setText("Total Distance Traveled:" + this.graph.getLastOppositeLength());
+				this.outputLength.setText("Time: " + this.graph.getLastLength() + " Days");
+				this.outputOppositeLength.setText("Distance: " + this.graph.getLastOppositeLength() + " Miles");
 
 			}
 		} else {

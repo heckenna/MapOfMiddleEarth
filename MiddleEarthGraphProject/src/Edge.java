@@ -25,9 +25,9 @@ public class Edge {
 		this.end = end;
 		this.start = start;
 		
-		this.color = Color.BLUE;
+		this.color = Color.BLACK;
 		
-		this.speed = 5;
+		this.speed = 12;
 		
 		this.terrainDifficulty = terrainDifficulty;
 		
@@ -52,7 +52,7 @@ public class Edge {
 		}
 			
 		if(drawDistances) {
-			graphics2.setColor(Color.BLUE);
+			graphics2.setColor(Color.BLACK);
 			graphics2.drawString("D: " + Integer.toString(this.distance), 
 				(int)((this.start.getX()+this.end.getX()) / 2 * xZoom), 
 				(int)((this.start.getY()+this.end.getY()) / 2 * yZoom));

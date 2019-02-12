@@ -13,8 +13,40 @@ public class DomainLoader {
 		loadNodes(domain, "src/MiddleEarthNodes.txt");
 		
 		loadConnections(domain, "src/MiddleEarthConnections.txt");
+		
+		loadDescriptions(domain, "src/MiddleEarthDescriptions.txt");
+
 	}
 	
+	private void loadDescriptions(Graph domain, String filePath) {
+		
+		File domainFile = new File(filePath);
+		
+		try {
+			
+			Scanner scanner = new Scanner(domainFile);
+			
+			while (scanner.hasNext()){
+				
+				String name = scanner.next();
+				String description = scanner.next();
+				
+				name = removeUnderscore(name);
+				description = newLine(description);
+				description = removeUnderscore(description);
+				
+				domain.insertDescription(name, description);
+			}
+		}
+		
+		catch (Exception e){
+			
+			System.out.println("ERROR: Could not load domain nodes");
+		}
+		
+		
+	}
+
 	public void loadNodes(Graph domain, String filePath){
 		
 		File domainFile = new File(filePath);
@@ -69,6 +101,8 @@ public class DomainLoader {
 		}
 	}
 	
+	
+	
 	public String removeUnderscore(String s){
 		
 		String output = "";
@@ -86,6 +120,43 @@ public class DomainLoader {
 				
 				output += " ";
 			}
+		}
+		
+		return (output);
+	}
+	
+	private String newLine(String s) {
+		String output = "";
+		int count = 0;
+		int lastSpaceIndex = 0;
+		int i = 0;
+		
+		while(i < s.length()){
+			char c = s.charAt(i);
+			
+			count++;
+			
+			if (c == '_'){
+				lastSpaceIndex = i;
+			}
+			
+			if(count == 35){
+				if(c == '_'){
+					output += "<br>";
+				}
+				else{
+					while(i!=lastSpaceIndex){
+						output = output.substring(0, output.length()-1);
+						i--;
+					}
+					c = s.charAt(i);
+					output += "<br>";
+				}
+				count = 0;
+			}
+			i++;
+			output+=c;
+			
 		}
 		
 		return (output);

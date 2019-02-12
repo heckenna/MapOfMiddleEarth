@@ -37,7 +37,7 @@ public class Node {
 		
 		this.button.setOpaque(false);
 		
-		this.color = Color.WHITE;
+		this.color = Color.BLACK;
 		
 		this.radius = 5;
 		

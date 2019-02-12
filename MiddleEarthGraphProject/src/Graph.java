@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 public class Graph extends JComponent{
 	
 	private HashMap<String, Node> searchNode;
+	private HashMap<String, String> descriptions;
 	
 	private static int FRAME_WIDTH;
 	private static int FRAME_HEIGHT;
@@ -25,7 +26,7 @@ public class Graph extends JComponent{
 	private double xZoom;
 	private double yZoom;
 	private static final double X_ZOOM_MAX = 0.9;
-	private static final double Y_ZOOM_MAX = 0.7;
+	private static final double Y_ZOOM_MAX = 0.75;
 	
 	private ArrayList<Node> lastPath;
 
@@ -41,6 +42,8 @@ public class Graph extends JComponent{
 	private boolean toggleEdges;
 	private boolean toggleNames;
 	
+	private AudioPlayer a;
+	
 	private BufferedImage background;
 	private int backgroundX;
 	private int backgroundY;
@@ -48,13 +51,15 @@ public class Graph extends JComponent{
 	private static final int ORIGINAL_HEIGHT = 2400;
 	private static final int SCREEN_WIDTH = 1900;
 	private static final int SCREEN_HEIGHT = 1429;
-	private static final int RIGHT_PADDING = 300;
-	
+	private static final int RIGHT_PADDING = 260;
 	
 	public Graph(JFrame frame){
+		a = new AudioPlayer();
+		a.play("Music.wav");
 		
 		this.searchNode = new HashMap<>();
 		this.twoCities = new ArrayList<Node>();
+		this.descriptions = new HashMap<>();
 		
 		Graph.FRAME_HEIGHT = frame.getHeight();
 		Graph.FRAME_WIDTH = frame.getWidth();
@@ -68,6 +73,8 @@ public class Graph extends JComponent{
 		this.lastOppositeLength = 0;
 		
 		this.frame = frame;
+		
+		this.frame.getContentPane().setBackground(new Color(222,184,135));
 		
 		this.toggleDistance = false;
 		this.toggleEdges = false;
@@ -154,7 +161,7 @@ public class Graph extends JComponent{
 			oppositeCriteria = "distance";
 		}
 		
-		setPathColor(Color.BLACK, Color.BLUE, false);
+		setPathColor(Color.BLACK, Color.BLACK, false);
 		
 		Node begin = this.searchNode.get(beginString);
 		Node destination = this.searchNode.get(destinationString);
@@ -196,7 +203,7 @@ public class Graph extends JComponent{
 		
 		this.lastOppositeLength = currentPath.getOppositeLengthTraveled();
 		
-		setPathColor(Color.RED, Color.RED, true);
+		setPathColor(Color.WHITE, Color.WHITE, true);
 		
 	}
 	
@@ -243,7 +250,7 @@ public class Graph extends JComponent{
 			y = 0;
 		}
 		
-		else if ((this.backgroundY + Graph.SCREEN_HEIGHT + y) * this.yZoom < Graph.FRAME_HEIGHT){
+		else if ((this.backgroundY + Graph.SCREEN_HEIGHT + y) * this.yZoom < (Graph.FRAME_HEIGHT)){
 			
 			y = (int)((Graph.FRAME_HEIGHT / this.yZoom) - Graph.SCREEN_HEIGHT - this.backgroundY);
 		}
@@ -335,7 +342,8 @@ public class Graph extends JComponent{
 		city.button.setSelected(true);
 		
 		if (this.twoCities.isEmpty()) {
-			this.setPathColor(Color.BLACK, Color.BLUE, false);
+			sidePanel.addDescription(descriptions,city.getName());
+			this.setPathColor(Color.BLACK, Color.BLACK, false);
 			this.twoCities.add(city);
 			this.sidePanel.populateStart(city.getName());
 			
@@ -368,12 +376,18 @@ public class Graph extends JComponent{
 	
 	public void activateButton(String city) {
 		for(Node n : this.searchNode.values()) {
-			if(n.getName()==city) n.button.setSelected(true);
+			if(n.getName()==city) {
+				n.button.setSelected(true);
+				sidePanel.addDescription(descriptions,city);
+			}
 		}
 	}
 	public void deactivateButton(String city) {
 		for(Node n : this.searchNode.values()) {
-			if(n.getName() == city) n.button.setSelected(false);
+			if(n.getName() == city) {
+				n.button.setSelected(false);
+				sidePanel.addDescription(descriptions,"clear");
+			}
 		}
 	}
 
@@ -381,6 +395,7 @@ public class Graph extends JComponent{
 		while(!this.twoCities.isEmpty()) {
 			this.twoCities.get(0).button.setSelected(false);
 			this.twoCities.remove(this.twoCities.get(0));
+			sidePanel.addDescription(descriptions,"clear");
 		}
 	}
 	
@@ -397,5 +412,14 @@ public class Graph extends JComponent{
 	public void toggleNames(){
 		
 		this.toggleNames = ! this.toggleNames;
+	}
+
+	public void insertDescription(String name, String description) {
+		this.descriptions.put(name, description);
+		
+	}
+
+	public AudioPlayer getAudioPlayer() {
+		return this.a;
 	}
 }
