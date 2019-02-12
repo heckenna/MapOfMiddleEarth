@@ -38,15 +38,10 @@ public class Main{
 		middleEarth.addButtons();
 		inputPanel.add(input);
 		
+		
 		frame.add(middleEarth, BorderLayout.CENTER);
 		frame.add(inputPanel, BorderLayout.EAST);
 		
-
-		//input.addSearchBars();
-		//input.addMapNav();
-		//input.addPanelOutput();
-		
-		//input.addTextBox();
 		
 		frame.setVisible(true);
 	}

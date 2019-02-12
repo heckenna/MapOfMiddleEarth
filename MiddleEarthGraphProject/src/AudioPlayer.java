@@ -23,10 +23,10 @@ public class AudioPlayer {
 			clip.open(AudioSystem.getAudioInputStream(new File("src/" + fileName)));
 			clip.start();
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
-			//Thread.sleep(10000);
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
+			
 		}
 
 	}
