@@ -56,27 +56,12 @@ public class Node {
 	}
 	
 	public void draw(Graphics2D graphics2, double xZoom, double yZoom, JFrame frame, boolean drawDistances, boolean drawEdges, boolean drawNames){
-		/* This code works if run,  b but it is SUPER laggy. Looking at 
-		Font newR = new Font("Times New Roman", 12, 12);
-		try {
-			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
-			Font font = aniron.deriveFont((float)12);
-			graphics2.setFont(font);
-		} catch (FontFormatException | IOException exception) {
-			exception.printStackTrace();
-		}*/
-//		graphics2.setColor(this.color);
 		
 		if(!this.button.isVisible()) this.button.setVisible(true);
 	    this.button.setBounds((int) (this.x*xZoom - this.radius*1.2), (int) (this.y * yZoom - this.radius), 15, 12);
 	    if((this.x*xZoom - this.radius*1.2) > frame.getWidth()-340) {
 	    	this.button.setVisible(false);
 	    }
-		
-		/*graphics2.fillOval((int)(this.x * xZoom - this.radius), 
-				(int)(this.y * yZoom - this.radius), 
-				2*this.radius, 
-				2*this.radius);*/
 	    	
 	    if (drawNames){
 	    	
