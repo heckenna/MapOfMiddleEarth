@@ -56,8 +56,8 @@ public class Graph extends JComponent{
 	private int tripPlanRadius;
 	
 	public Graph(JFrame frame){
-		a = new AudioPlayer();
-		a.play("Music.wav");
+		this.a = new AudioPlayer();
+		this.a.play("Music.wav");
 		
 		this.searchNode = new HashMap<>();
 		this.twoCities = new ArrayList<Node>();
@@ -297,7 +297,6 @@ public class Graph extends JComponent{
 		
 		super.paintComponent(graphics);
 		
-		
 		Graphics2D graphics2 = (Graphics2D) graphics;
 		
 		//Give Nodes and Edges the desired wicked cool font.
@@ -322,21 +321,19 @@ public class Graph extends JComponent{
 			n.draw(graphics2, this.xZoom, this.yZoom, this.frame, this.toggleDistance, this.toggleEdges, this.toggleNames);
 		}
 		
-		if (this.twoCities.size() == 1 && this.tripPlanRadius > 0){
-			
-			Node n = this.twoCities.get(0);
-			
-			int width = (int)(this.tripPlanRadius / 0.9);
-			int height = (int)(this.tripPlanRadius / 0.75);
-			int radiusPadding = 4;
-			
-			graphics2.setColor(new Color(0,255,0,75));
-			
-			graphics2.fillOval((int)((n.getX() - width)*this.xZoom + radiusPadding), 
-					(int)((n.getY() - height)*this.yZoom + radiusPadding), 
-					(int)(2*width*this.xZoom), 
-					(int)(2*height*this.yZoom));
-		}
+//		if (this.tripPlanRadius > 0){
+//			
+//			int width = (int)(this.tripPlanRadius / 0.9);
+//			int height = (int)(this.tripPlanRadius / 0.75);
+//			int radiusPadding = 4;
+//			
+//			graphics2.setColor(new Color(0,255,0,75));
+//			
+//			graphics2.fillOval((int)((n.getX() - width)*this.xZoom + radiusPadding), 
+//					(int)((n.getY() - height)*this.yZoom + radiusPadding), 
+//					(int)(2*width*this.xZoom), 
+//					(int)(2*height*this.yZoom));
+//		}
 	}
 	
 	public void planTrip(int radius){
@@ -373,7 +370,7 @@ public class Graph extends JComponent{
 		city.button.setSelected(true);
 		
 		if (this.twoCities.isEmpty()) {
-			sidePanel.addDescription(descriptions,city.getName());
+			this.sidePanel.addDescription(this.descriptions,city.getName());
 			this.setPathColor(Color.BLACK, Color.BLACK, false);
 			this.twoCities.add(city);
 			this.sidePanel.populateStart(city.getName());
@@ -407,17 +404,20 @@ public class Graph extends JComponent{
 	
 	public void activateButton(String city) {
 		for(Node n : this.searchNode.values()) {
-			if(n.getName()==city) {
+			if(n.getName() == city) {
 				n.button.setSelected(true);
-				sidePanel.addDescription(descriptions,city);
+				this.sidePanel.addDescription(this.descriptions,city);
+				findBetween(n);
 			}
 		}
 	}
+	
 	public void deactivateButton(String city) {
 		for(Node n : this.searchNode.values()) {
 			if(n.getName() == city) {
 				n.button.setSelected(false);
-				sidePanel.addDescription(descriptions,"clear");
+				this.sidePanel.addDescription(this.descriptions,"clear");
+				this.twoCities.remove(0);
 			}
 		}
 	}
@@ -426,7 +426,7 @@ public class Graph extends JComponent{
 		while(!this.twoCities.isEmpty()) {
 			this.twoCities.get(0).button.setSelected(false);
 			this.twoCities.remove(this.twoCities.get(0));
-			sidePanel.addDescription(descriptions,"clear");
+			this.sidePanel.addDescription(this.descriptions,"clear");
 		}
 	}
 	
