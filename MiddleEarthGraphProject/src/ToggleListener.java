@@ -7,6 +7,7 @@ public class ToggleListener implements ActionListener{
 	
 	private JRadioButton otherButton;
 
+	//links two buttons so one button's state affects the state of the other.
 	public ToggleListener(JRadioButton linkedButton){
 		this.otherButton= linkedButton;
 		

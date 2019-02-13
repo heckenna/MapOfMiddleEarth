@@ -27,7 +27,7 @@ public class SidePanel extends JComponent{
 	protected JRadioButton dist;
 	protected JButton enter;
 	
-
+	//This creates a side panel for user input and some display
 	public SidePanel(Graph graph, JPanel frame) {
 		this.s = new JComboBox<>();
 		this.e = new JComboBox<>();
@@ -46,6 +46,7 @@ public class SidePanel extends JComponent{
 		new SetStyle(outputLength, 13);
 		new SetStyle(outputOppositeLength, 13);
 		
+		//Adds the elements to the side panel.
 		this.addSearchBars();
 		this.addMapNav();
 		this.addTogglers();
@@ -55,6 +56,7 @@ public class SidePanel extends JComponent{
 		
 	}
 
+	//Makes a button to control Audio and adds audio to the program.
 	private void addAudioPanel() {
 		this.pausePlay = new JButton();
 		this.audioPanel = new JPanel();
@@ -69,6 +71,7 @@ public class SidePanel extends JComponent{
 		
 	}
 
+	//Adds descriptions of the destinations to be displayed on the side panel
 	private void addDescriptionPanel() {
 		this.descriptionLabel = new JLabel();
 		this.descriptionPanel = new JPanel();
@@ -80,14 +83,17 @@ public class SidePanel extends JComponent{
 		
 	}
 
+	//Adds choices of displaying distance/time, edges, and names.
 	private void addTogglers() {
 		JRadioButton toggleDistance = new JRadioButton("Display Distance and Time");
 		
+		//Makes the distance/time toggleable 
 		toggleDistance.addActionListener(new DistanceToggler(this.middleEarth));
 		new SetStyle(toggleDistance, 10);
 
 		this.panel.add(toggleDistance);
 		
+		//Makes the edges toggleable 
 		JRadioButton toggleEdges = new JRadioButton("Display Edges");
 		
 		toggleEdges.addActionListener(new EdgeToggler(this.middleEarth));
@@ -95,6 +101,7 @@ public class SidePanel extends JComponent{
 		
 		this.panel.add(toggleEdges);
 		
+		//Makes the names toggleable 
 		JRadioButton toggleNames = new JRadioButton("Display Names");
 		
 		toggleNames.addActionListener(new NameToggler(this.middleEarth));
@@ -103,6 +110,7 @@ public class SidePanel extends JComponent{
 		this.panel.add(toggleNames);
 	}
 
+	//Makes it possible to move around the map.
 	public void addMapNav(){
 		
 		
@@ -114,7 +122,8 @@ public class SidePanel extends JComponent{
 		JButton zoomIn = new JButton("Zoom In");
 		JButton zoomOut = new JButton("Zoom Out");
 		
-		
+		//SetStyle MUST be called for everything in order for keyListeners to work.
+		//Sets font, also makes it so element CANNOT be focused.
 		new SetStyle(north, 10);
 		new SetStyle(south, 10);
 		new SetStyle(east, 10);
@@ -124,10 +133,8 @@ public class SidePanel extends JComponent{
 		new SetStyle(zoomOut, 10);
 
 		
-		
-		MoverListener moveNorth = new MoverListener(0, 50, this.middleEarth);
-		
-		north.addActionListener(moveNorth);
+		//Listeners to move around the map.		
+		north.addActionListener(new MoverListener(0, 50, this.middleEarth));
 		south.addActionListener(new MoverListener(0, -50, this.middleEarth));
 		east.addActionListener(new MoverListener(-50, 0, this.middleEarth));
 		west.addActionListener(new MoverListener(50, 0, this.middleEarth));
@@ -135,15 +142,12 @@ public class SidePanel extends JComponent{
 		zoomIn.addActionListener(new ZoomListener(0.1, this.middleEarth));
 		zoomOut.addActionListener(new ZoomListener(-0.1, this.middleEarth));
 		
+		//panel must be the ONLY focusable thing in order for the keyListeners to work.
 		panel.setFocusable(true);
-		
 		panel.addKeyListener(new KeysToClick(north, south, east, west, enter, zoomIn, zoomOut));
-		/*north.getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW).
-			put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_UP,0), "Up_pressed");
-        north.getActionMap().put("Up_pressed", new ActionClick(moveNorth));*/
-
 		
 		JPanel compass = new JPanel();
+		//Set to transparent for stylistic reasons.
 		compass.setOpaque(false);
 		
 		compass.add(north, BorderLayout.NORTH);
@@ -152,6 +156,7 @@ public class SidePanel extends JComponent{
 		compass.add(south, BorderLayout.SOUTH);
 		
 		JPanel zooms = new JPanel();
+		//Set to transparent for stylistic reasons.
 		zooms.setOpaque(false);
 
 		
@@ -160,8 +165,6 @@ public class SidePanel extends JComponent{
 		
 		Dimension size = new Dimension(160,120);
 		compass.setPreferredSize(size);
-		//size.setSize(50, 100);
-		//zooms.setSize(size);
 		
 		this.panel.add(compass, BorderLayout.WEST);
 		this.panel.add(zooms, BorderLayout.SOUTH);
@@ -169,7 +172,9 @@ public class SidePanel extends JComponent{
 		
 	}
 	
+	//Lets the user search for places. 
 	public void addSearchBars() {
+		//Start and end panels created to put relevant elements with each other.
 		Dimension searchSize = new Dimension(250,30);
 		JPanel startPanel = new JPanel();
 		JPanel endPanel = new JPanel();
@@ -183,7 +188,7 @@ public class SidePanel extends JComponent{
 		new SetStyle(startLabel, 9);
 		new SetStyle(endLabel, 9);
 
-		
+		//Builds a dropdown menue for the places.
 	    String[] h = this.middleEarth.getNameArray();
 		JComboBox<String> end = new JComboBox<>(h);
 		end.addActionListener(new DropDownListener(middleEarth, end));
@@ -191,6 +196,7 @@ public class SidePanel extends JComponent{
 		start.addActionListener(new DropDownListener(middleEarth, start));
 		this.s = start;
 		this.e = end;
+		//Mouseovers
 		start.setToolTipText("Select a location to begin your journey at.");
 		end.setToolTipText("Select a location to end your journey at.");
 		
@@ -200,6 +206,7 @@ public class SidePanel extends JComponent{
 		end.setPreferredSize(searchSize);
 		start.setPreferredSize(searchSize);
 
+		//dist and time buttons created to toggle between criteria.
 		JRadioButton dist = new JRadioButton("Distance");
 		JRadioButton time = new JRadioButton("Time");
 		JButton clear = new JButton("Clear");
@@ -209,21 +216,26 @@ public class SidePanel extends JComponent{
 		this.dist = dist;
 		this.enter = enter;
 		
+		//Font and focusability set
 		new SetStyle(dist, 9);
 		new SetStyle(time, 9);
 		new SetStyle(clear, 9);
 		new SetStyle(enter, 9);
 		
+		//enter and clear now do as name implies
 		clear.addActionListener(new ClearListener(this.middleEarth));
 		enter.addActionListener(new Entered(start, end, dist, time, this.middleEarth, this.outputLength, this.outputOppositeLength));
+		//Each button must change the state of the other when pressed.
 		dist.addActionListener(new ToggleListener(time));
 		time.addActionListener(new ToggleListener(dist));
 		
+		//attaching objects to start and endpanels.
 		startPanel.add(startLabel);
 		startPanel.add(start);
 		endPanel.add(endLabel);
 		endPanel.add(end);
 		
+		//panel gets these objects added.
 		this.panel.add(startPanel);
 		this.panel.add(endPanel);
 		this.panel.add(dist);
@@ -232,6 +244,7 @@ public class SidePanel extends JComponent{
 		this.panel.add(clear, BorderLayout.CENTER);		
 	}
 
+	//Adds the calculated distance and times to the SidePanel
 	public void addPanelOutput() {
 		JPanel display = new JPanel();
 		display.setOpaque(false);
@@ -244,6 +257,7 @@ public class SidePanel extends JComponent{
 		
 	}
 	
+	//Used to populate the JComboBoxes with cities sected by clicking the nodes.
 	public void populateStart(String city) {
 		this.s.setSelectedItem(city);
 	}
@@ -251,6 +265,7 @@ public class SidePanel extends JComponent{
 		this.e.setSelectedItem(city);
 	}
 
+	//Puts description of selected location on the SidePanel
 	public void addDescription(HashMap<String, String> descriptions, String city) {
 		if(city == "clear"){
 			this.descriptionLabel.setText("");
