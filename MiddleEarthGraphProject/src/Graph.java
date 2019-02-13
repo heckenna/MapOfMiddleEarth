@@ -337,7 +337,6 @@ public class Graph extends JComponent{
 	}
 	
 	public void planTrip(int radius){
-		
 		this.tripPlanRadius = radius;
 	}
 	
@@ -381,7 +380,6 @@ public class Graph extends JComponent{
 			this.twoCities.add(city);
 			this.findShortestPath(this.twoCities.get(0).getName(), city.getName(), "distance");
 			this.sidePanel.populateEnd(city.getName());
-
 			//this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
 			this.sidePanel.enter.doClick();
 			
@@ -420,7 +418,7 @@ public class Graph extends JComponent{
 				this.twoCities.remove(0);
 			}
 		}
-	}
+	} 
 
 	public void clearButtons() {
 		while(!this.twoCities.isEmpty()) {
