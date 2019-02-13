@@ -405,7 +405,6 @@ public class Graph extends JComponent{
 			if(n.getName() == city) {
 				n.button.setSelected(true);
 				this.sidePanel.addDescription(this.descriptions,city);
-				findBetween(n);
 			}
 		}
 	}
@@ -415,7 +414,6 @@ public class Graph extends JComponent{
 			if(n.getName() == city) {
 				n.button.setSelected(false);
 				this.sidePanel.addDescription(this.descriptions,"clear");
-				this.twoCities.remove(0);
 			}
 		}
 	} 
