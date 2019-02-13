@@ -30,43 +30,50 @@ public class Entered implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		String startPt = (String) start.getSelectedItem();
-		String endPt = (String) end.getSelectedItem();
+		String startPt = (String) this.start.getSelectedItem();
+		String endPt = (String) this.end.getSelectedItem();
 		
 		if(endPt.equals("Desired Distance")) {
+			
 			while(true) {
-				String name = JOptionPane.showInputDialog(graph.getFrame(),
-	                    "How far do you want to travel?", null);
+				
 				try {
-					int distance = Integer.parseInt(name);
-					graph.planTrip(distance);
-					graph.repaint();
+
+					String name = JOptionPane.showInputDialog(this.graph.getFrame(),
+		                    "How Far Do You Want To Travel? ", null);
+					int radius = Integer.parseInt(name);
+					this.graph.planTrip(radius);
+					this.graph.repaint();
 					break;
 				}
+				
 				catch(Exception e){
 					
+					//
 				}
-			}
-			
-			
-			
+			}	
 		}
-		else if(graph.hasPlace(startPt) && graph.hasPlace(endPt)) {
+		
+		else if(this.graph.hasPlace(startPt) && this.graph.hasPlace(endPt)) {
 			if(this.distance.isSelected()) {
-				graph.findShortestPath(startPt, endPt, "distance");
+				this.graph.findShortestPath(startPt, endPt, "distance");
 				this.outputLength.setText("Distance: " + this.graph.getLastLength() + " Miles");
 				this.outputOppositeLength.setText("Time: " + this.graph.getLastOppositeLength() + " Days");
 			}
 			else {
-				graph.findShortestPath(startPt, endPt, "time");
+				this.graph.findShortestPath(startPt, endPt, "time");
 				this.outputLength.setText("Time: " + this.graph.getLastLength() + " Days");
 				this.outputOppositeLength.setText("Distance: " + this.graph.getLastOppositeLength() + " Miles");
 
 			}
-		} else {
+		} 
+		
+		else {
+			
 			System.out.print("Invalid Location\n");
 		}
-		graph.repaint();
+		
+		this.graph.repaint();
 	}
 
 }

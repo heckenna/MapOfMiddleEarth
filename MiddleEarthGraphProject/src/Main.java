@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 public class Main{
 	
 	
-	private static final String TITLE = "MiddleEarth";
+	private static final String TITLE = "Lord of the Graphs";
 	
 	private static final int FRAME_WIDTH = 1900;
 	private static final int FRAME_HEIGHT = 1000;
