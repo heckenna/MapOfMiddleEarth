@@ -321,22 +321,25 @@ public class Graph extends JComponent{
 			n.draw(graphics2, this.xZoom, this.yZoom, this.frame, this.toggleDistance, this.toggleEdges, this.toggleNames);
 		}
 		
-//		if (this.tripPlanRadius > 0){
-//			
-//			int width = (int)(this.tripPlanRadius / 0.9);
-//			int height = (int)(this.tripPlanRadius / 0.75);
-//			int radiusPadding = 4;
-//			
-//			graphics2.setColor(new Color(0,255,0,75));
-//			
-//			graphics2.fillOval((int)((n.getX() - width)*this.xZoom + radiusPadding), 
-//					(int)((n.getY() - height)*this.yZoom + radiusPadding), 
-//					(int)(2*width*this.xZoom), 
-//					(int)(2*height*this.yZoom));
-//		}
+		if (this.twoCities[0] != null && this.twoCities[1] == null && this.tripPlanRadius > 0){
+			
+			Node n = this.twoCities[0];
+			
+			int width = (int)(this.tripPlanRadius / 0.9);
+			int height = (int)(this.tripPlanRadius / 0.75);
+			int radiusPadding = 4;
+			
+			graphics2.setColor(new Color(0,255,0,75));
+			
+			graphics2.fillOval((int)((n.getX() - width)*this.xZoom + radiusPadding), 
+					(int)((n.getY() - height)*this.yZoom + radiusPadding), 
+					(int)(2*width*this.xZoom), 
+					(int)(2*height*this.yZoom));
+		}
 	}
 	
 	public void planTrip(int radius){
+		
 		this.tripPlanRadius = radius;
 	}
 	
@@ -364,7 +367,6 @@ public class Graph extends JComponent{
 			this.twoCities[1].button.setSelected(false);
 			this.twoCities[0] = null;
 			this.twoCities[1] = null;
-			this.tripPlanRadius = 0;
 		} 
 		
 		city.button.setSelected(true);
@@ -390,6 +392,22 @@ public class Graph extends JComponent{
 			this.sidePanel.enter.doClick();
 		}
 	}
+	
+	public void clearTwoCities(){
+		
+		this.twoCities[0] = null;
+		this.twoCities[1] = null;
+	}
+	
+	public void addCity(String name){
+		
+		Node n = this.searchNode.get(name);
+		
+		if(n != null){
+			
+			this.twoCities[0] = n;
+		}
+	}
 
 	public void addButtons() {
 		
@@ -412,15 +430,17 @@ public class Graph extends JComponent{
 				this.sidePanel.addDescription(this.descriptions,city);
 			}
 		}*/
+		this.planTrip(0);
+		this.repaint();
 		for(Node n : this.searchNode.values()) {
-			if(n.getName() == city) {
+			if(n.getName().equals(city) && this.twoCities[thatCity] != null) {
 				this.twoCities[thatCity].button.setSelected(false);
 				this.twoCities[thatCity] = n;
+				this.twoCities[thatCity].button.setSelected(true);
+				this.sidePanel.addDescription(this.descriptions,city);
 			}
 		}
 		
-		this.twoCities[thatCity].button.setSelected(true);
-		this.sidePanel.addDescription(this.descriptions,city);
 	}
 	
 	public void deactivateButton(String city, int thatCity) {
