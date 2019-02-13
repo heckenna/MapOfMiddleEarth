@@ -14,6 +14,7 @@ import java.util.PriorityQueue;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class Graph extends JComponent{
 	
