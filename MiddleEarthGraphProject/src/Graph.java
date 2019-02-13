@@ -310,7 +310,7 @@ public class Graph extends JComponent{
 				(int)(this.backgroundY * this.yZoom), 
 				(int)((this.backgroundX + Graph.SCREEN_WIDTH) * this.xZoom), 
 				(int)((this.backgroundY + Graph.SCREEN_HEIGHT) * this.yZoom), 
-				0, 0, Graph.ORIGINAL_WIDTH, Graph.ORIGINAL_HEIGHT, null);
+				0, 0, Graph.ORIGINAL_WIDTH, Graph.ORIGINAL_HEIGHT, null); 
 		
 		for (Node n : this.searchNode.values()){
 			
