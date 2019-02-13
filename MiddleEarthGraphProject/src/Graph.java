@@ -53,6 +53,8 @@ public class Graph extends JComponent{
 	private static final int SCREEN_HEIGHT = 1429;
 	private static final int RIGHT_PADDING = 260;
 	
+	private int tripPlanRadius;
+	
 	public Graph(JFrame frame){
 		a = new AudioPlayer();
 		a.play("Music.wav");
@@ -82,6 +84,8 @@ public class Graph extends JComponent{
 		
 		this.backgroundX = 0;
 		this.backgroundY = 0;
+		
+		this.tripPlanRadius = 0;
 		
 		try {
 			
@@ -255,9 +259,9 @@ public class Graph extends JComponent{
 			y = 0;
 		}
 		
-		else if ((this.backgroundY + Graph.SCREEN_HEIGHT + y) * this.yZoom < (Graph.FRAME_HEIGHT)){
+		else if ((this.backgroundY + Graph.SCREEN_HEIGHT + y) * this.yZoom < (this.frame.getHeight())){
 			
-			y = (int)((Graph.FRAME_HEIGHT / this.yZoom) - Graph.SCREEN_HEIGHT - this.backgroundY);
+			y = (int)((this.frame.getHeight() / this.yZoom) - Graph.SCREEN_HEIGHT - this.backgroundY);
 		}
 		
 		for (Node n : this.searchNode.values()){
@@ -311,12 +315,33 @@ public class Graph extends JComponent{
 				(int)(this.backgroundY * this.yZoom), 
 				(int)((this.backgroundX + Graph.SCREEN_WIDTH) * this.xZoom), 
 				(int)((this.backgroundY + Graph.SCREEN_HEIGHT) * this.yZoom), 
-				0, 0, Graph.ORIGINAL_WIDTH, Graph.ORIGINAL_HEIGHT, null);
+				0, 0, Graph.ORIGINAL_WIDTH, Graph.ORIGINAL_HEIGHT, null); 
 		
 		for (Node n : this.searchNode.values()){
 			
 			n.draw(graphics2, this.xZoom, this.yZoom, this.frame, this.toggleDistance, this.toggleEdges, this.toggleNames);
 		}
+		
+		if (this.twoCities.size() == 1 && this.tripPlanRadius > 0){
+			
+			Node n = this.twoCities.get(0);
+			
+			int width = (int)(this.tripPlanRadius / 0.9);
+			int height = (int)(this.tripPlanRadius / 0.75);
+			int radiusPadding = 4;
+			
+			graphics2.setColor(new Color(0,255,0,75));
+			
+			graphics2.fillOval((int)((n.getX() - width)*this.xZoom + radiusPadding), 
+					(int)((n.getY() - height)*this.yZoom + radiusPadding), 
+					(int)(2*width*this.xZoom), 
+					(int)(2*height*this.yZoom));
+		}
+	}
+	
+	public void planTrip(int radius){
+		
+		this.tripPlanRadius = radius;
 	}
 	
 	public int getLastLength(){
@@ -338,10 +363,11 @@ public class Graph extends JComponent{
 		} */
 		
 		
-		if(this.twoCities.size()==2) {
+		if(this.twoCities.size() == 2) {
 			this.twoCities.get(0).button.setSelected(false);
 			this.twoCities.get(1).button.setSelected(false);
 			this.twoCities = new ArrayList<Node>();
+			this.tripPlanRadius = 0;
 		} 
 		
 		city.button.setSelected(true);
