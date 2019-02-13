@@ -45,7 +45,10 @@ public class SidePanel extends JComponent{
 		this.outputOppositeLength = new JLabel("Time: " + this.middleEarth.getLastOppositeLength() + " Days");
 		new SetStyle(outputLength, 13);
 		new SetStyle(outputOppositeLength, 13);
-		
+
+		//outputLength.setText("<html> <strong style=font-size:90%;>"+outputLength.getText() +"</strong></html>");
+		//outputOppositeLength.setText("<html> <div style=font-size:90%;>"+outputOppositeLength.getText()+"</div></html>");
+
 		//Adds the elements to the side panel.
 		this.addSearchBars();
 		this.addMapNav();
@@ -139,6 +142,8 @@ public class SidePanel extends JComponent{
 		east.addActionListener(new MoverListener(-50, 0, this.middleEarth));
 		west.addActionListener(new MoverListener(50, 0, this.middleEarth));
 		
+		north.setText("<html> <div style=font-size:100%;> North </div></html>");
+		
 		zoomIn.addActionListener(new ZoomListener(0.1, this.middleEarth));
 		zoomOut.addActionListener(new ZoomListener(-0.1, this.middleEarth));
 		
@@ -163,7 +168,7 @@ public class SidePanel extends JComponent{
 		zooms.add(zoomIn);
 		zooms.add(zoomOut);
 		
-		Dimension size = new Dimension(160,120);
+		Dimension size = new Dimension(160,110);
 		compass.setPreferredSize(size);
 		
 		this.panel.add(compass, BorderLayout.WEST);
@@ -271,7 +276,7 @@ public class SidePanel extends JComponent{
 			this.descriptionLabel.setText("");
 		}
 		else{
-			this.descriptionLabel.setText("<html><div style=text-align:center>"+"____________________________________<br>"+descriptions.get(city)+"<br>___________________________________"+"</html>");
+			this.descriptionLabel.setText("<html><div style=text-align:center;font-size:100%>"+"____________________________________<br>"+descriptions.get(city)+"<br>___________________________________"+"</div></html>");
 		}
 		this.descriptionPanel.add(this.descriptionLabel);
 	}

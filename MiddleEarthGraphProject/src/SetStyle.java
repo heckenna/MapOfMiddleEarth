@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
@@ -18,9 +19,8 @@ public class SetStyle {
 	//Also will make background transparent and add color where wanted for the desired "look"
 	public SetStyle(JComboBox<String> thing, float fontSize) {
 		//Makes a font object in order to create the Aniron font. It is wierd, but it works.
-		Font newR = new Font("Times New Roman", 12, 12);
 		try {
-			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
+			Font aniron = Font.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
 			Font font = aniron.deriveFont(fontSize);
 			thing.setFont(font);
 		} catch (FontFormatException | IOException exception) {
@@ -33,9 +33,8 @@ public class SetStyle {
 
 	public SetStyle(JLabel thing, float fontSize) {
 		thing.setFocusable(false);
-		Font newR = new Font("Times New Roman", 12, 12);
 		try {
-			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
+			Font aniron = Font.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
 			Font font = aniron.deriveFont(fontSize);
 			GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
 			thing.setFont(font);
@@ -48,9 +47,8 @@ public class SetStyle {
 	public SetStyle(JButton thing, float fontSize) {
 		thing.setFocusable(false);
 		
-		Font newR = new Font("Times New Roman", 12, 12);
 		try {
-			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
+			Font aniron = Font.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
 			Font font = aniron.deriveFont(fontSize);
 			thing.setFont(font);
 		} catch (FontFormatException | IOException exception) {
@@ -62,15 +60,24 @@ public class SetStyle {
 
 	public SetStyle(JRadioButton thing, float fontSize) {
 		thing.setFocusable(false);
-		Font newR = new Font("Times New Roman", 12, 12);
 		try {
-			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
+			Font aniron = Font.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
 			Font font = aniron.deriveFont(fontSize);
 			thing.setFont(font);
 		} catch (FontFormatException | IOException exception) {
 			exception.printStackTrace();
 		}
 		thing.setOpaque(false);
+	}
+
+	public SetStyle(JFrame thing, int fontSize) {
+		try {
+			Font aniron = Font.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
+			Font font = aniron.deriveFont(fontSize);
+			thing.setFont(font);
+		} catch (FontFormatException | IOException exception) {
+			exception.printStackTrace();
+		}
 	}
 
 	
