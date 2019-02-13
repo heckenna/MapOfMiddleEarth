@@ -39,6 +39,8 @@ public class Entered implements ActionListener {
 	                    "What is your name?", null);
 				try {
 					int distance = Integer.parseInt(name);
+					graph.planTrip(distance);
+					graph.repaint();
 					break;
 				}
 				catch(Exception e){
