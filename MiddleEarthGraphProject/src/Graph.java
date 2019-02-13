@@ -30,7 +30,7 @@ public class Graph extends JComponent{
 	
 	private ArrayList<Node> lastPath;
 
-	private ArrayList<Node> twoCities;
+	private Node[] twoCities;
 	
 	private int lastLength;
 	private int lastOppositeLength;
@@ -60,7 +60,7 @@ public class Graph extends JComponent{
 		this.a.play("Music.wav");
 		
 		this.searchNode = new HashMap<>();
-		this.twoCities = new ArrayList<Node>();
+		this.twoCities = new Node[2];
 		this.descriptions = new HashMap<>();
 		
 		Graph.FRAME_HEIGHT = frame.getHeight();
@@ -359,30 +359,35 @@ public class Graph extends JComponent{
 		} */
 		
 		
-		if(this.twoCities.size() == 2) {
-			this.twoCities.get(0).button.setSelected(false);
-			this.twoCities.get(1).button.setSelected(false);
-			this.twoCities = new ArrayList<Node>();
+		if(this.twoCities[0] != null && this.twoCities[1] != null) {
+			this.twoCities[0].button.setSelected(false);
+			this.twoCities[1].button.setSelected(false);
+			this.twoCities[0] = null;
+			this.twoCities[1] = null;
 			this.tripPlanRadius = 0;
 		} 
 		
 		city.button.setSelected(true);
 		
-		if (this.twoCities.isEmpty()) {
+		if (this.twoCities[0] == null) {
 			this.sidePanel.addDescription(this.descriptions,city.getName());
 			this.setPathColor(Color.BLACK, Color.BLACK, false);
-			this.twoCities.add(city);
+			this.twoCities[0] = city;
 			this.sidePanel.populateStart(city.getName());
 			
 		} 
 		
-		else {
-			this.twoCities.add(city);
-			this.findShortestPath(this.twoCities.get(0).getName(), city.getName(), "distance");
+		else if (this.twoCities[1] == null){
+			this.twoCities[1] = city;
+			this.sidePanel.addDescription(this.descriptions,city.getName());
+			this.setPathColor(Color.BLACK, Color.BLACK, false);
 			this.sidePanel.populateEnd(city.getName());
-			//this.findShortestPath(twoCities.get(0).getName(), city.getName(), "distance");
 			this.sidePanel.enter.doClick();
-			
+		}
+		
+		if (this.twoCities[0] != null && this.twoCities[1] != null) {
+			this.findShortestPath(this.twoCities[0].getName(), this.twoCities[1].getName(), "distance");
+			this.sidePanel.enter.doClick();
 		}
 	}
 
@@ -400,30 +405,43 @@ public class Graph extends JComponent{
 		
 	}
 	
-	public void activateButton(String city) {
-		for(Node n : this.searchNode.values()) {
+	public void activateButton(String city, int thatCity) {
+		/*for(Node n : this.searchNode.values()) {
 			if(n.getName() == city) {
 				n.button.setSelected(true);
 				this.sidePanel.addDescription(this.descriptions,city);
 			}
+		}*/
+		for(Node n : this.searchNode.values()) {
+			if(n.getName() == city) {
+				this.twoCities[thatCity].button.setSelected(false);
+				this.twoCities[thatCity] = n;
+			}
 		}
+		
+		this.twoCities[thatCity].button.setSelected(true);
+		this.sidePanel.addDescription(this.descriptions,city);
 	}
 	
-	public void deactivateButton(String city) {
-		for(Node n : this.searchNode.values()) {
+	public void deactivateButton(String city, int thatCity) {
+		/*for(Node n : this.searchNode.values()) {
 			if(n.getName() == city) {
 				n.button.setSelected(false);
 				this.sidePanel.addDescription(this.descriptions,"clear");
 			}
-		}
+		}*/
+		this.twoCities[thatCity].button.setSelected(false);
+		this.twoCities[thatCity] = null;
+		this.sidePanel.addDescription(this.descriptions,"clear");
 	} 
 
 	public void clearButtons() {
-		while(!this.twoCities.isEmpty()) {
-			this.twoCities.get(0).button.setSelected(false);
-			this.twoCities.remove(this.twoCities.get(0));
-			this.sidePanel.addDescription(this.descriptions,"clear");
-		}
+		this.twoCities[0].button.setSelected(false);
+		this.twoCities[0] = null;
+		this.twoCities[1].button.setSelected(false);
+		this.twoCities[1] = null;
+		this.sidePanel.addDescription(this.descriptions,"clear");
+		
 	}
 	
 	public void toggleDistance() {
