@@ -405,14 +405,9 @@ public class Graph extends JComponent{
 		for(Node n : this.searchNode.values()) {
 			if(n.getName() == city) {
 				n.button.setSelected(true);
-				sidePanel.addDescription(descriptions,city);
-				this.twoCities.add(n);
 				this.sidePanel.addDescription(this.descriptions,city);
 				findBetween(n);
 			}
-		}
-		for(int i = 0; i < this.twoCities.size(); i++) {
-			System.out.println("Activate: " + this.twoCities.get(i).getName());
 		}
 	}
 	
