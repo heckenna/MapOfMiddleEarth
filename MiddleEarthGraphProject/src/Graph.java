@@ -14,6 +14,7 @@ import java.util.PriorityQueue;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class Graph extends JComponent{
 	
@@ -408,7 +409,11 @@ public class Graph extends JComponent{
 			if(n.getName()==city) {
 				n.button.setSelected(true);
 				sidePanel.addDescription(descriptions,city);
+				this.twoCities.add(n);
 			}
+		}
+		for(int i = 0; i < this.twoCities.size(); i++) {
+			System.out.println("Activate: " + this.twoCities.get(i).getName());
 		}
 	}
 	public void deactivateButton(String city) {
@@ -416,7 +421,12 @@ public class Graph extends JComponent{
 			if(n.getName() == city) {
 				n.button.setSelected(false);
 				sidePanel.addDescription(descriptions,"clear");
+				this.twoCities.remove(n);
+				
 			}
+		}
+		for(int i = 0; i < this.twoCities.size(); i++) {
+			System.out.println("Deactivate: " + this.twoCities.get(i).getName());
 		}
 	}
 
