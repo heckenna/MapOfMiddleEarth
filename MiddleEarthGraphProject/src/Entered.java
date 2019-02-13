@@ -36,7 +36,7 @@ public class Entered implements ActionListener {
 		if(endPt.equals("Desired Distance")) {
 			while(true) {
 				String name = JOptionPane.showInputDialog(graph.getFrame(),
-	                    "What is your name?", null);
+	                    "How far do you want to travel?", null);
 				try {
 					int distance = Integer.parseInt(name);
 					graph.planTrip(distance);

@@ -196,8 +196,8 @@ public class SidePanel extends JComponent{
 
 		//Builds a dropdown menu for the places.
 	    String[] h = this.middleEarth.getNameArray();
-	    String[] uEnd = new String[100];
-	    String[] uStart = new String[100];
+	    String[] uEnd = new String[72];
+	    String[] uStart = new String[71];
 	    uEnd[0] = "No City Selected";
 	    uStart[0] = "No City Selected";
 	    uEnd[1] = "Desired Distance";
