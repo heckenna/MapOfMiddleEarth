@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
@@ -188,11 +189,22 @@ public class SidePanel extends JComponent{
 		new SetStyle(startLabel, 9);
 		new SetStyle(endLabel, 9);
 
-		//Builds a dropdown menue for the places.
+		//Builds a dropdown menu for the places.
 	    String[] h = this.middleEarth.getNameArray();
-		JComboBox<String> end = new JComboBox<>(h);
+	    String[] uEnd = new String[100];
+	    String[] uStart = new String[100];
+	    uEnd[0] = "No City Selected";
+	    uStart[0] = "No City Selected";
+	    uEnd[1] = "Desired Distance";
+	    ArrayList<String> u = new ArrayList<>();
+	    u.add("fjkdsa;fjkdsa;ljfdskla;l");
+	    for(int i = 0; i < h.length; i++) {
+	    	uEnd[i+2] = h[i];
+	    	uStart[i+1] = h[i];
+	    }
+		JComboBox<String> end = new JComboBox<>(uEnd);
 		end.addActionListener(new DropDownListener(middleEarth, end));
-		JComboBox<String> start = new JComboBox<>(h);
+		JComboBox<String> start = new JComboBox<>(uStart);
 		start.addActionListener(new DropDownListener(middleEarth, start));
 		this.s = start;
 		this.e = end;

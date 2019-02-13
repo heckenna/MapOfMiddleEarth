@@ -3,6 +3,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 public class Entered implements ActionListener {
@@ -31,7 +32,24 @@ public class Entered implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		String startPt = (String) start.getSelectedItem();
 		String endPt = (String) end.getSelectedItem();
-		if(graph.hasPlace(startPt) && graph.hasPlace(endPt)) {
+		
+		if(endPt.equals("Desired Distance")) {
+			while(true) {
+				String name = JOptionPane.showInputDialog(graph.getFrame(),
+	                    "What is your name?", null);
+				try {
+					int distance = Integer.parseInt(name);
+					break;
+				}
+				catch(Exception e){
+					
+				}
+			}
+			
+			
+			
+		}
+		else if(graph.hasPlace(startPt) && graph.hasPlace(endPt)) {
 			if(this.distance.isSelected()) {
 				graph.findShortestPath(startPt, endPt, "distance");
 				this.outputLength.setText("Distance: " + this.graph.getLastLength() + " Miles");

@@ -94,6 +94,10 @@ public class Graph extends JComponent{
 		}
 	}
 	
+	public JFrame getFrame() {
+		return this.frame;
+	}
+	
 	public void addSidePanel(SidePanel panel) {
 		this.sidePanel = panel;
 	}
@@ -234,7 +238,8 @@ public class Graph extends JComponent{
 	}
 	
 	public void moveCenter(int x, int y){
-		
+		//System.out.println("Graph Screen Height: " + Graph.SCREEN_HEIGHT);
+		//System.out.println("Frame Height: " + this.frame.getHeight());
 		if (this.backgroundX + x > 0){
 			
 			x = 0;
