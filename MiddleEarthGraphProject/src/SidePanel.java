@@ -72,7 +72,7 @@ public class SidePanel extends JComponent{
 	private void addDescriptionPanel() {
 		this.descriptionLabel = new JLabel();
 		this.descriptionPanel = new JPanel();
-		this.descriptionPanel.setPreferredSize(new Dimension(300, 525));
+		this.descriptionPanel.setPreferredSize(new Dimension(300, 510));
 		this.descriptionPanel.setOpaque(false);
 		new SetStyle(this.descriptionLabel, 10);
 		this.panel.add(this.descriptionPanel);
