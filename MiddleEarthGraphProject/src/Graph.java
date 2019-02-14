@@ -404,7 +404,7 @@ public class Graph extends JComponent{
 		
 		if(n != null){
 			
-			this.twoCities[0].button.setSelected(false);
+			if(this.twoCities[0]!= null) this.twoCities[0].button.setSelected(false);
 			this.twoCities[0] = n;
 		}
 	}
