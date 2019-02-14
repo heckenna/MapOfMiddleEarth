@@ -8,6 +8,7 @@ public class MoverListener implements ActionListener {
 	private int x;
 
 	public MoverListener(int x, int y, Graph graph) {
+		//Takes in an x and y. Different buttons pass in different values to move in different directions.
 		this.x = x;
 		this.y = y;
 		this.graph = graph;
@@ -15,11 +16,8 @@ public class MoverListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		//Moves the field of view on the window around.
 		this.graph.moveCenter(x, y);
-		
 		graph.repaint();
-
-
 	}
-
 }

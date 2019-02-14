@@ -19,13 +19,8 @@ public class DropDownListener implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		/*for(String u : n) {
-			middleEarth.deactivateButton(u, thatCity);
-		}
-		n.clear();
-		n.add((String) t.getSelectedItem());*/
+		//Makes sure to change the values of TwoCities and whether or not the needed JRadioButtons are selected
 		this.middleEarth.activateButton((String) t.getSelectedItem(), this.thatCity);
-		
 	}
 
 }
