@@ -434,26 +434,16 @@ public class Graph extends JComponent{
 		this.planTrip(0);
 		this.repaint();
 		
-		for(Node n : this.searchNode.values()) {
-			if(n.getName().equals(city) && this.twoCities[thatCity] != null) {
-				this.twoCities[thatCity].button.setSelected(false);
-				this.twoCities[thatCity] = n;
-				this.twoCities[thatCity].button.setSelected(true);
-				this.sidePanel.addDescription(this.descriptions,city);
-			}
+		Node n = this.searchNode.get(city);
+		
+		if (n != null && this.twoCities[thatCity] != null){
+			
+			this.twoCities[thatCity].button.setSelected(false);
+			this.twoCities[thatCity] = n;
+			this.twoCities[thatCity].button.setSelected(true);
+			this.sidePanel.addDescription(this.descriptions,city);
 		}
 		
-//		Node n = this.searchNode.get(city);
-//		
-//		if (n != null && this.twoCities[thatCity] != null){
-//			
-//			this.twoCities[thatCity].button.setSelected(false);
-//			this.twoCities[thatCity] = n;
-//			this.twoCities[thatCity].button.setSelected(true);
-//			this.sidePanel.addDescription(this.descriptions,city);
-//		}
-		
-
 	}
 	
 
