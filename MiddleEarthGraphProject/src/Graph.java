@@ -448,9 +448,9 @@ public class Graph extends JComponent{
 	
 
 	public void clearButtons() {
-		this.twoCities[0].button.setSelected(false);
+		if(this.twoCities[0]!= null) this.twoCities[0].button.setSelected(false);
 		this.twoCities[0] = null;
-		this.twoCities[1].button.setSelected(false);
+		if(this.twoCities[1]!= null) this.twoCities[1].button.setSelected(false);
 		this.twoCities[1] = null;
 		this.sidePanel.addDescription(this.descriptions,"clear");
 		
