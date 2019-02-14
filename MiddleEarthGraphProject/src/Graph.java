@@ -158,6 +158,9 @@ public class Graph extends JComponent{
 	public void findShortestPath(String beginString, String destinationString, String criteria){
 		
 		String oppositeCriteria = "";
+		if(this.twoCities[0]!= null) this.twoCities[0].button.setSelected(false);
+		if(this.twoCities[1]!= null) this.twoCities[1].button.setSelected(false);
+
 		
 		if (criteria.equals("distance")){
 			
@@ -174,6 +177,8 @@ public class Graph extends JComponent{
 		Node begin = this.searchNode.get(beginString);
 		Node destination = this.searchNode.get(destinationString);
 		
+		this.twoCities[0] = begin;
+		this.twoCities[1] = destination;
 		begin.button.setSelected(true);
 		destination.button.setSelected(true);
 		
@@ -376,7 +381,7 @@ public class Graph extends JComponent{
 			this.setPathColor(Color.BLACK, Color.BLACK, false);
 			this.twoCities[0] = city;
 			this.sidePanel.populateStart(city.getName());
-			
+			this.twoCities[0].button.setSelected(true);			
 		} 
 		
 		else if (this.twoCities[1] == null){
@@ -384,27 +389,22 @@ public class Graph extends JComponent{
 			this.sidePanel.addDescription(this.descriptions,city.getName());
 			this.setPathColor(Color.BLACK, Color.BLACK, false);
 			this.sidePanel.populateEnd(city.getName());
-			this.sidePanel.enter.doClick();
+			this.twoCities[1].button.setSelected(true);			
 		}
 		
 		if (this.twoCities[0] != null && this.twoCities[1] != null) {
-			this.findShortestPath(this.twoCities[0].getName(), this.twoCities[1].getName(), "distance");
+			//this.findShortestPath(this.twoCities[0].getName(), this.twoCities[1].getName(), "distance");
 			this.sidePanel.enter.doClick();
 		}
 	}
 	
-	public void clearTwoCities(){
-		
-		this.twoCities[0] = null;
-		this.twoCities[1] = null;
-	}
 	
 	public void addCity(String name){
 		
 		Node n = this.searchNode.get(name);
 		
 		if(n != null){
-			
+			this.twoCities[0].button.setSelected(false);
 			this.twoCities[0] = n;
 		}
 	}
@@ -440,7 +440,6 @@ public class Graph extends JComponent{
 				this.sidePanel.addDescription(this.descriptions,city);
 			}
 		}
-		
 	}
 	
 	public void deactivateButton(String city, int thatCity) {
