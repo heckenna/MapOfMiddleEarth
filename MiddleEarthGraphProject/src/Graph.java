@@ -442,17 +442,6 @@ public class Graph extends JComponent{
 		}
 	}
 	
-	public void deactivateButton(String city, int thatCity) {
-		/*for(Node n : this.searchNode.values()) {
-			if(n.getName() == city) {
-				n.button.setSelected(false);
-				this.sidePanel.addDescription(this.descriptions,"clear");
-			}
-		}*/
-		this.twoCities[thatCity].button.setSelected(false);
-		this.twoCities[thatCity] = null;
-		this.sidePanel.addDescription(this.descriptions,"clear");
-	} 
 
 	public void clearButtons() {
 		this.twoCities[0].button.setSelected(false);
