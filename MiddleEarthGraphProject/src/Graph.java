@@ -436,13 +436,15 @@ public class Graph extends JComponent{
 		
 		Node n = this.searchNode.get(city);
 		
-		if (n != null && this.twoCities[thatCity] != null){
+		
 			
-			this.twoCities[thatCity].button.setSelected(false);
-			this.twoCities[thatCity] = n;
+		if(this.twoCities[thatCity]!=null) this.twoCities[thatCity].button.setSelected(false);
+		this.twoCities[thatCity] = n;
+		if(n!=null) {
 			this.twoCities[thatCity].button.setSelected(true);
 			this.sidePanel.addDescription(this.descriptions,city);
 		}
+		
 		
 	}
 	
