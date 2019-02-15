@@ -208,9 +208,9 @@ public class SidePanel extends JComponent{
 	    	uStart[i+1] = h[i];
 	    }
 		JComboBox<String> end = new JComboBox<>(uEnd);
-		end.addActionListener(new DropDownListener(middleEarth, end));
+		end.addActionListener(new DropDownListener(middleEarth, end, 1));
 		JComboBox<String> start = new JComboBox<>(uStart);
-		start.addActionListener(new DropDownListener(middleEarth, start));
+		start.addActionListener(new DropDownListener(middleEarth, start, 0));
 		this.s = start;
 		this.e = end;
 		//Mouseovers

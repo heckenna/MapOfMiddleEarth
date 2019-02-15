@@ -11,6 +11,7 @@ public class NameToggler implements ActionListener {
 	//Toggles the names being visible on the graph
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		//Turns on and off the displaying of names on the map.
 		this.middleEarth.toggleNames();
  		this.middleEarth.repaint();
 	}

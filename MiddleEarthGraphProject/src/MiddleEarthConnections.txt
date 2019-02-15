@@ -111,3 +111,5 @@ Sarn_Ford Tharbad 0.75
 Tharbad Last_Bridge 1.0
 Tharbad Rivendell 1.0
 Tharbad Bree 0.75
+Field_of_Celebrant The_Wold 0.5
+The_Wold Falls_of_Rauros 0.5

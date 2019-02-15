@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,6 +35,10 @@ public class Entered implements ActionListener {
 		String endPt = (String) this.end.getSelectedItem();
 		
 		if(endPt.equals("Desired Distance")) {
+			
+			graph.clearButtons();
+			graph.addCity(startPt);
+			graph.setPathColor(Color.BLACK, Color.BLACK, false);
 			
 			while(true) {
 				
