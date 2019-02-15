@@ -36,8 +36,8 @@ public class Entered implements ActionListener {
 		
 		if(endPt.equals("Desired Distance")) {
 			
-			graph.clearButtons();
-			graph.addCity(startPt);
+			//graph.clearButtons();
+			//graph.addCity(startPt);
 			graph.setPathColor(Color.BLACK, Color.BLACK, false);
 			
 			while(true) {
