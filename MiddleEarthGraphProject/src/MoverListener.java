@@ -14,6 +14,8 @@ public class MoverListener implements ActionListener {
 		this.graph = graph;
 	}
 
+	//Moves the center Focus of the graph. Allows for North, South, East, and West movement.
+	//Also allows the zoom functionality.
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		//Moves the field of view on the window around.

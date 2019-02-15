@@ -9,10 +9,10 @@ public class ToggleListener implements ActionListener{
 
 	//links two buttons so one button's state affects the state of the other.
 	public ToggleListener(JRadioButton linkedButton){
-		this.otherButton= linkedButton;
+		this.otherButton = linkedButton;
 		
 	}
-
+	//Sets the opposing button to its opposite state. 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		otherButton.setSelected(!otherButton.isSelected());		

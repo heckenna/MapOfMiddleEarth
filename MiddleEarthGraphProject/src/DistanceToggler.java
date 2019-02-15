@@ -8,7 +8,7 @@ public class DistanceToggler implements ActionListener {
 	public DistanceToggler(Graph graph) {
 		this.middleEarth = graph;
 	}
-
+	//Toggles the visibility of the distance markers on the graph
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		this.middleEarth.toggleDistance();

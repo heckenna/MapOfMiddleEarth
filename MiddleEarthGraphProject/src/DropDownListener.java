@@ -7,19 +7,26 @@ import javax.swing.JComboBox;
 public class DropDownListener implements ActionListener{
 	Graph middleEarth;
 	JComboBox<String> t;
-	ArrayList<String> n;
+
+	ArrayList<String> citiesActive;
+
 	private int thatCity;
 	
 	public DropDownListener(Graph graph, JComboBox<String> t, int thatCity) {
-		n = new ArrayList<>();
+		citiesActive = new ArrayList<>();
+
 		this.middleEarth = graph;
 		this.t= t;
 		this.thatCity = thatCity;
 	}
 	
 	@Override
+	//Allows buttons on the graph to be controlled by changes in the DropDown boxes.
 	public void actionPerformed(ActionEvent arg0) {
-		//Makes sure to change the values of TwoCities and whether or not the needed JRadioButtons are selected
+		
+		//Clear out array so the ArrayList stays reasonably sized.
+		citiesActive.clear();
+		citiesActive.add((String) t.getSelectedItem());
 		this.middleEarth.activateButton((String) t.getSelectedItem(), this.thatCity);
 	}
 

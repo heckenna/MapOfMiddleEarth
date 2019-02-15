@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 
+/**
+ * 
+ * A node is a single city or place in the graph. Each node contains information about itself such as its
+ * 	coordiantes, which connections it has, etc. 
+ *
+ */
 public class Node {
 
 	private int xCoor;
@@ -45,21 +51,49 @@ public class Node {
 		
 	}
 	
+	/**
+	 * 
+	 * Adds a connection to this node. 
+	 *
+	 * @param e
+	 */
 	public void addEdge(Edge e){
 		
 		this.edges.add(e);
 	}
 	
+	/**
+	 * 
+	 * returns the arraylist of edges, or connections, that this node contains. 
+	 *
+	 * @return
+	 */
 	public ArrayList<Edge> getEdges(){
 		
 		return (this.edges);
 	}
 	
+	/**
+	 * 
+	 * Draws this node. This node also tells each of its edges to draw themselves. The names of the nodes can be 
+	 * 	toggled in this method; choosing whether or not to display the names. 
+	 *
+	 * @param graphics2
+	 * @param xZoom
+	 * @param yZoom
+	 * @param frame
+	 * @param drawDistances
+	 * @param drawEdges
+	 * @param drawNames
+	 */
 	public void draw(Graphics2D graphics2, double xZoom, double yZoom, JFrame frame, boolean drawDistances, boolean drawEdges, boolean drawNames){
 		
 		if(!this.button.isVisible()) this.button.setVisible(true);
+		
 	    this.button.setBounds((int) (this.x*xZoom - this.radius*1.2), (int) (this.y * yZoom - this.radius), 15, 12);
+	    
 	    if((this.x*xZoom - this.radius*1.2) > frame.getWidth()-340) {
+	    	
 	    	this.button.setVisible(false);
 	    }
 	    	
@@ -76,6 +110,13 @@ public class Node {
 		
 	}
 	
+	/**
+	 * 
+	 * Updates the position of the node. Used in positioning of the graph. 
+	 *
+	 * @param x
+	 * @param y
+	 */
 	public void updateCoordinate(int x, int y){
 		
 		this.x += x;
@@ -97,11 +138,25 @@ public class Node {
 		return (this.y);
 	}
 	
+	/**
+	 * 
+	 * Sets the color of the node's name. 
+	 *
+	 * @param c
+	 */
 	public void setColor(Color c){
 		
 		this.color  = c;
 	}
 	
+	/**
+	 * 
+	 * Estimates the length (either distance or time) between this node and a specified node. 
+	 *
+	 * @param destination
+	 * @param criteria
+	 * @return
+	 */
 	public int estimateLength(Node destination, String criteria){
 		
 		int distance = (int)( Math.sqrt( Math.pow( (this.x - destination.getX()), 2) + 
@@ -112,6 +167,6 @@ public class Node {
 			return (distance);
 		}
 		
-		return (int)(distance / 5);
+		return (int)(distance / 12);
 	}
 }

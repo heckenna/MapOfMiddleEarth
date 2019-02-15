@@ -15,6 +15,13 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+/**
+ * 
+ * Creates a graph which stores all of the nodes. This class also contains major operations that can be 
+ * 	performed on the graph, such as the shortest path search, node insertion, node connection, positioning of 
+ * 	the graph's coordinates, the ability to zoom in and out of the graph, etc. 
+ * 
+ */
 public class Graph extends JComponent{
 	
 	private HashMap<String, Node> searchNode;
@@ -99,13 +106,24 @@ public class Graph extends JComponent{
 	}
 	
 	public JFrame getFrame() {
+		
 		return this.frame;
 	}
 	
 	public void addSidePanel(SidePanel panel) {
+		
 		this.sidePanel = panel;
 	}
 	
+	/**
+	 * 
+	 * Inserts a node into the graph
+	 *
+	 * @param name
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean insert(String name, int x, int y){
 		
 		if (this.searchNode.containsKey(name)){
@@ -118,7 +136,12 @@ public class Graph extends JComponent{
 		return (true);
 	}
 	
-	
+	/**
+	 * 
+	 * Gets an array containing all of the node names in this graph. This is used for the drop down box purposes. 
+	 *
+	 * @return
+	 */
 	public String[] getNameArray() {
 		
 		int k = 0;
@@ -137,6 +160,15 @@ public class Graph extends JComponent{
 		return (h);
 	}
 	
+	/**
+	 * 
+	 * Creates a connection, via an edge, between two of the nodes.
+	 *
+	 * @param name1
+	 * @param name2
+	 * @param terrainDifficulty
+	 * @return
+	 */
 	public boolean connect(String name1, String name2, double terrainDifficulty){
 		
 		Node node1 = this.searchNode.get(name1);
@@ -155,6 +187,15 @@ public class Graph extends JComponent{
 		return (true);
 	}
 	
+	/**
+	 * 
+	 * An A* algorithm which finds the shortest path between two citites using the criteria of either
+	 * 	distance or time. 
+	 *
+	 * @param beginString
+	 * @param destinationString
+	 * @param criteria
+	 */
 	public void findShortestPath(String beginString, String destinationString, String criteria){
 		
 		String oppositeCriteria = "";
@@ -220,6 +261,15 @@ public class Graph extends JComponent{
 		
 	}
 	
+	/**
+	 * 
+	 * Sets the color of the last path that the shortest path algorithm returned. This is used to highlight
+	 * 	the shortest path. 
+	 *
+	 * @param nodeColor
+	 * @param edgeColor
+	 * @param toggleEdge
+	 */
 	public void setPathColor(Color nodeColor, Color edgeColor, boolean toggleEdge){
 		
 		Node last = null;
@@ -241,14 +291,27 @@ public class Graph extends JComponent{
 		}
 	}
 	
+	/**
+	 * 
+	 * Checks if this graph contains a certain node. 
+	 *
+	 * @param place
+	 * @return
+	 */
 	public boolean hasPlace(String place) {
 		
 		return this.searchNode.containsKey(place);
 	}
 	
+	/**
+	 * 
+	 * Repositions the graph. The graph can move left, right, up, or down. 
+	 *
+	 * @param x
+	 * @param y
+	 */
 	public void moveCenter(int x, int y){
-		//System.out.println("Graph Screen Height: " + Graph.SCREEN_HEIGHT);
-		//System.out.println("Frame Height: " + this.frame.getHeight());
+		
 		if (this.backgroundX + x > 0){
 			
 			x = 0;
@@ -278,6 +341,12 @@ public class Graph extends JComponent{
 		this.backgroundY += y;
 	}
 	
+	/**
+	 * 
+	 * Changes the zoom on the map. 
+	 *
+	 * @param amount
+	 */
 	public void zoom(double amount){
 		
 		this.xZoom += amount;
@@ -298,19 +367,29 @@ public class Graph extends JComponent{
 	}
 	
 	@Override
+	/**
+	 * 
+	 * Draws the background image, tells each of the nodes to draw themselves (The nodes tell the edges to draw
+	 * 	themselves). 
+	 * 
+	 */
 	protected void paintComponent(Graphics graphics) {
 		
 		super.paintComponent(graphics);
 		
 		Graphics2D graphics2 = (Graphics2D) graphics;
 		
-		//Give Nodes and Edges the desired wicked cool font.
 		Font newR = new Font("Times New Roman", 12, 12);
+		
 		try {
+			
 			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
 			Font font = aniron.deriveFont((float)12);
 			graphics2.setFont(font);
-		} catch (FontFormatException | IOException exception) {
+		} 
+		
+		catch (FontFormatException | IOException exception) {
+			
 			exception.printStackTrace();
 		}
 		
@@ -343,31 +422,52 @@ public class Graph extends JComponent{
 		}
 	}
 	
+	/**
+	 * 
+	 * Sets the desired radius of the trip plan mode
+	 *
+	 * @param radius
+	 */
 	public void planTrip(int radius){
 		
 		this.tripPlanRadius = radius;
 	}
 	
+	/**
+	 * 
+	 * Gets the length of the last search path, whether distance or time were the units. 
+	 *
+	 * @return
+	 */
 	public int getLastLength(){
 		
 		return (this.lastLength);
 	}
 	
+	/**
+	 * 
+	 * Gets the opposite units of the last length of the search path. For example, if the last searhc path was
+	 * 	conducted on the basis of distance, then the time of the last path will be returned. 
+	 *
+	 * @return
+	 */
 	public int getLastOppositeLength(){
 		
 		return (this.lastOppositeLength);
 	}
 
-	public void findBetween(Node city) {
-		/* Trying to get deselection of city to work nicer. It is a bit wonky.
-		if(!city.button.isSelected()) {
-			if(city.getName().equals(this.twoCities.get(0).getName())) this.twoCities.remove(0);
-			else this.twoCities.remove(1);
-			return;
-		} */
-		
+	/**
+	 * 
+	 * Adds a city to be either a start or an end node. If it is a start node, then nothing occurs, the program has
+	 * 	to wait for an end city to be selected. IF it is an end city, then a shortest path is automatically
+	 * 	calculated. 
+	 *
+	 * @param city
+	 */
+	public void findBetween(Node city) {		
 		
 		if(this.twoCities[0] != null && this.twoCities[1] != null) {
+			
 			this.twoCities[0].button.setSelected(false);
 			this.twoCities[1].button.setSelected(false);
 			this.twoCities[0] = null;
@@ -377,6 +477,7 @@ public class Graph extends JComponent{
 		city.button.setSelected(true);
 		
 		if (this.twoCities[0] == null) {
+			
 			this.sidePanel.addDescription(this.descriptions,city.getName());
 			this.setPathColor(Color.BLACK, Color.BLACK, false);
 			this.twoCities[0] = city;
@@ -385,6 +486,7 @@ public class Graph extends JComponent{
 		} 
 		
 		else if (this.twoCities[1] == null){
+			
 			this.twoCities[1] = city;
 			this.sidePanel.addDescription(this.descriptions,city.getName());
 			this.setPathColor(Color.BLACK, Color.BLACK, false);
@@ -393,11 +495,17 @@ public class Graph extends JComponent{
 		}
 		
 		if (this.twoCities[0] != null && this.twoCities[1] != null) {
-			//this.findShortestPath(this.twoCities[0].getName(), this.twoCities[1].getName(), "distance");
+
 			this.sidePanel.enter.doClick();
 		}
 	}
 	
+	/**
+	 * 
+	 * Overrides the start city with the passed in city. 
+	 *
+	 * @param name
+	 */
 	public void addCity(String name){
 		
 		Node n = this.searchNode.get(name);
@@ -409,38 +517,48 @@ public class Graph extends JComponent{
 		}
 	}
 
+	/**
+	 * 
+	 * Adds a CityListener to all of the nodes in the graph. 
+	 *
+	 */
 	public void addButtons() {
-		
-		int k = 0;
 				
 		for(Node n : this.searchNode.values()) {
 			
 			n.button.addActionListener(new CityListener(n, this));
-			this.frame.add(n.button);
-			
-			k+=1;		
+			this.frame.add(n.button);	
 		}
 		
 	}
 	
+	/**
+	 * 
+	 * Sets a node's radio button to activate. Makes this node either the start or end city. Displays the 
+	 * 	description of this city int the side panel. 
+	 *
+	 * @param city
+	 * @param thatCity
+	 */
 	public void activateButton(String city, int thatCity) {
-		/*for(Node n : this.searchNode.values()) {
-			if(n.getName() == city) {
-				n.button.setSelected(true);
-				this.sidePanel.addDescription(this.descriptions,city);
-			}
-		}*/
 		
 		this.planTrip(0);
 		this.repaint();
 		
 		Node n = this.searchNode.get(city);
 		
+<<<<<<< HEAD
 		
 			
 		if(this.twoCities[thatCity]!=null && this.twoCities[0]!=this.twoCities[1]) this.twoCities[thatCity].button.setSelected(false);
+=======
+		if(this.twoCities[thatCity]!=null) this.twoCities[thatCity].button.setSelected(false);
+		
+>>>>>>> branch 'master' of https://github.com/heckenna/MapOfMiddleEarth.git
 		this.twoCities[thatCity] = n;
+		
 		if(n!=null) {
+			
 			this.twoCities[thatCity].button.setSelected(true);
 			this.sidePanel.addDescription(this.descriptions,city);
 		}
@@ -448,8 +566,13 @@ public class Graph extends JComponent{
 		
 	}
 	
-
+	/**
+	 * 
+	 * Clears the start and end cities, so that no node has been selected yet. 
+	 *
+	 */
 	public void clearButtons() {
+		
 		if(this.twoCities[0]!= null) this.twoCities[0].button.setSelected(false);
 		this.twoCities[0] = null;
 		if(this.twoCities[1]!= null) this.twoCities[1].button.setSelected(false);
@@ -458,27 +581,56 @@ public class Graph extends JComponent{
 		
 	}
 	
+	/**
+	 * 
+	 * Toggles whether or not to display the edge metrics of distance and time. 
+	 *
+	 */
 	public void toggleDistance() {
 		
 		this.toggleDistance = ! this.toggleDistance;
 	}
 	
+	/**
+	 * 
+	 * Toggles whether or not to display the edges. 
+	 *
+	 */
 	public void toggleEdges(){
 		
 		this.toggleEdges = ! this.toggleEdges;
 	}
 	
+	/**
+	 * 
+	 * Toggles whether or not to display the city names.
+	 *
+	 */
 	public void toggleNames(){
 		
 		this.toggleNames = ! this.toggleNames;
 	}
 
+	/**
+	 * Inserts a new desciption of a city into the map.
+	 *
+	 * @param name
+	 * @param description
+	 */
 	public void insertDescription(String name, String description) {
+		
 		this.descriptions.put(name, description);
 		
 	}
 
+	/**
+	 * 
+	 * returns this graph's audio player
+	 *
+	 * @return
+	 */
 	public AudioPlayer getAudioPlayer() {
+		
 		return this.a;
 	}
 }
