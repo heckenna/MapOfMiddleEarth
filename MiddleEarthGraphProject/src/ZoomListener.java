@@ -11,12 +11,10 @@ public class ZoomListener implements ActionListener {
 		this.graph = graph;
 	}
 
+	//Changes the x and y zoom features to increase or decrease, depending on which button was activated.
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		this.graph.zoom(this.zoom);
-		
 		graph.repaint();
-		
 	}
-
 }

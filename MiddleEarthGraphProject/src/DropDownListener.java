@@ -7,21 +7,24 @@ import javax.swing.JComboBox;
 public class DropDownListener implements ActionListener{
 	Graph middleEarth;
 	JComboBox<String> t;
-	ArrayList<String> n;
+	ArrayList<String> citiesActive;
 	
 	public DropDownListener(Graph graph, JComboBox<String> t) {
-		n = new ArrayList<>();
+		citiesActive = new ArrayList<>();
 		this.middleEarth = graph;
 		this.t= t;
 	}
 	
 	@Override
+	//Allows buttons on the graph to be controlled by changes in the DropDown boxes.
 	public void actionPerformed(ActionEvent arg0) {
-		for(String u : n) {
-			middleEarth.deactivateButton(u);
+		//For every string in u, deactivate the button on the graph. 
+		for(String cityName : citiesActive) {
+			middleEarth.deactivateButton(cityName);
 		}
-		n.clear();
-		n.add((String) t.getSelectedItem());
+		//Clear out array so the ArrayList stays reasonably sized.
+		citiesActive.clear();
+		citiesActive.add((String) t.getSelectedItem());
 		middleEarth.activateButton((String) t.getSelectedItem());
 		
 	}

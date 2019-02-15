@@ -13,7 +13,7 @@ public class AudioListener implements ActionListener{
 		this.button = b;
 	}
 	
-
+	//Reads in the text of the button to decide which action to do. Then changes the musics' state
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String value = this.button.getText();
