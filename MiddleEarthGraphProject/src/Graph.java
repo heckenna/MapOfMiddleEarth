@@ -547,14 +547,10 @@ public class Graph extends JComponent{
 		
 		Node n = this.searchNode.get(city);
 		
-<<<<<<< HEAD
+		if(this.twoCities[thatCity]!=null) this.twoCities[thatCity].button.setSelected(false);
 		
 			
 		if(this.twoCities[thatCity]!=null && this.twoCities[0]!=this.twoCities[1]) this.twoCities[thatCity].button.setSelected(false);
-=======
-		if(this.twoCities[thatCity]!=null) this.twoCities[thatCity].button.setSelected(false);
-		
->>>>>>> branch 'master' of https://github.com/heckenna/MapOfMiddleEarth.git
 		this.twoCities[thatCity] = n;
 		
 		if(n!=null) {
