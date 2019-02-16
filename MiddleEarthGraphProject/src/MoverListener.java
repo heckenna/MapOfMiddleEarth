@@ -3,6 +3,10 @@ import java.awt.event.ActionListener;
 
 public class MoverListener implements ActionListener {
 
+/**
+ * Moves the center Focus of the graph. Allows for North, South, East, and West movement.
+ * Also allows the zoom functionality.
+ */
 	private Graph graph;
 	private int y;
 	private int x;
@@ -13,9 +17,7 @@ public class MoverListener implements ActionListener {
 		this.y = y;
 		this.graph = graph;
 	}
-
-	//Moves the center Focus of the graph. Allows for North, South, East, and West movement.
-	//Also allows the zoom functionality.
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		//Moves the field of view on the window around.

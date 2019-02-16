@@ -12,11 +12,12 @@ import javax.swing.JRadioButton;
 
 public class SetStyle {
 
-	//README:
-	//All of these constructors basically do the same thing but for different components.
-	//A font is created and added to the Object
-	//the Object is made unfocusable for the purpose of making the keyListener work.
-	//Also will make background transparent and add color where wanted for the desired "look"
+/**	
+*	All of these constructors basically do the same thing but for different components.
+*	A font is created and added to the Object
+*	the Object is made unfocusable for the purpose of making the keyListener work.
+*	Also will make background transparent and add color where wanted for the desired "look"
+*/
 	public SetStyle(JComboBox<String> thing, float fontSize) {
 		//Makes a font object in order to create the Aniron font. It is wierd, but it works.
 		try {

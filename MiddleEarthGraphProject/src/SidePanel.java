@@ -28,8 +28,8 @@ public class SidePanel extends JComponent{
 	protected JRadioButton dist;
 	protected JButton enter;
 	
-	//This creates a side panel for user input and some display
 	public SidePanel(Graph graph, JPanel frame) {
+		//This creates a side panel for user input and some display
 		this.s = new JComboBox<>();
 		this.e = new JComboBox<>();
 		this.panel = frame;
@@ -60,8 +60,8 @@ public class SidePanel extends JComponent{
 		
 	}
 
-	//Makes a button to control Audio and adds audio to the program.
 	private void addAudioPanel() {
+		//Makes a button to control Audio and adds audio to the program.
 		this.pausePlay = new JButton();
 		this.audioPanel = new JPanel();
 		this.audioPanel.setPreferredSize(new Dimension(300,100));
@@ -75,8 +75,8 @@ public class SidePanel extends JComponent{
 		
 	}
 
-	//Adds descriptions of the destinations to be displayed on the side panel
 	private void addDescriptionPanel() {
+		//Adds descriptions of the destinations to be displayed on the side panel
 		this.descriptionLabel = new JLabel();
 		this.descriptionPanel = new JPanel();
 		this.descriptionPanel.setPreferredSize(new Dimension(300, 510));
@@ -87,8 +87,10 @@ public class SidePanel extends JComponent{
 		
 	}
 
-	//Adds choices of displaying distance/time, edges, and names.
+
 	private void addTogglers() {
+		//Adds choices of displaying distance/time, edges, and names.
+
 		JRadioButton toggleDistance = new JRadioButton("Display Distance and Time");
 		
 		//Makes the distance/time toggleable 
@@ -114,9 +116,8 @@ public class SidePanel extends JComponent{
 		this.panel.add(toggleNames);
 	}
 
-	//Makes it possible to move around the map.
 	public void addMapNav(){
-		
+		//Makes it possible to move around the map.
 		
 		JButton north = new JButton("North");
 		JButton south = new JButton("South");
@@ -178,8 +179,9 @@ public class SidePanel extends JComponent{
 		
 	}
 	
-	//Lets the user search for places. 
 	public void addSearchBars() {
+		//Lets the user search for places. 
+
 		//Start and end panels created to put relevant elements with each other.
 		Dimension searchSize = new Dimension(250,30);
 		JPanel startPanel = new JPanel();
@@ -261,8 +263,9 @@ public class SidePanel extends JComponent{
 		this.panel.add(clear, BorderLayout.CENTER);		
 	}
 
-	//Adds the calculated distance and times to the SidePanel
 	public void addPanelOutput() {
+		//Adds the calculated distance and times to the SidePanel
+
 		JPanel display = new JPanel();
 		display.setOpaque(false);
 		
@@ -282,8 +285,9 @@ public class SidePanel extends JComponent{
 		this.e.setSelectedItem(city);
 	}
 
-	//Puts description of selected location on the SidePanel
 	public void addDescription(HashMap<String, String> descriptions, String city) {
+		//Puts description of selected location on the SidePanel
+
 		if(city == "clear"){
 			this.descriptionLabel.setText("");
 		}

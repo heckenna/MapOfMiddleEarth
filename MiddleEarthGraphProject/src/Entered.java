@@ -8,6 +8,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 public class Entered implements ActionListener {
+	
+/**
+ * Does the graph searching algorithm.
+ * Displays the path on the map, also will update the time and distances on the SidePanel
+ * Also handles the "travel mode"
+ */
 
 	private JLabel outputLength;
 	private JLabel outputOppositeLength;
@@ -35,15 +41,14 @@ public class Entered implements ActionListener {
 		String endPt = (String) this.end.getSelectedItem();
 		
 		if(endPt.equals("Desired Distance")) {
-			
-			//graph.clearButtons();
-			//graph.addCity(startPt);
+			//Travel mode. Creates a circle around the city of a specified distance in order to show the user
+			//possible locations to travel without exceeding the distance desired.
 			graph.setPathColor(Color.BLACK, Color.BLACK, false);
 			
 			while(true) {
-				
+				//Wrapped in a loop to keep prompting the user until an Int is entered.
 				try {
-
+					//Creates a popup in order to get a desired distance from the user
 					String name = JOptionPane.showInputDialog(this.graph.getFrame(),
 		                    "How Far Do You Want To Travel? ", null);
 					int radius = Integer.parseInt(name);
@@ -54,12 +59,13 @@ public class Entered implements ActionListener {
 				
 				catch(Exception e){
 					
-					//
+					/////////
 				}
 			}	
 		}
 		
 		else if(this.graph.hasPlace(startPt) && this.graph.hasPlace(endPt)) {
+			//Calls the A* algorithm from Graph
 			if(this.distance.isSelected()) {
 				this.graph.findShortestPath(startPt, endPt, "distance");
 				this.outputLength.setText("Distance: " + this.graph.getLastLength() + " Miles");
@@ -74,7 +80,7 @@ public class Entered implements ActionListener {
 		} 
 		
 		else {
-			
+			//If no city is selected
 			System.out.print("Invalid Location\n");
 		}
 		

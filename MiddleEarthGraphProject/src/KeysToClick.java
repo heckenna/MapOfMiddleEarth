@@ -5,6 +5,10 @@ import javax.swing.JButton;
 
 public class KeysToClick implements KeyListener {
 
+/**
+ * When the specified key is pressed, the corresponding buttons will do their thing
+ * The Panel MUST be focused for this to work
+ */
 	
 	private JButton north;
 	private JButton south;
@@ -27,8 +31,6 @@ public class KeysToClick implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		//When the specified key is pressed, the corresponding buttons will do their thing
-		//The Panel MUST be focused for this to work
 		if(e.getKeyCode() == e.VK_UP) this.north.doClick();
 		else if(e.getKeyCode() == e.VK_DOWN) this.south.doClick();
 		else if(e.getKeyCode() == e.VK_LEFT) this.west.doClick();
