@@ -17,7 +17,7 @@ public class ClearListener implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		this.graph.setPathColor(Color.BLACK, Color.BLACK, false);
 		//This needs fixed. JButtons may need set false, but twoCities should NOT be cleared at this time
-		this.graph.clearButtons();
+		this.graph.buttonsSetFalse();
 		graph.repaint();
 	}
 

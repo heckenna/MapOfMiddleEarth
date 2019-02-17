@@ -429,7 +429,7 @@ public class Graph extends JComponent{
 	 * @param radius
 	 */
 	public void planTrip(int radius){
-		
+		if(twoCities[0] != null) this.twoCities[0].button.setSelected(true);
 		this.tripPlanRadius = radius;
 	}
 	
@@ -628,5 +628,10 @@ public class Graph extends JComponent{
 	public AudioPlayer getAudioPlayer() {
 		
 		return this.a;
+	}
+
+	public void buttonsSetFalse() {
+		if(this.twoCities[0]!=null) this.twoCities[0].button.setSelected(false);
+		if(this.twoCities[1]!=null) this.twoCities[1].button.setSelected(false);
 	}
 }
