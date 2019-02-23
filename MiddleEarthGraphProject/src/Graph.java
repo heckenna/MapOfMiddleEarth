@@ -378,12 +378,10 @@ public class Graph extends JComponent{
 		super.paintComponent(graphics);
 		
 		Graphics2D graphics2 = (Graphics2D) graphics;
-		
-		Font newR = new Font("Times New Roman", 12, 12);
-		
+				
 		try {
 			
-			Font aniron = newR.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
+			Font aniron = Font.createFont(Font.PLAIN, getClass().getResourceAsStream("/ANIRB___0.TTF"));
 			Font font = aniron.deriveFont((float)12);
 			graphics2.setFont(font);
 		} 
